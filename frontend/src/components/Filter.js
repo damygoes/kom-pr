@@ -1,5 +1,19 @@
 import React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+  Box,
+  FormLabel,
+  FormControl,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Switch,
+} from "@mui/material";
+import {
+  setFilterQuery,
+  setFilterDirection,
+  // resetFilters,
+} from "../features/filterSlice";
 
 let filterItems = {
   "avg. Gradient": "avgGradient",
@@ -11,40 +25,61 @@ let filterItems = {
 };
 
 export default function Filter({ handleFilter }) {
+  const dispatch = useDispatch();
+
+  const handleCheckBox = (filterValue) => {
+    dispatch(setFilterQuery(filterValue));
+  };
+  const handleSwitch = (switchState) => {
+    dispatch(setFilterDirection(switchState));
+  };
+
   return (
-    <ToggleButtonGroup
-      orientation="vertical"
-      value={""}
-      exclusive
-      fullWidth
-      onChange={(e) => handleFilter(e)}
-    >
-      <ToggleButton
-        value={""}
-        // disabled={true}
-        sx={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <div>Filter </div>
-        {/* <Box>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Descending"
-            />
-          </FormGroup>
-        </Box> */}
-      </ToggleButton>
-      {Object.keys(filterItems).map((key) => {
-        return (
-          <ToggleButton
-            key={key}
-            value={filterItems[key]}
-            aria-label="filter-list"
-          >
-            {key}
-          </ToggleButton>
-        );
-      })}
-    </ToggleButtonGroup>
+    <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            marginBottom: "1rem",
+          }}
+        >
+          <FormLabel component="legend">Filters</FormLabel>
+          <FormControlLabel
+            control={
+              <Switch
+                size="small"
+                onChange={(e) => handleSwitch(e.target.checked)}
+              />
+            }
+            label="Descending"
+          />
+        </div>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="female"
+          name="radio-buttons-group"
+        >
+          {Object.keys(filterItems).map((filter) => {
+            return (
+              <FormControlLabel
+                key={filter}
+                value={filterItems[filter]}
+                control={
+                  <Radio
+                    size="small"
+                    onChange={(e) => handleCheckBox(e.target.value)}
+                  />
+                }
+                label={filter}
+                sx={{ textTransform: "capitalize" }}
+              />
+            );
+          })}
+        </RadioGroup>
+      </FormControl>
+    </Box>
   );
 }

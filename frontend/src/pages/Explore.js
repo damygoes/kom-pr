@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import _ from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@mui/material";
@@ -6,17 +7,15 @@ import AllClimbs from "../utils/AllClimbs";
 import { paginate } from "../utils/paginate";
 import PaginationComponent from "../components/common/PaginationComponent";
 import Filter from "../components/Filter";
-
-// Fetch from Backend API
-import { climbs } from "../Dummy";
 import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
+
+import { climbs } from "../Dummy"; // Fetch from Backend API
 
 // ##############
 
 const useStyles = makeStyles(() => ({
   pageRow: {
     display: "flex",
-    // flexWrap: "wrap",
     width: "100%",
     justifyContent: "space-between",
     alignItems: "flex-start",
@@ -44,11 +43,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Explore() {
+  const filterOptions = useSelector((state) => state);
+  const { filterReducer } = filterOptions;
   // STATES
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
-  // const [isDescending, setIsDescending] = useState(false);
-  const [filterQuery, setFilterQuery] = useState({ path: "", order: "" });
+
   // EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);
@@ -56,25 +56,22 @@ export default function Explore() {
   const handleClimbsPerPage = (number) => {
     setClimbsPerPage(number);
   };
-  const handleFilter = ({ target }) => {
-    setFilterQuery({ path: target.value, order: "asc" });
-  };
 
   // DECLARED VARIABLES
   const classes = useStyles();
 
   let filteredClimbs = _.orderBy(
     climbs,
-    [filterQuery.path],
-    [filterQuery.order]
+    [filterReducer.filterQuery],
+    [filterReducer.filterDirection]
   );
 
   let paginatedClimbs = paginate(filteredClimbs, currentPage, climbsPerPage);
 
   return (
     <div className={classes.pageRow}>
-      <Box sx={{ width: "30%" }}>
-        <Filter handleFilter={handleFilter} />
+      <Box sx={{ width: "30%", marginTop: "4rem" }}>
+        <Filter />
       </Box>
       <div className={classes.pageCol}>
         <Box sx={{ alignSelf: "end", marginTop: "1rem" }}>
