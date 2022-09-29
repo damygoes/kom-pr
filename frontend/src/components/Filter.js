@@ -1,16 +1,5 @@
-import React, { useState } from "react";
-import {
-  Box,
-  ToggleButton,
-  ToggleButtonGroup,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-} from "@mui/material";
+import React from "react";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 let filterItems = {
   "avg. Gradient": "avgGradient",
