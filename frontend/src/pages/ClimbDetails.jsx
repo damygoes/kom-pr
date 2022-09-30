@@ -17,7 +17,7 @@ import Masonry from "@mui/lab/Masonry";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
-import ClimbCard from "../components/common/ClimbCard";
+import RelatedClimbs from "../components/RelatedClimbs";
 
 const useStyles = makeStyles(() => ({
   pageContainer: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    padding: "1rem"
+    padding: "1rem",
   },
 }));
 
@@ -51,17 +51,10 @@ const ClimbDetails = () => {
     (climb) => climb.slug === slug
   );
 
-  // console.log(selectedClimb);
-
   return (
     <Container>
       {selectedClimb.length > 0 ? (
         selectedClimb.map((climb) => {
-          const relatedClimbs = climbsReducer.climbs.filter(
-            (relatedClimb) =>
-              relatedClimb.country === climb.country &&
-              relatedClimb.slug !== climb.slug
-          );
           return (
             <div className={classes.pageContainer} key={climb.slug}>
               <Card sx={{ maxWidth: "100%" }}>
@@ -120,7 +113,6 @@ const ClimbDetails = () => {
                       </Button>
                     </ButtonGroup>
                   </CardContent>
-
                   <CardContent>
                     <Typography variant="body1" color="text.secondary">
                       {climb.description}
@@ -139,26 +131,16 @@ const ClimbDetails = () => {
                   fontSize={"2rem"}
                   component="p"
                   color="secondary"
-                  sx={{marginBottom: "3rem", marginTop: "2rem"}}
+                  sx={{ marginBottom: "3rem", marginTop: "2rem" }}
                 >
                   Related Climbs
                 </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    width: "100%",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                    gap: "2rem",
-                  }}
-                >
-                  {relatedClimbs.map((relatedClimb) => {
-                    return (
-                      <ClimbCard key={relatedClimb.slug} data={relatedClimb} />
-                    );
-                  })}
-                </Box>
+                <RelatedClimbs
+                  slug={slug}
+                  country={climb.country}
+                  currentClimb={climb}
+                  data={climbsReducer.climbs}
+                />
               </Box>
             </div>
           );

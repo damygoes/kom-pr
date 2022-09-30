@@ -40,7 +40,7 @@ export default function ClimbCard({ data }) {
     maxGradient,
     elevation,
     images,
-    slug
+    slug,
   } = data;
   const [expanded, setExpanded] = React.useState(false);
 
@@ -50,25 +50,25 @@ export default function ClimbCard({ data }) {
 
   return (
     <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
-       <Link
-      to={`/explore/${slug}`}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <CardHeader title={name} subheader={country} />
-      <CardMedia component="img" height="294" image={images[0]} alt="" />
-      <CardContent>
-        <ButtonGroup
-          variant="text"
-          size="small"
-          aria-label="text button group"
-          color="secondary"
-        >
-          <Button startIcon={<GiPathDistance />}> {`${distance}km`} </Button>
-          <Button startIcon={<TbTypography />}> {`${avgGradient}%`} </Button>
-          <Button startIcon={<FaMaxcdn />}> {`${maxGradient}%`} </Button>
-          <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
-        </ButtonGroup>
-      </CardContent>
+      <Link
+        to={`/explore/${slug}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <CardHeader title={name} subheader={country} />
+        <CardMedia component="img" height="294" image={images[0]} alt="" />
+        <CardContent>
+          <ButtonGroup
+            variant="text"
+            size="small"
+            aria-label="text button group"
+            color="secondary"
+          >
+            <Button startIcon={<GiPathDistance />}> {`${distance}km`} </Button>
+            <Button startIcon={<TbTypography />}> {`${avgGradient}%`} </Button>
+            <Button startIcon={<FaMaxcdn />}> {`${maxGradient}%`} </Button>
+            <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
+          </ButtonGroup>
+        </CardContent>
       </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
