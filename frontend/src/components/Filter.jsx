@@ -17,6 +17,7 @@ import {
   // resetFilters,
 } from "../features/filterSlice";
 
+
 const filterItems = {
   "avg. Gradient": "avgGradient",
   country: "country",

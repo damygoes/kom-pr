@@ -1,13 +1,18 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import { Collapse, Button, ButtonGroup } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  IconButton,
+  Typography,
+  Collapse,
+  Button,
+  ButtonGroup,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
@@ -34,7 +39,8 @@ export default function ClimbCard({ data }) {
     avgGradient,
     maxGradient,
     elevation,
-    image,
+    images,
+    slug
   } = data;
   const [expanded, setExpanded] = React.useState(false);
 
@@ -44,8 +50,12 @@ export default function ClimbCard({ data }) {
 
   return (
     <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
+       <Link
+      to={`/explore/${slug}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <CardHeader title={name} subheader={country} />
-      <CardMedia component="img" height="294" image={image} alt="" />
+      <CardMedia component="img" height="294" image={images[0]} alt="" />
       <CardContent>
         <ButtonGroup
           variant="text"
@@ -59,6 +69,7 @@ export default function ClimbCard({ data }) {
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
+      </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

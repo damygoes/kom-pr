@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@mui/material";
@@ -8,8 +8,13 @@ import { paginate } from "../utils/paginate";
 import PaginationComponent from "../components/common/PaginationComponent";
 import Filter from "../components/Filter";
 import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
+import { setClimbs } from "../features/climbsSlice";
 
 import { climbs } from "../Dummy"; // Fetch from Backend API
+
+
+
+
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -42,12 +47,23 @@ const useStyles = makeStyles(() => ({
 }));
 // ##############
 
+
+
 export default function Explore() {
-  const filterOptions = useSelector((state) => state);
-  const { filterReducer } = filterOptions;
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(setClimbs(climbs))
+  },[dispatch])
+
+  const reducerQueries = useSelector((state) => state);
+  const { filterReducer, climbsReducer } = reducerQueries;
+
   // STATES
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // EVENT HANDLERS
   const handlePageChange = (e, page) => {
@@ -62,9 +78,9 @@ export default function Explore() {
 
   let filteredClimbs = () => {
     if (filterReducer.country) {
-      return climbs.filter((climb) => climb.country === filterReducer.country);
+      return climbsReducer.climbs.filter((climb) => climb.country === filterReducer.country);
     }
-    return climbs;
+    return climbsReducer.climbs;
   };
 
   let sortedClimbs = _.orderBy(
