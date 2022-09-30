@@ -12,7 +12,6 @@ import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
 import { climbs } from "../Dummy"; // Fetch from Backend API
 
 // ##############
-
 const useStyles = makeStyles(() => ({
   pageRow: {
     display: "flex",
@@ -22,7 +21,7 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginTop: "3rem",
     marginBottom: "4rem",
-    border: "1px solid green",
+    // border: "1px solid green",
   },
   pageCol: {
     display: "flex",
@@ -41,6 +40,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: "3rem",
   },
 }));
+// ##############
 
 export default function Explore() {
   const filterOptions = useSelector((state) => state);
@@ -60,13 +60,20 @@ export default function Explore() {
   // DECLARED VARIABLES
   const classes = useStyles();
 
-  let filteredClimbs = _.orderBy(
-    climbs,
+  let filteredClimbs = () => {
+    if (filterReducer.country) {
+      return climbs.filter((climb) => climb.country === filterReducer.country);
+    }
+    return climbs;
+  };
+
+  let sortedClimbs = _.orderBy(
+    filteredClimbs(),
     [filterReducer.filterQuery],
     [filterReducer.filterDirection]
   );
 
-  let paginatedClimbs = paginate(filteredClimbs, currentPage, climbsPerPage);
+  let paginatedClimbs = paginate(sortedClimbs, currentPage, climbsPerPage);
 
   return (
     <div className={classes.pageRow}>
@@ -82,7 +89,7 @@ export default function Explore() {
         </Box>
         <Box sx={{ alignSelf: "end", marginBottom: "1rem" }}>
           <PaginationComponent
-            totalNumberOfClimbs={climbs.length}
+            totalNumberOfClimbs={sortedClimbs.length}
             climbsPerPage={climbsPerPage}
             onPageChange={handlePageChange}
           />

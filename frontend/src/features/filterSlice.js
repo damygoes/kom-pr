@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   filterQuery: "",
   filterDirection: "",
+  country: "",
 };
 
 const filterSlice = createSlice({
@@ -20,13 +21,16 @@ const filterSlice = createSlice({
         state.filterDirection = "asc";
       }
     },
+    setCountry(state, action) {
+      state.country = action.payload;
+    },
     resetFilters(state, action) {
       return initialState;
     },
   },
 });
 
-export const { setFilterQuery, setFilterDirection, resetFilters } =
+export const { setFilterQuery, setFilterDirection, setCountry, resetFilters } =
   filterSlice.actions;
 
 export default filterSlice.reducer;

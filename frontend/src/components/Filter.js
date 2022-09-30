@@ -8,14 +8,16 @@ import {
   RadioGroup,
   Radio,
   Switch,
+  Button,
 } from "@mui/material";
 import {
   setFilterQuery,
   setFilterDirection,
+  setCountry,
   // resetFilters,
 } from "../features/filterSlice";
 
-let filterItems = {
+const filterItems = {
   "avg. Gradient": "avgGradient",
   country: "country",
   distance: "distance",
@@ -24,7 +26,21 @@ let filterItems = {
   name: "name",
 };
 
-export default function Filter({ handleFilter }) {
+const countries = [
+  "Belgium",
+  "Colombia",
+  "Cyprus",
+  "England",
+  "France",
+  "Hawaii",
+  "Italy",
+  "Scotland",
+  "Spain",
+  "UK",
+  "Wales",
+];
+
+export default function Filter() {
   const dispatch = useDispatch();
 
   const handleCheckBox = (filterValue) => {
@@ -32,6 +48,9 @@ export default function Filter({ handleFilter }) {
   };
   const handleSwitch = (switchState) => {
     dispatch(setFilterDirection(switchState));
+  };
+  const handleSelectCountry = (country) => {
+    dispatch(setCountry(country));
   };
 
   return (
@@ -80,6 +99,34 @@ export default function Filter({ handleFilter }) {
           })}
         </RadioGroup>
       </FormControl>
+      <Box>
+        <FormLabel sx={{ m: 3 }} component="legend">
+          Countries
+        </FormLabel>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            width: "100%",
+            gap: "0.5rem",
+          }}
+        >
+          {countries.map((country) => {
+            return (
+              <Button
+                key={country}
+                variant="contained"
+                size="small"
+                disableElevation
+                onClick={() => handleSelectCountry(country)}
+              >
+                {country}
+              </Button>
+            );
+          })}
+        </div>
+      </Box>
     </Box>
   );
 }
