@@ -11,7 +11,8 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
-import { FaMountain } from "react-icons/fa";
+import { FaMaxcdn } from "react-icons/fa";
+import { TbTypography } from "react-icons/tb";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -31,6 +32,7 @@ export default function ClimbCard({ data }) {
     country,
     distance,
     avgGradient,
+    maxGradient,
     elevation,
     image,
   } = data;
@@ -47,11 +49,13 @@ export default function ClimbCard({ data }) {
       <CardContent>
         <ButtonGroup
           variant="text"
+          size="small"
           aria-label="text button group"
           color="secondary"
         >
           <Button startIcon={<GiPathDistance />}> {`${distance}km`} </Button>
-          <Button startIcon={<FaMountain />}> {`${avgGradient}%`} </Button>
+          <Button startIcon={<TbTypography />}> {`${avgGradient}%`} </Button>
+          <Button startIcon={<FaMaxcdn />}> {`${maxGradient}%`} </Button>
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
