@@ -1,21 +1,26 @@
 {
-  "name": "scenic-climbs-backend",
+  "name": "kom-pr-backend",
   "version": "1.0.0",
-  "description": "REST API for scenic-climbs app",
-  "main": "app.js",
+  "description": "REST API for kom-pr app",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server.js"
   },
   "author": "Damilola Bada",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongodb": "^4.9.1",
     "mongoose": "^6.5.2",
+    "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
-    "nodemon": "^2.0.19"
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

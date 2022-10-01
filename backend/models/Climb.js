@@ -6,11 +6,11 @@ const ClimbSchema = mongoose.Schema({
   description: { type: String, required: true },
   location: { type: String, required: false },
   country: { type: String, required: true },
-  distance: { type: Number, required: true },
-  avgGradient: { type: Number, required: true },
+  distance: { type: Number, required: false },
+  avgGradient: { type: Number, required: false },
   maxGradient: { type: Number, required: false },
   elevation: { type: Number, required: false },
-  image: { type: String, required: true },
+  images: [{ type: String, required: true }],
   liked: { type: Boolean, required: true },
 });
 

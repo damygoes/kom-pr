@@ -11,21 +11,21 @@ const { getCacheItem } = require("../config/cache");
  * @param {*} next
  */
 const authMiddleware = async (req, res, next) => {
-	if (!req.headers.authorization)
-		return res.status(401).json({ message: "Not authenticated !" });
+  if (!req.headers.authorization)
+    return res.status(401).json({ message: "Not authenticated !" });
 
-	const authHeader = req.headers.authorization.split(" ");
+  const authHeader = req.headers.authorization.split(" ");
 
-	let authData = {
-		status: false,
-	};
+  let authData = {
+    status: false,
+  };
 
-	authData = getCacheItem(`${authHeader[1]}`); // Get token from cache
+  authData = getCacheItem(`${authHeader[1]}`); // Get token from cache
 
-	if (authData.status !== true)
-		return res.status(403).json({ message: "Not Authorized !" });
+  if (authData.status !== true)
+    return res.status(403).json({ message: "Not Authorized !" });
 
-	next();
+  next();
 };
 
 module.exports = authMiddleware;
