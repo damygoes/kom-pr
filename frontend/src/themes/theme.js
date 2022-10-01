@@ -18,19 +18,19 @@ export const appTheme = createTheme({
     },
     h3: {
       fontFamily: "Oswald",
-      fontWeight: 300,
+      fontWeight: 400,
     },
     h4: {
       fontFamily: "Oswald",
-      fontWeight: 400,
+      fontWeight: 300,
     },
     h5: {
       fontFamily: "Oswald",
-      fontWeight: 500,
+      fontWeight: 300,
     },
     h6: {
       fontFamily: "Oswald",
-      fontWeight: 500,
+      fontWeight: 200,
     },
     subtitle1: {
       fontFamily: "Oswald",

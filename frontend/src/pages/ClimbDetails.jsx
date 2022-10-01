@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,17 +10,18 @@ import {
   Card,
   CardContent,
   Button,
-  ButtonGroup,
   CardActionArea,
   CardActions,
 } from "@mui/material";
-import Masonry from "@mui/lab/Masonry";
-import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
-import { FaMaxcdn } from "react-icons/fa";
-import { TbTypography } from "react-icons/tb";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import RelatedClimbs from "../components/RelatedClimbs";
+import ClimbChips from "../components/common/ClimbChips";
+import ImagesMasonry from "../components/common/ImagesMasonry";
 
 const useStyles = makeStyles(() => ({
+  page: {
+    marginTop: "3rem"
+  },
   pageContainer: {
     display: "flex",
     flexDirection: "column",
@@ -43,6 +45,7 @@ const useStyles = makeStyles(() => ({
 
 const ClimbDetails = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const reducerQueries = useSelector((state) => state);
   const { climbsReducer } = reducerQueries;
   const { slug } = useParams();
@@ -52,7 +55,10 @@ const ClimbDetails = () => {
   );
 
   return (
-    <Container>
+    <Container className={classes.page} >
+      <Button variant="outlined" startIcon={<ArrowBackIcon/>} onClick={()=>navigate(-1)} >
+        Back
+      </Button>
       {selectedClimb.length > 0 ? (
         selectedClimb.map((climb) => {
           return (
@@ -77,41 +83,9 @@ const ClimbDetails = () => {
                   </Typography>
                 </CardContent>
                 <CardActionArea sx={{ p: 2 }}>
-                  <Masonry
-                    columns={3}
-                    spacing={2}
-                    sx={{ marginBottom: "1rem" }}
-                  >
-                    {climb.images.map((image) => (
-                      <img src={image} alt="" key={image} />
-                    ))}
-                  </Masonry>
+                  <ImagesMasonry images={climb.images} />
                   <CardContent>
-                    <ButtonGroup
-                      variant="text"
-                      size="large"
-                      aria-label="text button group"
-                      color="secondary"
-                      sx={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button startIcon={<GiPathDistance />}>
-                        {`${climb.distance}km`}
-                      </Button>
-                      <Button startIcon={<TbTypography />}>
-                        {`${climb.avgGradient}%`}
-                      </Button>
-                      <Button startIcon={<FaMaxcdn />}>
-                        {`${climb.maxGradient}%`}
-                      </Button>
-                      <Button startIcon={<GiMountainRoad />}>
-                        {`${climb.elevation}m`}
-                      </Button>
-                    </ButtonGroup>
+                    <ClimbChips climb={climb} />
                   </CardContent>
                   <CardContent>
                     <Typography variant="body1" color="text.secondary">
@@ -125,16 +99,7 @@ const ClimbDetails = () => {
                   </Button>
                 </CardActions>
               </Card>
-              <Box className={classes.relatedClimbsWrapper}>
-                <Typography
-                  variant="h3"
-                  fontSize={"2rem"}
-                  component="p"
-                  color="secondary"
-                  sx={{ marginBottom: "3rem", marginTop: "2rem" }}
-                >
-                  Related Climbs
-                </Typography>
+              <Box className={classes.relatedClimbsWrapper}>         
                 <RelatedClimbs
                   slug={slug}
                   country={climb.country}
