@@ -6,7 +6,7 @@ export default function ClimbsPerPageSelect({ handleClimbsPerPage }) {
   const [showClimbsPerPage, setShowClimbsPerPage] = useState("");
 
   //   DECLARED VARIABLES
-  const cardNumbers = [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const cardNumbers = [null, 1, 2, 4, 6, 8];
 
   // EVENT HANDLERS
   const handleSetClimbsPerPage = ({ target }) => {
@@ -15,7 +15,7 @@ export default function ClimbsPerPageSelect({ handleClimbsPerPage }) {
   };
 
   return (
-    <FormControl sx={{ minWidth: 150 }} size="small">
+    <FormControl sx={{ minWidth: 150, marginLeft:"auto" }} size="small">
       <InputLabel
         id="climbs-per-page-select-small"
         sx={{ fontStyle: "italic" }}

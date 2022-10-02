@@ -49,7 +49,7 @@ export default function ClimbCard({ data }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
+    <Card sx={{ maxWidth: {xs: 320, md: 345}, cursor: "pointer" }}>
       <Link
         to={`/explore/${slug}`}
         style={{ textDecoration: "none", color: "inherit" }}

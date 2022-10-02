@@ -11,8 +11,7 @@ import Filter from "../components/Filter";
 import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
 import { setClimbs } from "../features/climbsSlice";
 import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
-
-
+import FilterDrawer from "../components/FilterDrawer";
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -24,14 +23,15 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginTop: "3rem",
     marginBottom: "4rem",
+    // border: "1px solid green",
   },
   pageCol: {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    width: "70%",
     gap: "2rem",
+    // border: "1px solid blue",
   },
   climbsContainer: {
     display: "flex",
@@ -46,30 +46,25 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    width: "30%", 
     gap: "4rem",
     padding: "1rem",
-    marginTop: "4rem",
-  }
+    // border: "1px solid pink",
+  },
 }));
 // ##############
 
-
-
-
 export default function Explore() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // API Calls
-  const fetchAllClimbs = useCallback(async()=>{
-    let response = await fetchClimbs()
-    dispatch(setClimbs(response))
-  }, [dispatch])   
+  const fetchAllClimbs = useCallback(async () => {
+    let response = await fetchClimbs();
+    dispatch(setClimbs(response));
+  }, [dispatch]);
 
-  useEffect(()=>{
-    fetchAllClimbs() 
-  },[fetchAllClimbs])
+  useEffect(() => {
+    fetchAllClimbs();
+  }, [fetchAllClimbs]);
 
   // STATES
   const reducerQueries = useSelector((state) => state);
@@ -91,7 +86,9 @@ export default function Explore() {
 
   let filteredClimbs = () => {
     if (filterReducer.country) {
-      return climbsReducer.climbs.filter((climb) => climb.country === filterReducer.country);
+      return climbsReducer.climbs.filter(
+        (climb) => climb.country === filterReducer.country
+      );
     }
     return climbsReducer.climbs;
   };
@@ -105,13 +102,42 @@ export default function Explore() {
   let paginatedClimbs = paginate(sortedClimbs, currentPage, climbsPerPage);
 
   return (
-    <Box className={classes.pageRow}>
-      <Box className={classes.filterColumn}>
-        <Filter />
-        <RandomClimbGenerator/>
+    <Box
+      className={classes.pageRow}
+      sx={{
+        flexDirection: {
+          xs: "column-reverse",
+          sm: "row",
+        },
+      }}
+    >
+      <Box
+        className={classes.filterColumn}
+        sx={{
+          mt: {
+            xs: 0,
+            sm: 4,
+          },
+          minWidth: {
+            xs: "100%",
+            sm: "30%",
+          },
+        }}
+      >
+        <Box sx={{display: {xs: "none", sm: "flex"}}}>
+          <Filter />
+        </Box>
+        <RandomClimbGenerator />
       </Box>
-      <div className={classes.pageCol}>
-        <Box sx={{ alignSelf: "end", marginTop: "1rem" }}>
+      <Box className={classes.pageCol} sx={{ maxWidth: { xs: "100%" } }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "1rem",
+          }}
+        >
+          <FilterDrawer />
           <ClimbsPerPageSelect handleClimbsPerPage={handleClimbsPerPage} />
         </Box>
         <Box className={classes.climbsContainer}>
@@ -124,7 +150,7 @@ export default function Explore() {
             onPageChange={handlePageChange}
           />
         </Box>
-      </div>
+      </Box>
     </Box>
   );
 }

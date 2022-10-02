@@ -56,7 +56,9 @@ export default function Filter() {
   };
 
   return (
-    <Paper sx={{ display: "flex", flexDirection: "column", width: "100%", p: 2 }}>
+    <Paper sx={{ display: {
+      xs: "flex", sm: "flex"
+    }, flexDirection: "column", width: "100%", p: 2 }}>
       <FormControl component="fieldset" variant="standard">
         <div
           style={{
