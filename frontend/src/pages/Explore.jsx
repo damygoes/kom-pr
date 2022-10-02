@@ -10,6 +10,7 @@ import PaginationComponent from "../components/common/PaginationComponent";
 import Filter from "../components/Filter";
 import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
 import { setClimbs } from "../features/climbsSlice";
+import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
 
 
 
@@ -23,7 +24,6 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginTop: "3rem",
     marginBottom: "4rem",
-    // border: "1px solid green",
   },
   pageCol: {
     display: "flex",
@@ -41,6 +41,16 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginBottom: "3rem",
   },
+  filterColumn: {
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    width: "30%", 
+    gap: "4rem",
+    padding: "1rem",
+    marginTop: "4rem",
+  }
 }));
 // ##############
 
@@ -56,16 +66,6 @@ export default function Explore() {
     let response = await fetchClimbs()
     dispatch(setClimbs(response))
   }, [dispatch])   
-
-
-
-  /*
-  async() => {
-    let response = await fetchClimbs()
-    dispatch(setClimbs(response))
-  }
-  
-  */
 
   useEffect(()=>{
     fetchAllClimbs() 
@@ -105,9 +105,10 @@ export default function Explore() {
   let paginatedClimbs = paginate(sortedClimbs, currentPage, climbsPerPage);
 
   return (
-    <div className={classes.pageRow}>
-      <Box sx={{ width: "30%", marginTop: "4rem" }}>
+    <Box className={classes.pageRow}>
+      <Box className={classes.filterColumn}>
         <Filter />
+        <RandomClimbGenerator/>
       </Box>
       <div className={classes.pageCol}>
         <Box sx={{ alignSelf: "end", marginTop: "1rem" }}>
@@ -124,6 +125,6 @@ export default function Explore() {
           />
         </Box>
       </div>
-    </div>
+    </Box>
   );
 }

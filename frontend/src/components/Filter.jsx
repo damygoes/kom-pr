@@ -9,6 +9,7 @@ import {
   Radio,
   Switch,
   Button,
+  Paper
 } from "@mui/material";
 import {
   setFilterQuery,
@@ -55,8 +56,8 @@ export default function Filter() {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <Paper sx={{ display: "flex", flexDirection: "column", width: "100%", p: 2 }}>
+      <FormControl component="fieldset" variant="standard">
         <div
           style={{
             display: "flex",
@@ -100,8 +101,8 @@ export default function Filter() {
           })}
         </RadioGroup>
       </FormControl>
-      <Box>
-        <FormLabel sx={{ m: 3 }} component="legend">
+      <Box sx={{ mt: 4 }}>
+        <FormLabel component="legend" sx={{ mb: 2 }}>
           Countries
         </FormLabel>
         <div
@@ -128,6 +129,6 @@ export default function Filter() {
           })}
         </div>
       </Box>
-    </Box>
+    </Paper>
   );
 }

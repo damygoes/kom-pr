@@ -55,7 +55,7 @@ export default function ClimbCard({ data }) {
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <CardHeader title={name} subheader={country} />
-        <CardMedia component="img" height="294" image={images[0]} alt="" />
+        <CardMedia component="img" height="294" image={images[0]} alt={name} />
         <CardContent>
           <ButtonGroup
             variant="text"
