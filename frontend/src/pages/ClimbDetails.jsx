@@ -43,6 +43,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+// ###########################################################################
+
+const handleVisit = (address) => {
+  console.log(address)
+
+}
+
+
+
+// ###########################################################################
+
 const ClimbDetails = () => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -94,7 +105,7 @@ const ClimbDetails = () => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="medium" color="secondary">
+                  <Button size="medium" color="secondary" onClick={()=>handleVisit(`${climb.location},${climb.country}`)}>
                     Visit
                   </Button>
                 </CardActions>
