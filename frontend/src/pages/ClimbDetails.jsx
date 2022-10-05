@@ -11,16 +11,16 @@ import {
   CardContent,
   Button,
   CardActionArea,
-  CardActions,
+  // CardActions,
 } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import RelatedClimbs from "../components/RelatedClimbs";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ClimbChips from "../components/common/ClimbChips";
 import ImagesMasonry from "../components/common/ImagesMasonry";
+import CardsAccordion from "../components/CardsAccordion";
 
 const useStyles = makeStyles(() => ({
   page: {
-    marginTop: "3rem"
+    marginTop: "3rem",
   },
   pageContainer: {
     display: "flex",
@@ -43,17 +43,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-// ###########################################################################
-
-const handleVisit = (address) => {
-  console.log(address)
-
-}
-
-
-
-// ###########################################################################
-
 const ClimbDetails = () => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -66,8 +55,12 @@ const ClimbDetails = () => {
   );
 
   return (
-    <Container className={classes.page} >
-      <Button variant="outlined" startIcon={<ArrowBackIcon/>} onClick={()=>navigate(-1)} >
+    <Container className={classes.page}>
+      <Button
+        variant="outlined"
+        startIcon={<ArrowBackIcon />}
+        onClick={() => navigate(-1)}
+      >
         Back
       </Button>
       {selectedClimb.length > 0 ? (
@@ -104,19 +97,20 @@ const ClimbDetails = () => {
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-                <CardActions>
-                  <Button size="medium" color="secondary" onClick={()=>handleVisit(`${climb.location},${climb.country}`)}>
+                {/* <CardActions>
+                  <Button
+                    size="medium"
+                    color="secondary"
+                    onClick={() =>
+                      handleVisit(`${climb.location},${climb.country}`)
+                    }
+                  >
                     Visit
                   </Button>
-                </CardActions>
+                </CardActions> */}
               </Card>
-              <Box className={classes.relatedClimbsWrapper}>         
-                <RelatedClimbs
-                  slug={slug}
-                  country={climb.country}
-                  currentClimb={climb}
-                  data={climbsReducer.climbs}
-                />
+              <Box className={classes.relatedClimbsWrapper}>
+                <CardsAccordion currentClimb={climb} />
               </Box>
             </div>
           );
