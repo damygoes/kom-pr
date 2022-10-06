@@ -9,24 +9,29 @@ import Layout from "./components/common/Layout";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
-import ClimbDetails from './pages/ClimbDetails';
+import ClimbDetails from "./pages/ClimbDetails";
+import Login from "./pages/Login";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={appTheme}>
-        <CssBaseline enableColorScheme />
-        <NavBar />
-        <Layout>
-          <Routes>
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/estimator" element={<Estimator />} />
-            <Route exact path="/explore" element={<Explore />} />
-            <Route exact path="/explore/:slug" element={<ClimbDetails />} />
-          </Routes>
-        </Layout>
-      </ThemeProvider>
-    </Provider>
+    <AuthContextProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={appTheme}>
+          <CssBaseline enableColorScheme />
+          <NavBar />
+          <Layout>
+            <Routes>
+              <Route exact path="/admin-board" element={<Dashboard />} />
+              <Route exact path="/estimator" element={<Estimator />} />
+              <Route exact path="/" element={<Explore />} />
+              <Route exact path="/explore/:slug" element={<ClimbDetails />} />
+              <Route exact path="/login" element={<Login />} />
+            </Routes>
+          </Layout>
+        </ThemeProvider>
+      </Provider>
+    </AuthContextProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
+import { UserAuth } from "../../context/AuthContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -31,6 +32,8 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function ClimbCard({ data }) {
+  const { user } = UserAuth();
+  const navigate = useNavigate();
   const {
     name,
     description,
@@ -47,42 +50,55 @@ export default function ClimbCard({ data }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleNavigateToCardDetails = () => {
+    if (user) {
+      navigate(`/explore/${slug}`);
+    }
+    if (!user) {
+      alert("Please log in ☞")  
+    }
+  };
 
   return (
-    <Card sx={{ maxWidth: {xs: 320, md: 345}, cursor: "pointer" }}>
-      <Link
+    <Card
+      sx={{ maxWidth: { xs: 320, md: 345 }, cursor: "pointer" }}
+      onClick={handleNavigateToCardDetails}
+    >
+      {/* <Link
         to={`/explore/${slug}`}
         style={{ textDecoration: "none", color: "inherit" }}
-      >
-        <CardHeader title={name} subheader={country} />
-        <CardMedia component="img" height="294" image={images[0]} alt={name} />
-        <CardContent>
-          <ButtonGroup
-            variant="text"
-            size="small"
-            aria-label="text button group"
-            color="secondary"
-          >
-            <Button startIcon={<GiPathDistance />}> {`${distance}km`} </Button>
-            <Button startIcon={<TbTypography />}> {`${avgGradient}%`} </Button>
-            <Button startIcon={<FaMaxcdn />}> {`${maxGradient}%`} </Button>
-            <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
-          </ButtonGroup>
-        </CardContent>
-      </Link>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
+      > */}
+      <CardHeader title={name} subheader={country} />
+      <CardMedia component="img" height="294" image={images[0]} alt={name} />
+      <CardContent>
+        <ButtonGroup
+          variant="text"
+          size="small"
+          aria-label="text button group"
+          color="secondary"
         >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
+          <Button startIcon={<GiPathDistance />}> {`${distance}km`} </Button>
+          <Button startIcon={<TbTypography />}> {`${avgGradient}%`} </Button>
+          <Button startIcon={<FaMaxcdn />}> {`${maxGradient}%`} </Button>
+          <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
+        </ButtonGroup>
+      </CardContent>
+      {/* </Link> */}
+      {user && (
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+      )}
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>{description}</Typography>
