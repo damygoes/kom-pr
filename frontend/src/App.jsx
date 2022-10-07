@@ -10,8 +10,9 @@ import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 import { AuthContextProvider } from "./context/AuthContext";
+import StravaLoginPage from './components/common/StravaLoginPage';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
               <Route exact path="/estimator" element={<Estimator />} />
               <Route exact path="/" element={<Explore />} />
               <Route exact path="/explore/:slug" element={<ClimbDetails />} />
-              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/login" element={<StravaLoginPage />} />
             </Routes>
           </Layout>
         </ThemeProvider>
