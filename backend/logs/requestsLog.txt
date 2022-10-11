@@ -338,3 +338,13 @@
 
 02-10-2022	10:56:55	d2ef0fe7-b3ef-4599-91e6-1edb837b55f0	GET	http://localhost:3000	/
 
+11-10-2022	11:09:11	9b98db70-8204-43cc-8db3-85ff870ba4c0	POST	undefined	/hotels/create
+
+11-10-2022	11:10:47	6129f253-f88a-4a09-aefd-49b4daaa92de	POST	undefined	/hotels/create
+
+11-10-2022	11:10:53	06394bdd-85d2-411e-be40-aaa51a9ed668	POST	undefined	/hotels/create
+
+11-10-2022	11:10:59	a5c15af6-423f-49c3-b41e-0088bbb6018f	POST	undefined	/hotels/create
+
+11-10-2022	11:11:20	aed47d19-819a-4179-86b0-b7130b5d5573	POST	undefined	/hotels/create
+

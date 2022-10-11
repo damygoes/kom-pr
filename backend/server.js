@@ -11,6 +11,7 @@ require("dotenv/config");
 const climbsRoute = require("./routes/climbs");
 const userRoute = require("./routes/user");
 const adminRoute = require("./routes/admin");
+const hotelRoute = require("./routes/hotels");
 
 const PORT = process.env.PORT || 5000;
 
@@ -19,6 +20,7 @@ app.use(cors(corsOptions)); //Cross Origin Resource Sharing
 app.use(bodyParser.json());
 app.use(logger);
 app.use("/", climbsRoute);
+app.use("/hotels/", hotelRoute);
 // app.use("/user", userRoute);
 // app.use("/admin", adminRoute);
 
@@ -32,17 +34,17 @@ app.use("/", climbsRoute);
 
 // CONNECT TO DB
 mongoose
-  .connect(process.env.MONGODB_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((e) => console.log(e));
+    .connect(process.env.MONGODB_CONNECTION, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((e) => console.log(e));
 
 app.use(errorHandler);
 // Listening to the server
 app.listen(PORT, () => {
-  console.log(`Connected to Server on port ${PORT}`);
+    console.log(`Connected to Server on port ${PORT}`);
 });
