@@ -10,9 +10,8 @@ import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
-// import Login from "./pages/Login";
 import { AuthContextProvider } from "./context/AuthContext";
-import LoginPage from './components/common/LoginPage';
+import LoginPage from "./components/common/LoginPage";
 
 function App() {
   return (
