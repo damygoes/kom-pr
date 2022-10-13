@@ -614,3 +614,5 @@
 
 13-10-2022	12:45:41	9cf49c5c-5d67-409e-a70d-5ab1fc50bf40	GET	undefined	/climbs/mont%20ventoux
 
+13-10-2022	13:00:34	bebddeca-c1a2-4ee9-b103-132b2bc18893	GET	http://localhost:3000	/
+
