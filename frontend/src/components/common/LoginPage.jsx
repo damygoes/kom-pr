@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, Typography } from "@mui/material";
-import { FaStrava } from "react-icons/fa";
+// import { FaStrava } from "react-icons/fa";
 import { userLogin } from "../../actions/actions";
 
 const useStyles = makeStyles(() => ({
@@ -29,11 +29,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const handleUserLogin = () => {
-  userLogin();
-};
+const LoginPage = () => {
+  // ################################
 
-const StravaLoginPage = () => {
+  const handleUserLogin = () => {
+    userLogin();
+  };
+  const handleUserSignUp = () => {
+    console.log("User SignUp");
+  };
+
+  // ################################
   const classes = useStyles();
   return (
     <Box className={classes.container}>
@@ -63,11 +69,36 @@ const StravaLoginPage = () => {
         <Button
           variant="contained"
           size="large"
-          endIcon={<FaStrava />}
-          sx={{ width: "100%" }}
+          sx={{ width: "50%" }}
           onClick={handleUserLogin}
         >
-          Login with STRAVA
+          Login
+        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            width: "90%",
+            my: "1.5rem",
+          }}
+        >
+          <hr style={{ border: "1px solid", width: "40%", height: "none" }} />
+          <Typography
+            variant="p"
+            sx={{ fontSize: "1rem", fontStyle: "italic" }}
+          >
+            or
+          </Typography>
+          <hr style={{ border: "1px solid", width: "40%", height: "none" }} />
+        </Box>
+        <Button
+          variant="outlined"
+          size="medium"
+          sx={{ width: "50%", border: "1px solid white", color: "white" }}
+          onClick={handleUserSignUp}
+        >
+          Sign Up
         </Button>
         <Box className={classes.rowAlignment}>
           <Typography
@@ -78,8 +109,7 @@ const StravaLoginPage = () => {
               fontStyle: "italic",
             }}
           >
-            {" "}
-            dream . set goals . beat it{" "}
+            dream . set goals . beat it
           </Typography>
         </Box>
       </Box>
@@ -87,4 +117,4 @@ const StravaLoginPage = () => {
   );
 };
 
-export default StravaLoginPage;
+export default LoginPage;

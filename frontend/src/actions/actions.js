@@ -10,9 +10,16 @@ export const fetchRandomClimb = async () => {
   return data;
 };
 export const userLogin = async () => {
-  const response = await axios.get("https://www.strava.com/api/v3/athlete", {
-    Authorization: "Bearer 1cb5328a06c75f771c184e2e92f0a4fa50ba670d",
-  });
+  const response = await axios.post(
+    `${process.env.REACT_APP_STRAVA_AUTH_URL}?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&client_secret=${process.env.REACT_APP_STRAVA_CLIENT_SECRET}&code=${process.env.REACT_APP_STRAVA_URL_CODE}&grant_type=authorization_code`,
+    {
+      headers: {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Methods": "*",
+      },
+    }
+  );
 
   console.log(response);
 };
