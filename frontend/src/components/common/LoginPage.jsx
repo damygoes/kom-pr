@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
 const LoginPage = () => {
   // * STATES
   const [showLoginIn, setShowLogin] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
+  // const [showSignUp, setShowSignUp] = useState(false);
 
   // ################################
   // * EVENT HANDLERS
