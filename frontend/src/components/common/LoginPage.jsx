@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, Typography} from "@mui/material";
 // import { FaStrava } from "react-icons/fa";
-import { userLogin } from "../../actions/actions";
+// import { userLogin } from "../../actions/actions";
 import LoginForm from "./LoginForm";
 
 const useStyles = makeStyles(() => ({
