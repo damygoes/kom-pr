@@ -492,3 +492,125 @@
 
 07-10-2022	19:51:45	73d398d6-cfc7-490f-a60f-ca068359fdec	GET	http://localhost:3000	/
 
+10-10-2022	15:07:26	c1d203db-6ab0-413f-b04e-76594379f126	GET	http://localhost:3000	/
+
+10-10-2022	15:21:57	570fd025-0d01-4e6a-8032-d06bc4396f58	GET	http://localhost:3000	/
+
+10-10-2022	16:00:48	ad9b5cf3-2db5-468d-86aa-5ac8fbce1896	GET	http://localhost:3000	/
+
+10-10-2022	16:01:22	18d3afb1-3b48-4e41-b174-5bb6f88220b3	GET	http://localhost:3000	/
+
+13-10-2022	10:42:20	f5c03ca6-0397-4317-b364-dcee5b06bbcb	POST	undefined	/user/create
+
+13-10-2022	10:47:32	0658b87f-dc80-43ac-b26b-129433a90d62	POST	undefined	/user/create
+
+13-10-2022	10:56:31	9b9a6572-3f39-40d0-94d7-47de1fc0bebd	POST	undefined	/user/create
+
+13-10-2022	10:56:33	34e271c2-3df4-474f-8843-b28345e8e57e	POST	undefined	/user/create
+
+13-10-2022	10:56:35	82300d4a-6b85-40af-96ec-053c3f714ec3	POST	undefined	/user/create
+
+13-10-2022	10:56:37	58dbf717-0c9b-4dee-af2b-5ffa9342160a	POST	undefined	/user/create
+
+13-10-2022	11:06:35	c3aaf760-52a7-47e4-b20c-b6fe45526d0c	POST	undefined	/user/create
+
+13-10-2022	11:06:55	df58073c-4177-429f-add5-fa8a6cb2082d	POST	undefined	/user/
+
+13-10-2022	11:07:25	1f256a1b-5636-42a7-9a36-ac1438efdad7	POST	undefined	/user/create
+
+13-10-2022	11:07:52	985ff636-b711-4035-8d02-6cfbb9024db2	POST	undefined	/user/create
+
+13-10-2022	11:10:37	4c7ba4b0-467d-4227-a5c9-0581d6d6a48d	POST	undefined	/user/create
+
+13-10-2022	11:12:57	ba6b763a-c483-4a04-a7a4-5c1f1e796113	DELETE	undefined	/user/6347d568dca5c36ff177b6bd
+
+13-10-2022	11:37:30	72211b71-cdca-4bf3-8322-6696876e178f	POST	undefined	/user/login
+
+13-10-2022	11:37:49	0c4262df-1ae5-4a4d-97ca-999f60798619	POST	undefined	/user/login
+
+13-10-2022	11:38:04	22de755a-8f43-4850-8647-c8ac6ca96956	POST	undefined	/user/login
+
+13-10-2022	11:39:43	66f5c873-c0d0-418b-84bc-5dd71be2b831	POST	undefined	/user/login
+
+13-10-2022	11:49:49	03f3f461-1ac1-47ed-83ab-e00d5023321c	POST	undefined	/user/login
+
+13-10-2022	11:50:45	bdb4cad3-9e17-491e-8c57-a6ad546da48c	GET	undefined	/user/protected
+
+13-10-2022	11:51:53	e0a04791-e0b8-48b9-b2d6-42c6b879aaaf	GET	undefined	/user/protected
+
+13-10-2022	11:52:00	908ef549-388d-44d8-aa16-da0df8958b25	GET	undefined	/user/protected
+
+13-10-2022	11:52:22	b0d0bf14-1a0e-494b-8b19-22442eaf7797	GET	undefined	/user/protected
+
+13-10-2022	11:52:28	f86832d0-7884-4297-8bc2-52a639e06f2d	GET	undefined	/user/protected
+
+13-10-2022	11:52:59	a11ede2a-52df-4234-bc7e-853919d6a686	GET	undefined	/user/protected
+
+13-10-2022	11:53:07	3a2f50f8-78eb-4a40-b326-925eabaa77d7	GET	undefined	/user/protected
+
+13-10-2022	11:53:40	72eef10f-d5dc-4c24-9cb9-19640994aa08	GET	undefined	/user/protected
+
+13-10-2022	11:54:07	2ad1dd11-f879-4f4f-b10b-1e556ea5665c	GET	undefined	/user/protected
+
+13-10-2022	11:54:54	9dec5a27-a5c4-425d-9f23-a81c6c8ae116	POST	undefined	/user/login
+
+13-10-2022	11:55:01	4c8b664f-eed7-4dad-8621-432ce4e5dfc1	GET	undefined	/user/protected
+
+13-10-2022	11:55:50	e35f4ab1-a71a-4566-bf54-e3582bcdfb14	GET	undefined	/user/protected
+
+13-10-2022	11:56:26	8f8945a5-b8d2-438b-9309-275ee9cf60eb	POST	undefined	/user/login
+
+13-10-2022	11:56:55	99e05f33-a67f-4a87-8aee-c2066d83180b	GET	undefined	/user/protected
+
+13-10-2022	11:57:03	f4624859-dec2-4ff4-8557-3c656c6440d0	GET	undefined	/user/protected
+
+13-10-2022	12:04:16	5a6745f4-1a1e-42ac-beda-165cd575714e	GET	undefined	/user/protected
+
+13-10-2022	12:17:31	28ec4027-aacb-4d9f-9777-8cbe1a1e1acf	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:17:33	0a047239-075e-4a3c-a7c7-66c8e2967c6d	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:17:40	ad7d37ba-960b-4862-80a5-e1f3facb35b5	POST	undefined	/user/login
+
+13-10-2022	12:18:10	00e29217-e40a-408c-a96e-cee20bb563c2	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:18:19	fe827276-e1b1-48f8-887d-6e4db49ba1d1	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:18:26	729c51f6-c15a-4fc3-9f78-da4bcc837dfa	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:18:27	30d24163-4cfb-4319-beb4-fc595804a012	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:19:59	70f201bf-dd57-41e5-92a1-eecf4438c5c3	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:20:00	e7d498b1-19e1-432e-b2ec-1be05a130e88	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:20:01	a2a4a44e-599b-4d4e-8ba9-8ff9b5a01fbd	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:20:02	ac857113-4ce9-4ec1-9493-87b6d7d48d98	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:22:45	65cc5f11-a9b8-416d-9d70-68924c91ec1e	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:23:04	c1d99a39-027d-497e-bfe1-1e952dd99448	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:23:54	442d7bbc-4719-4def-a20c-7e085b683141	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:25:53	3a9394f9-48e3-41d4-a3e2-b26b666fdce8	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:26:07	5d72be3c-ce0e-427d-8e31-7e4d08d4f033	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:26:19	0bd5de48-fd32-462f-abed-afab0a5b5f46	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:28:15	adbdc40d-0ac4-4ee6-af8a-78abbbc265cc	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:29:15	980ec884-181c-4395-9d9f-45a51b68a620	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:33:47	6834d611-8a73-4b32-9c7b-718c36767eac	DELETE	undefined	/user/6347d60d3d1a9da9ae44d2ab
+
+13-10-2022	12:34:06	ddf1c207-0bb9-415c-b8ff-26710428a6ee	POST	undefined	/user/create
+
+13-10-2022	12:37:45	1b18af5c-ef7c-49a1-bf1e-1170f1b50dc0	POST	undefined	/user/create
+
+13-10-2022	12:45:36	cd838a66-a99e-4005-8814-918ff242b61d	GET	undefined	/climbs/mont%20ventoux
+
+13-10-2022	12:45:41	9cf49c5c-5d67-409e-a70d-5ab1fc50bf40	GET	undefined	/climbs/mont%20ventoux
+

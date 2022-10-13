@@ -6,31 +6,27 @@ const bodyParser = require("body-parser");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 require("dotenv/config");
-// Import Routes
+
+//* Import Routes
 const climbsRoute = require("./routes/climbs");
 const userRoute = require("./routes/user");
 const adminRoute = require("./routes/admin");
 
 const PORT = process.env.PORT || 5000;
 
-// MIDDLEWARE
+//* MIDDLEWARE
 const cors = require("cors");
-app.use(cors(corsOptions)); //Cross Origin Resource Sharing
+app.use(cors(corsOptions)); //* Cross Origin Resource Sharing
+const passport = require("passport");
+require("./config/passport");
 app.use(bodyParser.json());
 app.use(logger);
+app.use(passport.initialize());
 app.use("/", climbsRoute);
-// app.use("/user", userRoute);
-// app.use("/admin", adminRoute);
+app.use("/user", userRoute);
+app.use("/admin", adminRoute);
 
-// IMPORT ROUTES
-
-// ### Use Middleware
-// const usersRoute = require("./routes/users");
-
-// ### Use Middleware
-// app.use("/", usersRoute);
-
-// CONNECT TO DB
+//* CONNECT TO DB
 mongoose
   .connect(process.env.MONGODB_CONNECTION, {
     useNewUrlParser: true,
@@ -42,7 +38,8 @@ mongoose
   .catch((e) => console.log(e));
 
 app.use(errorHandler);
-// Listening to the server
+
+//* Listening to the server
 app.listen(PORT, () => {
   console.log(`Connected to Server on port ${PORT}`);
 });
