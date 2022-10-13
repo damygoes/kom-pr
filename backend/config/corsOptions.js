@@ -1,6 +1,7 @@
 const whitelist = [
   "https://www.mywebsite.com",
   // ** Remove the last three after development as well as !origin and leave the top one as the website where your react app is deployed.
+  "http://localhost:3000",
   "http://127.0.0.1:5500",
   "http://localhost:5000",
   "http://localhost:3000",

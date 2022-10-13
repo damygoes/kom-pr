@@ -21,6 +21,7 @@ const pages = {
   explore: "",
   estimator: "estimator",
   manage: "admin-board",
+  strava: "login"
 };
 const settings = ["Profile", "Account", "Logout"];
 

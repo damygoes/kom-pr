@@ -1,2 +1,6 @@
 01-10-2022	18:19:30	f8143a24-df60-4423-9507-ef607aeddb83	Error: Not allowed by CORS
 01-10-2022	18:20:05	42192e33-2471-4e89-b387-c1e1b316e6e6	Error: Not allowed by CORS
+13-10-2022	12:22:45	07b18148-b83a-4d19-b3b6-857a82df8327	Error: Unknown authentication strategy "bearer"
+13-10-2022	12:23:04	09505be1-9550-4ff0-a1d6-53c956f0f45b	Error: Unknown authentication strategy "token"
+13-10-2022	12:23:54	ff57fc03-51fb-4ab7-a48c-7ee6e9cf9718	Error: Unknown authentication strategy "JwtStrategy"
+13-10-2022	12:26:07	68505298-a1b2-4af4-97f2-4f5f379407f3	Error: Unknown authentication strategy "JWT"

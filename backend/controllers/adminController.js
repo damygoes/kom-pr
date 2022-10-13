@@ -39,3 +39,13 @@ exports.addAdmin = async (req, res) => {
       res.status(400).json({ message: error.message });
     });
 };
+// Delete admin
+exports.deleteAdmin = async (req, res) => {
+  try {
+    const adminID = req.params.id;
+    const deletedadmin = await Admin.deleteOne({ _id: adminID });
+    res.json(deletedAdmin);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
