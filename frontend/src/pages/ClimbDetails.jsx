@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -97,17 +96,6 @@ const ClimbDetails = () => {
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-                {/* <CardActions>
-                  <Button
-                    size="medium"
-                    color="secondary"
-                    onClick={() =>
-                      handleVisit(`${climb.location},${climb.country}`)
-                    }
-                  >
-                    Visit
-                  </Button>
-                </CardActions> */}
               </Card>
               <Box className={classes.relatedClimbsWrapper}>
                 <CardsAccordion currentClimb={climb} />

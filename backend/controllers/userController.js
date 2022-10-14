@@ -13,13 +13,22 @@ exports.addNewUser = async (req, res) => {
   await user
     .save()
     .then((user) => {
-      res.send({
+      const payload = {
+        email: user.email,
+        id: user._id,
+      };
+      const token = jwt.sign(payload, "Random String", { expiresIn: "1d" });
+      // ! "Random String" must be the same as "opts.secretOrKey" in the "passport.js" file located in the config folder
+      return res.status(200).send({
         success: true,
-        message: "User created successfully",
+        message: "Account created successfully",
         user: {
           id: user._id,
           username: user.username,
+          email: user.email,
           admin: user.admin,
+          avatar: "",
+          token: `Bearer ${token}`,
         },
       });
     })

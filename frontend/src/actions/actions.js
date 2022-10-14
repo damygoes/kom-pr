@@ -5,35 +5,50 @@ export const fetchClimbs = async () => {
   const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}`);
   return data;
 };
-export const fetchRandomClimb = async () => {
-  const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}random`);
+
+export const fetchRandomClimb = async (user) => {
+  const config = {
+    headers: {
+      Authorization: user.token,
+    },
+  };
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_URL}random`,
+    config
+  );
   return data;
 };
-export const userLogin = async () => {
-  const response = await axios.post(
-    `${process.env.REACT_APP_STRAVA_AUTH_URL}?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&client_secret=${process.env.REACT_APP_STRAVA_CLIENT_SECRET}&code=${process.env.REACT_APP_STRAVA_URL_CODE}&grant_type=authorization_code`,
-    {
-      headers: {
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-      },
-    }
-  );
 
-  console.log(response);
+export const userLogin = async (user) => {
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_USER_LOGIN_ROUTE}`,
+      {
+        email: user.email,
+        password: user.password,
+      }
+    );
+    return data;
+  } catch (error) {
+    const errorObject = error.response.data;
+    // const { success } = errorObject;
+    return errorObject;
+    // console.log(success);
+  }
 };
-// export const userLogin = async () => {
-//   const response = await axios.post(
-//     `${process.env.REACT_APP_STRAVA_AUTH_URL}?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&client_secret=${process.env.REACT_APP_STRAVA_CLIENT_SECRET}&code=${process.env.REACT_APP_STRAVA_URL_CODE}&grant_type=authorization_code`,
-//     {
-//       headers: {
-//         "Access-Control-Allow-Headers": "*",
-//         "Access-Control-Allow-Origin": "http://localhost:3000",
-//         "Access-Control-Allow-Methods": "*",
-//       },
-//     }
-//   );
 
-//   console.log(response);
-// };
+export const registerUser = async (newUser) => {
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_USER_SIGNUP_ROUTE}`,
+      {
+        username: newUser.username,
+        email: newUser.email,
+        password: newUser.password,
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

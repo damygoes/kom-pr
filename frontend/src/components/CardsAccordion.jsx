@@ -31,7 +31,7 @@ export default function CardsAccordion({ currentClimb }) {
   };
 
   return (
-    <Box sx={{ maxWidth: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -84,7 +84,7 @@ export default function CardsAccordion({ currentClimb }) {
               );
             })
           ) : (
-            <Typography variant="h5"> No related climbs found </Typography>
+            <Typography variant="h6"> No related climbs found </Typography>
           )}
         </AccordionDetails>
       </Accordion>

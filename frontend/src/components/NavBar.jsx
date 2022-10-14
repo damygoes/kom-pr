@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { resetUser } from "../features/userSlice.js";
 import {
   AppBar,
   Box,
@@ -15,22 +17,27 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
-import { UserAuth } from "../context/AuthContext";
 
 const pages = {
   explore: "",
   estimator: "estimator",
   manage: "admin-board",
-  strava: "login"
 };
 const settings = ["Profile", "Account", "Logout"];
 
 const NavBar = () => {
+  // * VARIABLES
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // * STATES
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const { user, logOut } = UserAuth();
- const navigate = useNavigate();
+  const reducerQueries = useSelector((state) => state);
+  const { userData } = reducerQueries.userReducer;
+  const { success, user } = userData;
 
+  // * EVENT HANDLERS
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -43,20 +50,15 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
 
-  const handleNavigateToLogin = () => {
-    navigate("/login")
-  }
-
   const handleCloseUserMenu = async (setting) => {
     try {
       if (setting === "Logout") {
-        await logOut();
-        navigate("/login")
+        dispatch(resetUser());
+        navigate("/login");
       }
       setAnchorElUser(null);
     } catch (error) {}
   };
-
 
   return (
     <AppBar position="sticky">
@@ -110,22 +112,31 @@ const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {Object.keys(pages).map((page) => {
-                return (
-                  <Link
-                    to={`/${pages[page]}`}
-                    key={page}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Button
-                      onClick={() => handleCloseNavMenu(page)}
-                      sx={{ my: 2, color: "white", display: "block" }}
+              {/* Mobile Menu */}
+              {success ? (
+                Object.keys(pages).map((page) => {
+                  return (
+                    <Link
+                      to={`/${pages[page]}`}
+                      key={page}
+                      style={{ textDecoration: "none" }}
                     >
-                      {page}
-                    </Button>
-                  </Link>
-                );
-              })}
+                      <Button
+                        onClick={() => handleCloseNavMenu(page)}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        {page}
+                      </Button>
+                    </Link>
+                  );
+                })
+              ) : (
+                <Link to={`/`} style={{ textDecoration: "none" }}>
+                  <Button sx={{ my: 2, color: "white", display: "block" }}>
+                    Explore
+                  </Button>
+                </Link>
+              )}
               {/* {pages.map((page) => (
                 <Link to={`/${page}`} key={page} style={{textDecoration: "none"}}>
                   <MenuItem onClick={() => handleCloseNavMenu(page)}>
@@ -154,41 +165,45 @@ const NavBar = () => {
           >
             LOGO
           </Typography>
+          {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {Object.keys(pages).map((page) => {
-              return (
-                <Link
-                  to={`/${pages[page]}`}
-                  key={page}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
-                    onClick={() => handleCloseNavMenu(page)}
-                    sx={{ my: 2, color: "white", display: "block" }}
+            {success ? (
+              Object.keys(pages).map((page) => {
+                return (
+                  <Link
+                    to={`/${pages[page]}`}
+                    key={page}
+                    style={{ textDecoration: "none" }}
                   >
-                    {page}
-                  </Button>
-                </Link>
-              );
-            })}
-            {/* {pages.map((page) => (
-              <Link to={`/${page}`} key={page} style={{textDecoration: "none"}} >
-                <Button
-                  onClick={() => handleCloseNavMenu(page)}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
+                    <Button
+                      onClick={() => handleCloseNavMenu(page)}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
+                );
+              })
+            ) : (
+              <Link to={`/`} style={{ textDecoration: "none" }}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Explore
                 </Button>
               </Link>
-            ))} */}
+            )}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {user ? (
+            {success ? (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.displayName} src={user.photoURL} />
+                    <Avatar
+                      src={
+                        user.avatar
+                      }
+                      alt={user.username}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -217,12 +232,13 @@ const NavBar = () => {
                   ))}
                 </Menu>
               </>
-            ) : <Button
-            onClick={handleNavigateToLogin}
-            sx={{ my: 2, color: "white", display: "block" }}
-          >
-            Login
-          </Button>}
+            ) : (
+              <Link to={`/login`} style={{ textDecoration: "none" }}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Login
+                </Button>
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </Container>
