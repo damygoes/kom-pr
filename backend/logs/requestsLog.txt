@@ -622,3 +622,5 @@
 
 13-10-2022	14:56:48	59f6dd5a-f5ae-4dcd-886f-d2c863fd0c85	GET	http://localhost:3000	/
 
+14-10-2022	18:14:11	1ce924bb-a4f7-481f-84a2-4ec1d1597738	GET	http://localhost:3000	/
+
