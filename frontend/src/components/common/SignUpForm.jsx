@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router";
+// import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, TextField } from "@mui/material";
-import { setUser } from "../../features/userSlice";
+// import { setUser } from "../../features/userSlice";
 
 const useStyles = makeStyles(() => ({
   userForm: {
@@ -18,15 +18,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const classes = useStyles();
 
   // * STATES
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [loginFail, setLoginFail] = useState("");
+  // const [loginFail, setLoginFail] = useState("");
 
   // * EVENT HANDLERS
   const handleSignUpForm = async (e) => {
@@ -86,7 +86,7 @@ const LoginForm = () => {
             placeholder="Name"
             type="text"
             variant="standard"
-            helperText={loginFail}
+            // helperText={loginFail}
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
@@ -96,7 +96,7 @@ const LoginForm = () => {
             placeholder="Email"
             type="text"
             variant="standard"
-            helperText={loginFail}
+            // helperText={loginFail}
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
           />
@@ -106,7 +106,7 @@ const LoginForm = () => {
             placeholder="Password"
             type="password"
             variant="standard"
-            helperText={loginFail}
+            // helperText={loginFail}
             value={userPassword}
             onChange={(e) => setUserPassword(e.target.value)}
           />
