@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -18,7 +19,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
-import { UserAuth } from "../../context/AuthContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,8 +32,12 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function ClimbCard({ data }) {
-  const { user } = UserAuth();
+  // * VARIABLES
   const navigate = useNavigate();
+
+  // * STATES
+  const reducerQueries = useSelector((state) => state);
+  const { user } = reducerQueries.userReducer;
   const {
     name,
     description,
@@ -45,32 +49,23 @@ export default function ClimbCard({ data }) {
     images,
     slug,
   } = data;
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
+  // * EVENT HANDLERS
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   const handleNavigateToCardDetails = () => {
-    if (user) {
-      navigate(`/explore/${slug}`);
-    }
-    if (!user) {
-      alert("Please log in ☞")  
-    }
+    user.success ? navigate(`/explore/${slug}`) : alert("Please Log In");
   };
 
   return (
     <Card
       sx={{ maxWidth: { xs: 320, md: 345 }, cursor: "pointer" }}
-      onClick={handleNavigateToCardDetails}
     >
-      {/* <Link
-        to={`/explore/${slug}`}
-        style={{ textDecoration: "none", color: "inherit" }}
-      > */}
-      <CardHeader title={name} subheader={country} />
-      <CardMedia component="img" height="294" image={images[0]} alt={name} />
-      <CardContent>
+      <CardHeader title={name} subheader={country}  onClick={handleNavigateToCardDetails}/>
+      <CardMedia component="img" height="294" image={images[0]} alt={name}  onClick={handleNavigateToCardDetails} />
+      <CardContent onClick={handleNavigateToCardDetails}>
         <ButtonGroup
           variant="text"
           size="small"
@@ -83,27 +78,30 @@ export default function ClimbCard({ data }) {
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
-      {/* </Link> */}
-      {user && (
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
+
+      {user.success && (
+        <>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>{description}</Typography>
+            </CardContent>
+          </Collapse>
+        </>
       )}
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>{description}</Typography>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }

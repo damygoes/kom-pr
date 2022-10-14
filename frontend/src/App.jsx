@@ -10,12 +10,12 @@ import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
-import { AuthContextProvider } from "./context/AuthContext";
+// import { AuthContextProvider } from "./context/AuthContext";
 import LoginPage from "./components/common/LoginPage";
 
 function App() {
   return (
-    <AuthContextProvider>
+    // <AuthContextProvider>
       <Provider store={store}>
         <ThemeProvider theme={appTheme}>
           <CssBaseline enableColorScheme />
@@ -31,7 +31,7 @@ function App() {
           </Layout>
         </ThemeProvider>
       </Provider>
-    </AuthContextProvider>
+    // </AuthContextProvider>
   );
 }
 

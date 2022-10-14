@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, TextField } from "@mui/material";
-import { userLogin } from "../../actions/actions";
 import { setUser } from "../../features/userSlice";
 
 const useStyles = makeStyles(() => ({
@@ -24,25 +23,28 @@ const LoginForm = () => {
   const classes = useStyles();
 
   // * STATES
+  const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loginFail, setLoginFail] = useState("");
 
   // * EVENT HANDLERS
-  const handleFormSubmit = async (e) => {
+  const handleSignUpForm = async (e) => {
     e.preventDefault();
     const user = {
+      username: userName,
       email: userEmail,
       password: userPassword,
     };
-    const response = await userLogin(user);
-    if (response.success) {
-      dispatch(setUser(response));
-      navigate("/");
-    } else {
-      setLoginFail(response.message);
-    }
+    console.log(user)
+    resetForm()
+   
   };
+  const resetForm = () => {
+    setUserName("");
+    setUserEmail("");
+    setUserPassword("")
+  }
 
   return (
     <Box
@@ -80,6 +82,16 @@ const LoginForm = () => {
         >
           <TextField
             required
+            id="userName"
+            placeholder="Name"
+            type="text"
+            variant="standard"
+            helperText={loginFail}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <TextField
+            required
             id="email"
             placeholder="Email"
             type="text"
@@ -103,9 +115,9 @@ const LoginForm = () => {
           variant="contained"
           size="large"
           sx={{ mt: "2rem" }}
-          onClick={handleFormSubmit}
+          onClick={handleSignUpForm}
         >
-          Login
+          Signup
         </Button>
       </div>
     </Box>
