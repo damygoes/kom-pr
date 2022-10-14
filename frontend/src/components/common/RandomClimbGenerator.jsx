@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import {
   Box,
   Button,
@@ -14,14 +15,19 @@ import CloseIcon from "@mui/icons-material/Close";
 import { fetchRandomClimb } from "../../actions/actions";
 
 const RandomClimbGenerator = () => {
+  // * STATES
   const [open, setOpen] = useState(false);
   const [randomClimb, setRandomClimb] = useState([]);
+  const reducerQueries = useSelector((state) => state);
+  const { userData } = reducerQueries.userReducer;
+  const { user } = userData;
 
+ 
+// * EVENT HANDLERS
   const handleRandomClimb = async () => {
-    let response = await fetchRandomClimb();
+    let response = await fetchRandomClimb(user);
     setRandomClimb(response);
   };
-
   const handleClose = () => {
     setOpen(false);
   };

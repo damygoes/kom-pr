@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router";
-// import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, TextField } from "@mui/material";
-// import { setUser } from "../../features/userSlice";
+import { registerUser } from "../../actions/actions";
+import { setUser } from "../../features/userSlice";
 
 const useStyles = makeStyles(() => ({
   userForm: {
@@ -13,38 +14,63 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     borderRadius: "8px",
     backgroundColor: "#ccc",
-    opacity: "0.7"
+    opacity: "0.7",
   },
 }));
 
 const LoginForm = () => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const classes = useStyles();
 
   // * STATES
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  // const [loginFail, setLoginFail] = useState("");
+  const [signUpInfo, setSignUpInfo] = useState("");
 
   // * EVENT HANDLERS
   const handleSignUpForm = async (e) => {
     e.preventDefault();
-    const user = {
+    const userInfo = {
       username: userName,
       email: userEmail,
       password: userPassword,
     };
-    console.log(user)
-    resetForm()
-   
+    const response = await registerUser(userInfo);
+    const { message, success, user } = response;
+    const { admin, avatar, email, id, username, token } = user;
+    const userData = {
+      success,
+      user: {
+        admin,
+        avatar,
+        email,
+        id,
+        username,
+        token,
+        // admin: user.admin,
+        // avatar: user.avatar,
+        // email: user.email,
+        // id: user.id,
+        // username: user.username,
+        // token: user.token,
+      },
+    };
+    if (success) {
+      setSignUpInfo(message);
+      dispatch(setUser(userData))
+      resetForm();
+      setTimeout(async () => {
+        navigate("/")
+      }, 200);
+    }
   };
   const resetForm = () => {
     setUserName("");
     setUserEmail("");
-    setUserPassword("")
-  }
+    setUserPassword("");
+  };
 
   return (
     <Box
@@ -53,7 +79,7 @@ const LoginForm = () => {
       sx={{
         "& .MuiTextField-root": {
           width: "100%",
-          color: "primary"        
+          color: "primary",
         },
       }}
     >
@@ -66,7 +92,6 @@ const LoginForm = () => {
           padding: "2rem",
           gap: "2rem",
           width: "100%",
-          
         }}
       >
         <div
@@ -77,7 +102,6 @@ const LoginForm = () => {
             gap: "2rem",
             alignItems: "center",
             width: "100%",
-           
           }}
         >
           <TextField
@@ -106,7 +130,7 @@ const LoginForm = () => {
             placeholder="Password"
             type="password"
             variant="standard"
-            // helperText={loginFail}
+            helperText={signUpInfo}
             value={userPassword}
             onChange={(e) => setUserPassword(e.target.value)}
           />

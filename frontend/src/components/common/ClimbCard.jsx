@@ -37,7 +37,8 @@ export default function ClimbCard({ data }) {
 
   // * STATES
   const reducerQueries = useSelector((state) => state);
-  const { user } = reducerQueries.userReducer;
+  const { userData } = reducerQueries.userReducer;
+  const { success } = userData;
   const {
     name,
     description,
@@ -56,7 +57,7 @@ export default function ClimbCard({ data }) {
     setExpanded(!expanded);
   };
   const handleNavigateToCardDetails = () => {
-    user.success ? navigate(`/explore/${slug}`) : alert("Please Log In");
+    success ? navigate(`/explore/${slug}`) : alert("Please Log In");
   };
 
   return (
@@ -78,8 +79,7 @@ export default function ClimbCard({ data }) {
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
-
-      {user.success && (
+      {success && (
         <>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
@@ -94,7 +94,6 @@ export default function ClimbCard({ data }) {
               <ExpandMoreIcon />
             </ExpandMore>
           </CardActions>
-
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph>{description}</Typography>

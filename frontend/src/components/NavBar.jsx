@@ -34,7 +34,8 @@ const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const reducerQueries = useSelector((state) => state);
-  const { user } = reducerQueries.userReducer;
+  const { userData } = reducerQueries.userReducer;
+  const { success, user } = userData;
 
   // * EVENT HANDLERS
   const handleOpenNavMenu = (event) => {
@@ -112,7 +113,7 @@ const NavBar = () => {
               }}
             >
               {/* Mobile Menu */}
-              {user.success ? (
+              {success ? (
                 Object.keys(pages).map((page) => {
                   return (
                     <Link
@@ -166,7 +167,7 @@ const NavBar = () => {
           </Typography>
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {user.success ? (
+            {success ? (
               Object.keys(pages).map((page) => {
                 return (
                   <Link
@@ -193,15 +194,15 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {user.success ? (
+            {success ? (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       src={
-                        "https://images.unsplash.com/photo-1654110455429-cf322b40a906?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGF2YXRhcnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
+                        user.avatar
                       }
-                      alt={""}
+                      alt={user.username}
                     />
                   </IconButton>
                 </Tooltip>
@@ -231,11 +232,13 @@ const NavBar = () => {
                   ))}
                 </Menu>
               </>
-            ) : <Link to={`/login`} style={{ textDecoration: "none" }}>
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              Login
-            </Button>
-          </Link>}
+            ) : (
+              <Link to={`/login`} style={{ textDecoration: "none" }}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Login
+                </Button>
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </Container>

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, Typography } from "@mui/material";
-// import { FaStrava } from "react-icons/fa";
-// import { userLogin } from "../../actions/actions";
 import LoginForm from "./LoginForm";
 import SignUpForm from './SignUpForm';
 
@@ -13,7 +11,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100vh",
-    // gap: "12rem",
     padding: "1rem",
     background: `center / cover no-repeat url("https://images.unsplash.com/photo-1478059299873-f047d8c5fe1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y3ljbGluZyUyMGJhY2tncm91bmR8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60")`,
     position: "relative",
@@ -35,13 +32,11 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     width: "100%",
     height: "95%",
-    // border: "1px solid pink"
   },
   rowAlignment: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // marginTop: "1rem",
   },
 }));
 

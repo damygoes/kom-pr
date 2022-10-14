@@ -1,22 +1,17 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { appTheme } from "./themes/theme";
-import { store } from "./app/store";
 import NavBar from "./components/NavBar";
 import Layout from "./components/common/Layout";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
-// import { AuthContextProvider } from "./context/AuthContext";
 import LoginPage from "./components/common/LoginPage";
 
 function App() {
   return (
-    // <AuthContextProvider>
-      <Provider store={store}>
         <ThemeProvider theme={appTheme}>
           <CssBaseline enableColorScheme />
           <NavBar />
@@ -30,8 +25,7 @@ function App() {
             </Routes>
           </Layout>
         </ThemeProvider>
-      </Provider>
-    // </AuthContextProvider>
+    
   );
 }
 
