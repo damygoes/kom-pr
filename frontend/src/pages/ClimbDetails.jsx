@@ -10,7 +10,6 @@ import {
   CardContent,
   Button,
   CardActionArea,
-  // CardActions,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ClimbChips from "../components/common/ClimbChips";
