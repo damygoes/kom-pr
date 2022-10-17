@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import {
   Box,
   Button,
@@ -22,8 +22,8 @@ const RandomClimbGenerator = () => {
   const { userData } = reducerQueries.userReducer;
   const { user } = userData;
 
- 
-// * EVENT HANDLERS
+
+  // * EVENT HANDLERS
   const handleRandomClimb = async () => {
     let response = await fetchRandomClimb(user);
     setRandomClimb(response);
@@ -32,19 +32,19 @@ const RandomClimbGenerator = () => {
     setOpen(false);
   };
   const handleToggle = () => {
-    handleRandomClimb();
-    setOpen(true);
+    if (user.id !== "") {
+      handleRandomClimb();
+      setOpen(true);
+    } else {
+      alert("Please Log In");
+    }
   };
 
   return (
     <>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          <Typography
-            sx={{ fontSize: 14 }}
-            color="text.secondary"
-            gutterBottom
-          >
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Find a random
           </Typography>
           <Typography
@@ -78,7 +78,11 @@ const RandomClimbGenerator = () => {
                 margin: "auto",
               }}
             >
-              <CloseIcon fontSize="medium" sx={{alignSelf: "flex-end", cursor: "pointer"}} onClick={handleClose}/>
+              <CloseIcon
+                fontSize="medium"
+                sx={{ alignSelf: "flex-end", cursor: "pointer" }}
+                onClick={handleClose}
+              />
               <Card sx={{ maxWidth: "100%", maxHeight: "100%" }}>
                 <CardMedia
                   component="img"

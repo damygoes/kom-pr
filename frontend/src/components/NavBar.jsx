@@ -16,10 +16,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
+// import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = {
-  explore: "",
   estimator: "estimator",
   manage: "admin-board",
 };
@@ -60,11 +59,15 @@ const NavBar = () => {
     } catch (error) {}
   };
 
+  const handleNavigate = () => {
+    navigate("/");
+  };
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
 
           <Typography
             variant="h6"
@@ -78,7 +81,9 @@ const NavBar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={handleNavigate}
           >
             LOGO
           </Typography>
@@ -113,8 +118,11 @@ const NavBar = () => {
               }}
             >
               {/* Mobile Menu */}
-              {success ? (
+              {success &&
                 Object.keys(pages).map((page) => {
+                  if (page === "manage" && user.admin === false) {
+                    return null;
+                  }
                   return (
                     <Link
                       to={`/${pages[page]}`}
@@ -123,35 +131,20 @@ const NavBar = () => {
                     >
                       <Button
                         onClick={() => handleCloseNavMenu(page)}
-                        sx={{ my: 2, color: "white", display: "block" }}
+                        sx={{ my: 2, color: "black", display: "block" }}
                       >
                         {page}
                       </Button>
                     </Link>
                   );
-                })
-              ) : (
-                <Link to={`/`} style={{ textDecoration: "none" }}>
-                  <Button sx={{ my: 2, color: "white", display: "block" }}>
-                    Explore
-                  </Button>
-                </Link>
-              )}
-              {/* {pages.map((page) => (
-                <Link to={`/${page}`} key={page} style={{textDecoration: "none"}}>
-                  <MenuItem onClick={() => handleCloseNavMenu(page)}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                </Link>
-              ))} */}
+                })}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -161,14 +154,19 @@ const NavBar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={handleNavigate}
           >
             LOGO
           </Typography>
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {success ? (
+            {success &&
               Object.keys(pages).map((page) => {
+                if (page === "manage" && user.admin === false) {
+                  return null;
+                }
                 return (
                   <Link
                     to={`/${pages[page]}`}
@@ -183,14 +181,7 @@ const NavBar = () => {
                     </Button>
                   </Link>
                 );
-              })
-            ) : (
-              <Link to={`/`} style={{ textDecoration: "none" }}>
-                <Button sx={{ my: 2, color: "white", display: "block" }}>
-                  Explore
-                </Button>
-              </Link>
-            )}
+              })}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -198,12 +189,7 @@ const NavBar = () => {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      src={
-                        user.avatar
-                      }
-                      alt={user.username}
-                    />
+                    <Avatar src={user.avatar} alt={user.username} />
                   </IconButton>
                 </Tooltip>
                 <Menu

@@ -13,7 +13,11 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     padding: "1rem",
     background: `center / cover no-repeat url("https://images.unsplash.com/photo-1478059299873-f047d8c5fe1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y3ljbGluZyUyMGJhY2tncm91bmR8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60")`,
-    position: "relative",
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100vw",
+    zIndex: "99",
     overflow: "hidden"
   },
   overlay: {

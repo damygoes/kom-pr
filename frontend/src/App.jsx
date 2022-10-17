@@ -11,21 +11,24 @@ import ClimbDetails from "./pages/ClimbDetails";
 import LoginPage from "./components/common/LoginPage";
 
 function App() {
+  const pageRoutes = (
+    <Routes>
+      <Route exact path="/admin-board" element={<Dashboard />} />
+      <Route exact path="/estimator" element={<Estimator />} />
+      <Route exact path="/" element={<Explore />} />
+      <Route exact path="/explore/:slug" element={<ClimbDetails />} />
+      <Route exact path="/login" element={<LoginPage />} />
+    </Routes>
+  );
+
   return (
-        <ThemeProvider theme={appTheme}>
-          <CssBaseline enableColorScheme />
-          <NavBar />
-          <Layout>
-            <Routes>
-              <Route exact path="/admin-board" element={<Dashboard />} />
-              <Route exact path="/estimator" element={<Estimator />} />
-              <Route exact path="/" element={<Explore />} />
-              <Route exact path="/explore/:slug" element={<ClimbDetails />} />
-              <Route exact path="/login" element={<LoginPage />} />
-            </Routes>
-          </Layout>
-        </ThemeProvider>
-    
+    <ThemeProvider theme={appTheme}>
+      <CssBaseline enableColorScheme />
+      <>
+        <NavBar />
+        <Layout>{pageRoutes}</Layout>
+      </>
+    </ThemeProvider>
   );
 }
 
