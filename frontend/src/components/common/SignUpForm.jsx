@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { registerUser } from "../../actions/actions";
 import { setUser } from "../../features/userSlice";
+import FormInput from "./FormInput";
+import Notification from "./Notification";
 
 const useStyles = makeStyles(() => ({
   userForm: {
@@ -18,27 +20,54 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
 
   // * STATES
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [signUpInfo, setSignUpInfo] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [userCred, setUserCred] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationData, setNotificationData] = useState({
+    message: "message",
+    status: "info",
+  });
 
   // * EVENT HANDLERS
+  const handleFormInputChange = ({ target: input }) => {
+    const account = { ...userCred };
+    account[input.name] = input.value;
+    setUserCred(account);
+  };
+
+  const handleFormValidate = () => {
+    const errors = {};
+    if (userCred.username.trim() === "") {
+      errors.username = "Name is required";
+    }
+    if (userCred.email.trim() === "") {
+      errors.email = "Email address is required";
+    }
+
+    if (userCred.password.trim() === "") {
+      errors.password = "Password is required";
+    }
+    return Object.keys(errors).length === 0 ? "" : errors;
+  };
+
   const handleSignUpForm = async (e) => {
     e.preventDefault();
-    const userInfo = {
-      username: userName,
-      email: userEmail,
-      password: userPassword,
-    };
-    const response = await registerUser(userInfo);
-    const { message, success, user } = response;
+    const errors = handleFormValidate();
+    setFormErrors(errors);
+    if (errors) return;
+
+    const response = await registerUser(userCred);
+    const { success, user } = response;
     const { admin, avatar, email, id, username, token } = user;
     const userData = {
       success,
@@ -58,18 +87,30 @@ const LoginForm = () => {
       },
     };
     if (success) {
-      setSignUpInfo(message);
-      dispatch(setUser(userData))
+      dispatch(setUser(userData));
+      setNotificationData({
+        message: "Signup Successful",
+        status: "success",
+      });
+      setShowNotification(true);
       resetForm();
-      setTimeout(async () => {
-        navigate("/")
-      }, 200);
+      setTimeout(() => {
+        navigate("/");
+      }, 300);
+    } else {
+      setNotificationData({
+        message: "Login Failed, Try Again!",
+        status: "error",
+      });
+      setShowNotification(true);
     }
   };
   const resetForm = () => {
-    setUserName("");
-    setUserEmail("");
-    setUserPassword("");
+    setUserCred({
+      username: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -83,7 +124,7 @@ const LoginForm = () => {
         },
       }}
     >
-      <div
+      <Box
         style={{
           display: "flex",
           flexDirection: "column",
@@ -94,7 +135,7 @@ const LoginForm = () => {
           width: "100%",
         }}
       >
-        <div
+        <Box
           style={{
             display: "flex",
             flexDirection: "column",
@@ -104,37 +145,38 @@ const LoginForm = () => {
             width: "100%",
           }}
         >
-          <TextField
-            required
-            id="userName"
-            placeholder="Name"
-            type="text"
+          <FormInput
+            formType="username"
+            label="Name"
+            placeholder="John Snow"
             variant="standard"
-            // helperText={loginFail}
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            helperText={formErrors.username && `${formErrors.username}`}
+            value={userCred.username}
+            error={formErrors.username}
+            onChange={handleFormInputChange}
           />
-          <TextField
-            required
-            id="email"
-            placeholder="Email"
-            type="text"
+           <FormInput
+            formType="email"
+            label="Email Address"
+            placeholder="johnsnow@gmail.com"
             variant="standard"
-            // helperText={loginFail}
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
+            helperText={formErrors.email && `${formErrors.email}`}
+            value={userCred.email}
+            error={formErrors.email}
+            onChange={handleFormInputChange}
           />
-          <TextField
-            required
-            id="password"
-            placeholder="Password"
-            type="password"
+          <FormInput
+            formType="password"
+            label="Password"
+            placeholder="*************"
             variant="standard"
-            helperText={signUpInfo}
-            value={userPassword}
-            onChange={(e) => setUserPassword(e.target.value)}
+            helperText={formErrors.password && `${formErrors.password}`}
+            value={userCred.password}
+            error={formErrors.password}
+            onChange={handleFormInputChange}
           />
-        </div>
+          <Notification showNotification={showNotification} notificationData={notificationData}/>
+        </Box>
         <Button
           variant="contained"
           size="large"
@@ -143,9 +185,9 @@ const LoginForm = () => {
         >
           Signup
         </Button>
-      </div>
+      </Box>
     </Box>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

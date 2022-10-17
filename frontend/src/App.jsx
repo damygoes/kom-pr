@@ -17,15 +17,13 @@ function App() {
       <Route exact path="/estimator" element={<Estimator />} />
       <Route exact path="/" element={<Explore />} />
       <Route exact path="/explore/:slug" element={<ClimbDetails />} />
+      <Route exact path="/login" element={<LoginPage />} />
     </Routes>
   );
 
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline enableColorScheme />
-      <Routes>
-        <Route exact path="/login" element={<LoginPage />} />
-      </Routes>
       <>
         <NavBar />
         <Layout>{pageRoutes}</Layout>

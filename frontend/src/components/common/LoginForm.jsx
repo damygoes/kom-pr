@@ -49,6 +49,7 @@ const LoginForm = () => {
     if (userCred.email.trim() === "") {
       errors.email = "Email address is required";
     }
+    
     if (userCred.password.trim() === "") {
       errors.password = "Password is required";
     }

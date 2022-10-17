@@ -14,11 +14,11 @@ import {
   Button,
   ButtonGroup,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
+import LikeOrSave from "./LikeOrSave";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -51,6 +51,7 @@ export default function ClimbCard({ data }) {
     slug,
   } = data;
   const [expanded, setExpanded] = useState(false);
+  const [saveClimb, setSaveClimb] = useState(false);
 
   // * EVENT HANDLERS
   const handleExpandClick = () => {
@@ -59,13 +60,24 @@ export default function ClimbCard({ data }) {
   const handleNavigateToCardDetails = () => {
     success ? navigate(`/explore/${slug}`) : alert("Please Log In");
   };
+  const toggleSave = () => {
+    setSaveClimb(!saveClimb);
+  };
 
   return (
-    <Card
-      sx={{ maxWidth: { xs: 320, md: 345 }, cursor: "pointer" }}
-    >
-      <CardHeader title={name} subheader={country}  onClick={handleNavigateToCardDetails}/>
-      <CardMedia component="img" height="294" image={images[0]} alt={name}  onClick={handleNavigateToCardDetails} />
+    <Card sx={{ maxWidth: { xs: 320, md: 345 }, cursor: "pointer" }}>
+      <CardHeader
+        title={name}
+        subheader={country}
+        onClick={handleNavigateToCardDetails}
+      />
+      <CardMedia
+        component="img"
+        height="294"
+        image={images[0]}
+        alt={name}
+        onClick={handleNavigateToCardDetails}
+      />
       <CardContent onClick={handleNavigateToCardDetails}>
         <ButtonGroup
           variant="text"
@@ -82,9 +94,8 @@ export default function ClimbCard({ data }) {
       {success && (
         <>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
+            <LikeOrSave onClick={toggleSave} saveClimb={saveClimb} />
+            {/* <FavoriteIcon /> */}
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
