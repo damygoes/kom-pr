@@ -54,9 +54,11 @@ const useStyles = makeStyles(() => ({
 // ##############
 
 export default function Explore() {
+  //* DECLARED VARIABLES
+  const classes = useStyles();
   const dispatch = useDispatch();
 
-  // API Calls
+  //* API Calls
   const fetchAllClimbs = useCallback(async () => {
     let response = await fetchClimbs();
     dispatch(setClimbs(response));
@@ -66,14 +68,14 @@ export default function Explore() {
     fetchAllClimbs();
   }, [fetchAllClimbs]);
 
-  // STATES
+  //* STATES
   const reducerQueries = useSelector((state) => state);
   const { filterReducer, climbsReducer } = reducerQueries;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
   // const [isLoading, setIsLoading] = useState(true);
 
-  // EVENT HANDLERS
+  //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);
   };
@@ -81,8 +83,7 @@ export default function Explore() {
     setClimbsPerPage(number);
   };
 
-  // DECLARED VARIABLES
-  const classes = useStyles();
+
 
   let filteredClimbs = () => {
     if (filterReducer.country) {

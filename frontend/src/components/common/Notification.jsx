@@ -12,7 +12,7 @@ export default function Notification({ showNotification, notificationData }) {
   return (
     <div>
       <Snackbar
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={showNotification}
       >

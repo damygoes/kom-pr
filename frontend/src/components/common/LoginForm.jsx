@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@mui/material";
 import { userLogin } from "../../actions/actions";
 import { setUser } from "../../features/userSlice";
+import FormInput from "./FormInput";
 import Notification from "./Notification";
-import FormInput from './FormInput';
 
 const useStyles = makeStyles(() => ({
   userForm: {

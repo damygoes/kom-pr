@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { saveOneClimb } from "../../actions/actions";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -15,10 +16,12 @@ import {
   ButtonGroup,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
-import LikeOrSave from "./LikeOrSave";
+// import LikeOrSave from "./LikeOrSave";
+import Notification from "./Notification";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,7 +41,7 @@ export default function ClimbCard({ data }) {
   // * STATES
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  const { success } = userData;
+  const { success, user } = userData;
   const {
     name,
     description,
@@ -49,9 +52,15 @@ export default function ClimbCard({ data }) {
     elevation,
     images,
     slug,
+    _id,
   } = data;
   const [expanded, setExpanded] = useState(false);
   const [saveClimb, setSaveClimb] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationData, setNotificationData] = useState({
+    message: "",
+    status: "",
+  });
 
   // * EVENT HANDLERS
   const handleExpandClick = () => {
@@ -60,8 +69,26 @@ export default function ClimbCard({ data }) {
   const handleNavigateToCardDetails = () => {
     success ? navigate(`/explore/${slug}`) : alert("Please Log In");
   };
-  const toggleSave = () => {
+  const toggleSave = async (climbID, user) => {
     setSaveClimb(!saveClimb);
+    const data = {
+      user,
+      climbID,
+    };
+    const response = await saveOneClimb(data);
+    if (response.success) {
+      setNotificationData({
+        message: response.message,
+        status: "success",
+      });
+      setShowNotification(true);
+    } else {
+      setNotificationData({
+        message: response.message,
+        status: "info",
+      });
+      setShowNotification(true);
+    }
   };
 
   return (
@@ -94,8 +121,12 @@ export default function ClimbCard({ data }) {
       {success && (
         <>
           <CardActions disableSpacing>
-            <LikeOrSave onClick={toggleSave} saveClimb={saveClimb} />
-            {/* <FavoriteIcon /> */}
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() => toggleSave(_id, user)}
+            >
+              <FavoriteIcon />
+            </IconButton>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -112,6 +143,10 @@ export default function ClimbCard({ data }) {
           </Collapse>
         </>
       )}
+      <Notification
+        notificationData={notificationData}
+        showNotification={showNotification}
+      />
     </Card>
   );
 }
