@@ -11,7 +11,6 @@ const ClimbSchema = mongoose.Schema({
   maxGradient: { type: Number, required: false },
   elevation: { type: Number, required: false },
   images: [{ type: String, required: true }],
-  liked: { type: Boolean, required: true },
 });
 
 module.exports = mongoose.model("Climbs", ClimbSchema);

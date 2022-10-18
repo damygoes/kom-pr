@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
 import LoginPage from "./components/common/LoginPage";
+import Favourites from "./pages/Favourites";
 
 function App() {
   const pageRoutes = (
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/" element={<Explore />} />
       <Route exact path="/explore/:slug" element={<ClimbDetails />} />
       <Route exact path="/login" element={<LoginPage />} />
+      <Route exact path="/favourites" element={<Favourites/>} />
     </Routes>
   );
 

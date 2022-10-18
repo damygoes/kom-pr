@@ -1,6 +1,6 @@
 const Climb = require("../models/Climb");
 
-// Get All
+//* Get All
 exports.getClimbs = async (req, res) => {
   try {
     const data = await Climb.find();
@@ -9,7 +9,7 @@ exports.getClimbs = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// Get by Name
+//* Get by Name
 exports.getClimbByName = async (req, res) => {
   try {
     const climbName = req.params.name;
@@ -24,7 +24,7 @@ exports.getClimbByName = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// Get a random climb
+//* Get a random climb
 exports.getRandomClimb = async (req, res) => {
   try {
     const randomClimb = await Climb.aggregate([{ $sample: { size: 1 } }]);
@@ -33,7 +33,7 @@ exports.getRandomClimb = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// Group climbs by Country
+//* Group climbs by Country
 exports.getClimbByCountry = async (req, res) => {
   try {
     const countryName = req.params.country;
@@ -48,7 +48,7 @@ exports.getClimbByCountry = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// Post a Climb
+//* Post a Climb
 exports.addClimb = async (req, res) => {
   const climb = new Climb({
     name: req.body.name,
@@ -61,7 +61,6 @@ exports.addClimb = async (req, res) => {
     maxGradient: req.body.maxGradient,
     elevation: req.body.elevation,
     images: req.body.images,
-    liked: req.body.liked,
   });
   await climb
     .save()
@@ -72,7 +71,7 @@ exports.addClimb = async (req, res) => {
       res.status(400).json({ message: error.message });
     });
 };
-// Update a Climb by Name
+//* Update a Climb by Name
 exports.editClimb = async (req, res) => {
   try {
     const climbName = req.params.name;
@@ -88,7 +87,7 @@ exports.editClimb = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-// Delete a Climb by Name
+//* Delete a Climb by Name
 exports.deleteClimb = async (req, res) => {
   try {
     const climbID = req.params.id;

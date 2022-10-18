@@ -9,6 +9,7 @@ require("dotenv/config");
 
 //* Import Routes
 const climbsRoute = require("./routes/climbs");
+const savedClimbsRoute = require("./routes/savedClimbs");
 const userRoute = require("./routes/user");
 const adminRoute = require("./routes/admin");
 
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 app.use("/", climbsRoute);
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
+app.use("/savedClimbs", savedClimbsRoute);
 
 //* CONNECT TO DB
 mongoose

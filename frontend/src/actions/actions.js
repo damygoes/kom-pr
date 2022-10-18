@@ -1,6 +1,8 @@
 // All API functions go here
 import axios from "axios";
 
+// * CLIMBS
+
 export const fetchClimbs = async () => {
   const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}`);
   return data;
@@ -18,6 +20,51 @@ export const fetchRandomClimb = async (user) => {
   );
   return data;
 };
+
+// * ################################
+
+// * SAVED CLIMBS
+
+export const saveOneClimb = async (data) => {
+  const { climbID, user } = data;
+  const config = {
+    headers: {
+      Authorization: user.token,
+    },
+  };
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_SAVE_ONE_CLIMB_ROUTE}`,
+      {
+        userID: user.id,
+        climbID,
+      },
+      config
+    );
+    return data;
+  } catch (error) {
+    const errorObject = error.response.data;
+    return errorObject;
+  }
+};
+
+export const fetchSavedClimbs = async (user) => {
+  const config = {
+    headers: {
+      Authorization: user.token,
+    },
+  };
+
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_URL}savedClimbs`,
+    config
+  );
+  return data;
+};
+
+// * ################################
+
+// * USERS
 
 export const userLogin = async (user) => {
   try {
@@ -52,3 +99,14 @@ export const registerUser = async (newUser) => {
     console.log(error);
   }
 };
+
+// * ################################
+
+/**
+ *
+ * id: "634d8fc5edf613116b430ff5" (user)
+ * _id: '633878e3cb832885ffe27f26' (Monte Zoncolan)
+ *
+ *
+ *
+ */

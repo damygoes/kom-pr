@@ -22,7 +22,7 @@ const pages = {
   estimator: "estimator",
   manage: "admin-board",
 };
-const settings = ["Profile", "Account", "Logout"];
+const settings = ["Profile", "Favourites", "Logout"];
 
 const NavBar = () => {
   // * VARIABLES
@@ -50,13 +50,13 @@ const NavBar = () => {
   };
 
   const handleCloseUserMenu = async (setting) => {
-    try {
-      if (setting === "Logout") {
-        dispatch(resetUser());
-        navigate("/login");
-      }
-      setAnchorElUser(null);
-    } catch (error) {}
+    if (setting === "Logout") {
+      dispatch(resetUser());
+      navigate("/login");
+    } else {
+      navigate(`/${setting.toLowerCase()}`);
+    }
+    setAnchorElUser(null);
   };
 
   const handleNavigate = () => {
