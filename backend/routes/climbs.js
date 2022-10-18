@@ -14,7 +14,7 @@ router.get(
   passportAuth,
   climbsController.getClimbByCountry
 );
-router.post("/", passportAuth, climbsController.addClimb);
+router.post("/", climbsController.addClimb);
 router.patch("/climbs/:name", passportAuth, climbsController.editClimb);
 router.delete("/climbs/:id", passportAuth, climbsController.deleteClimb);
 

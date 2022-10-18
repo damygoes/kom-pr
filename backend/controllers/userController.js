@@ -9,6 +9,8 @@ exports.addNewUser = async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: hashSync(req.body.password, 10),
+    admin: req.body.admin,
+    savedItems: req.body.savedItems,
   });
   await user
     .save()
@@ -27,7 +29,8 @@ exports.addNewUser = async (req, res) => {
           username: user.username,
           email: user.email,
           admin: user.admin,
-          avatar: "",
+          avatar: user.avatar,
+          savedItems: user.savedItems,
           token: `Bearer ${token}`,
         },
       });
@@ -84,6 +87,7 @@ exports.logInUser = async (req, res) => {
         email: user.email,
         admin: user.admin,
         avatar: user.avatar,
+        savedItems: user.savedItems,
         token: `Bearer ${token}`,
       },
     });
