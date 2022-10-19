@@ -12,6 +12,7 @@ import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
 import { setClimbs } from "../features/climbsSlice";
 import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
 import FilterDrawer from "../components/FilterDrawer";
+import PageHeadingCard from "../components/common/PageHeadingCard";
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -70,10 +71,10 @@ export default function Explore() {
 
   //* STATES
   const reducerQueries = useSelector((state) => state);
-  const { filterReducer, climbsReducer } = reducerQueries;
+  const { filterReducer, climbsReducer, userReducer } = reducerQueries;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
-  // const [isLoading, setIsLoading] = useState(true);
+  const { success, user } = userReducer.userData
 
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
@@ -82,8 +83,6 @@ export default function Explore() {
   const handleClimbsPerPage = (number) => {
     setClimbsPerPage(number);
   };
-
-
 
   let filteredClimbs = () => {
     if (filterReducer.country) {
@@ -103,55 +102,63 @@ export default function Explore() {
   let paginatedClimbs = paginate(sortedClimbs, currentPage, climbsPerPage);
 
   return (
-    <Box
-      className={classes.pageRow}
-      sx={{
-        flexDirection: {
-          xs: "column-reverse",
-          sm: "row",
-        },
-      }}
-    >
+    <>
+      {success && <PageHeadingCard
+        text={"Home"}
+        image={
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+        }
+      />}
       <Box
-        className={classes.filterColumn}
+        className={classes.pageRow}
         sx={{
-          mt: {
-            xs: 0,
-            sm: 4,
-          },
-          minWidth: {
-            xs: "100%",
-            sm: "30%",
+          flexDirection: {
+            xs: "column-reverse",
+            sm: "row",
           },
         }}
       >
-        <Box sx={{display: {xs: "none", sm: "flex"}}}>
-          <Filter />
-        </Box>
-        <RandomClimbGenerator />
-      </Box>
-      <Box className={classes.pageCol} sx={{ maxWidth: { xs: "100%" } }}>
         <Box
+          className={classes.filterColumn}
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "1rem",
+            mt: {
+              xs: 0,
+              sm: 4,
+            },
+            minWidth: {
+              xs: "100%",
+              sm: "30%",
+            },
           }}
         >
-          <FilterDrawer />
-          <ClimbsPerPageSelect handleClimbsPerPage={handleClimbsPerPage} />
+          <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+            <Filter />
+          </Box>
+          <RandomClimbGenerator />
         </Box>
-        <Box className={classes.climbsContainer}>
-          <AllClimbs climbs={paginatedClimbs} />
-        </Box>
-        <Box sx={{ alignSelf: "end", marginBottom: "1rem" }}>
-          <PaginationComponent
-            totalNumberOfClimbs={sortedClimbs.length}
-            climbsPerPage={climbsPerPage}
-            onPageChange={handlePageChange}
-          />
+        <Box className={classes.pageCol} sx={{ maxWidth: { xs: "100%" } }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "1rem",
+            }}
+          >
+            <FilterDrawer />
+            <ClimbsPerPageSelect handleClimbsPerPage={handleClimbsPerPage} />
+          </Box>
+          <Box className={classes.climbsContainer}>
+            <AllClimbs climbs={paginatedClimbs} />
+          </Box>
+          <Box sx={{ alignSelf: "end", marginBottom: "1rem" }}>
+            <PaginationComponent
+              totalNumberOfClimbs={sortedClimbs.length}
+              climbsPerPage={climbsPerPage}
+              onPageChange={handlePageChange}
+            />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 }
