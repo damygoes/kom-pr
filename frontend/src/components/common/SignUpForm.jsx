@@ -78,12 +78,6 @@ const SignUpForm = () => {
         id,
         username,
         token,
-        // admin: user.admin,
-        // avatar: user.avatar,
-        // email: user.email,
-        // id: user.id,
-        // username: user.username,
-        // token: user.token,
       },
     };
     if (success) {

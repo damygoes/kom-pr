@@ -23,7 +23,7 @@ export default function FavouriteClimbCard({ data }) {
   const handleDeleteFavClimb = () => {};
 
   return (
-    <Card sx={{ display: "flex", height: 150, cursor: "pointer" }}>
+    <Card sx={{ display: "flex", maxWidth: 400, height: 150, cursor: "pointer" }}>
       <Box sx={{ display: "flex", flexDirection: "column", width: 500 }}>
         <CardContent sx={{ flex: "1 0 auto" }} onClick={()=>handleNavigation(slug)}>
           <Typography component="div" variant="h5">

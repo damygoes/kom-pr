@@ -66,6 +66,9 @@ export default function ClimbCard({ data }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleCloseNotification = () => {
+    setShowNotification(false)
+  }
   const handleNavigateToCardDetails = () => {
     success ? navigate(`/explore/${slug}`) : alert("Please Log In");
   };
@@ -146,6 +149,7 @@ export default function ClimbCard({ data }) {
       <Notification
         notificationData={notificationData}
         showNotification={showNotification}
+        closeNotification={handleCloseNotification}
       />
     </Card>
   );

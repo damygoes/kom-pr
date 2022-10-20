@@ -5,12 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
   textField: {
     '& p':{
-      color: "red", //TODO change later
+      color: "#ff0100",
     },
   },
 }));
 
-const FormInput = ({ formType, label, value, placeholder, variant, helperText, error, onChange }) => {
+const FormInput = ({ formType, label, value, placeholder, variant, helperText, onChange }) => {
 
   const classes = useStyles();
 

@@ -6,15 +6,16 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function Notification({ showNotification, notificationData }) {
+export default function Notification({ showNotification, notificationData, closeNotification }) {
   const { message, status } = notificationData;
 
   return (
     <div>
       <Snackbar
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={showNotification}
+        onClose={closeNotification}
       >
         <Alert severity={status} sx={{ width: "100%" }}>
           {message}

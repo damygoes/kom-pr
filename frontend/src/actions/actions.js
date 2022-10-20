@@ -78,9 +78,7 @@ export const userLogin = async (user) => {
     return data;
   } catch (error) {
     const errorObject = error.response.data;
-    // const { success } = errorObject;
     return errorObject;
-    // console.log(success);
   }
 };
 
@@ -96,17 +94,22 @@ export const registerUser = async (newUser) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
+    const errorObject = error.response.data;
+    return errorObject;
+  }
+};
+
+export const updateUserProfile = async (userID, userData) => {
+  try {
+    const { data } = await axios.patch(
+      `${process.env.REACT_APP_BASE_URL}user/${userID}`,
+      { userData }
+    );
+    return data;
+  } catch (error) {
+    const errorObject = error.response.data;
+    return errorObject;
   }
 };
 
 // * ################################
-
-/**
- *
- * id: "634d8fc5edf613116b430ff5" (user)
- * _id: '633878e3cb832885ffe27f26' (Monte Zoncolan)
- *
- *
- *
- */
