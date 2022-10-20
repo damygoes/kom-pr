@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -10,17 +11,31 @@ import {
   Typography,
 } from "@mui/material";
 import { MdOutlineDelete } from "react-icons/md";
+import { deleteOneSavedClimb } from '../actions/actions';
 
-export default function FavouriteClimbCard({ data }) {
+export default function FavouriteClimbCard({ data, onDeleteAction }) {
   // * VARIABLES
   const navigate = useNavigate();
-  const { name, country, images, location, slug } = data;
+  const { name, country, images, location, slug, _id } = data;
+  
+
+    //   * STATES
+    const reducerQueries = useSelector((state) => state);
+    const { userData } = reducerQueries.userReducer;
+    const { user } = userData;
+ 
 
   // * EVENT HANDLERS
   const handleNavigation = (cardSlug) => {
-    navigate(`/explore/${slug}`);
+    navigate(`/explore/${cardSlug}`);
   };
-  const handleDeleteFavClimb = () => {};
+  const handleDeleteFavClimb = async (climbID) => {
+    const response = await deleteOneSavedClimb(climbID, user)
+    if (response.acknowledged && response.deletedCount === 1) {
+      onDeleteAction()
+    }
+    
+  };
 
   return (
     <Card sx={{ display: "flex", maxWidth: 400, height: 150, cursor: "pointer" }}>
@@ -40,7 +55,7 @@ export default function FavouriteClimbCard({ data }) {
         <CardActions disableSpacing>
           <IconButton
             aria-label="add to favorites"
-            onClick={() => handleDeleteFavClimb()}
+            onClick={() => handleDeleteFavClimb(_id)}
           >
             <MdOutlineDelete />
           </IconButton>

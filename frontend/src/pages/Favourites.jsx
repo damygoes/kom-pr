@@ -55,7 +55,7 @@ const Favourites = () => {
       />
       <Box className={classes.pageRow}>
         {favClimbs.map((climb) => (
-            <FavouriteClimbCard data={climb} key={climb.slug} />
+            <FavouriteClimbCard data={climb} key={climb.slug} onDeleteAction={handleFetchFavouriteClimbs}/>
         ))}
       </Box>
     </Box>
