@@ -2086,3 +2086,129 @@
 
 20-10-2022	11:14:13	ba948b4f-660f-4258-ba65-d0e679d09bbb	GET	http://localhost:3000	/
 
+20-10-2022	11:22:00	9b808581-7ab3-4c77-880a-16753dabeb7f	GET	http://localhost:3000	/
+
+20-10-2022	11:22:19	8fa2535c-cb95-43b8-86b6-de4ab1ee5c67	GET	http://localhost:3000	/
+
+20-10-2022	11:22:38	2eb6012b-475f-433c-b72b-731779732ba1	GET	http://localhost:3000	/
+
+20-10-2022	11:22:55	9573f012-1581-4764-8f6d-20d3dd3d5117	POST	http://localhost:3000	/user/login
+
+20-10-2022	11:22:55	ca869fd5-a45d-42e9-962c-0281f3d4bc65	GET	http://localhost:3000	/
+
+20-10-2022	11:23:04	8c86f98b-c4ac-4363-b77f-d7d8e93df32b	GET	http://localhost:3000	/
+
+20-10-2022	11:23:19	26be96fa-272d-4a6f-8de2-0e9202208cec	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:23:24	2f25972a-276a-45e4-9616-6d68467f6b19	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:23:27	207c014b-cdc5-4fe4-bbd3-148e47f7f3f2	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:23:30	60fa6b94-95c5-4a33-9580-3c6dc79e225e	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:27:19	29e4bf37-3dba-4126-b1d9-a46ee30ada22	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:27:48	63b39fd0-548d-440f-bf10-1526f056bffa	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:27:50	65ce1b45-0494-4415-9a7f-ff86f9b804c3	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:27:52	32b9f134-5b8b-4b10-b435-4762c2ecf31b	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:33:15	3f0eb5c0-0bc5-4229-baeb-52f957c54ae7	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:36:04	c99a6125-5032-4274-9276-a3d548ccf801	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:38:36	43fc1be3-53b0-4b1b-85ee-66c5a157ee7d	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:39:25	3a74750a-0e6b-4d84-8e58-c1ce1a341f85	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:40:19	b2a2b7f6-6432-4f21-9f7a-21de8b5f96e6	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:41:45	591a432d-c35f-412a-8c80-bb65a701a965	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:43:09	d0b52feb-69af-4340-9e0a-58ff783cdb30	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:43:40	747a9581-ff43-477e-a963-08e1c8b24a4e	GET	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:49:31	1778dc3f-b058-4560-a967-e82cdf2e153c	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:50:12	3fd60127-e1ea-49a2-87ce-14edb0264d09	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:50:32	2bacd166-155e-450f-859e-7551ebcf443a	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:51:02	0dea9dfb-90fc-4d9b-a007-71eb462029e4	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:51:13	ed9b1be3-b80c-416a-bef3-1ada53c812b8	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:51:19	f40ab258-7871-4c31-8f0b-e8183da0084a	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:51:25	6285aa2a-d6c5-4319-ba9d-18cf47cc1dac	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:52:50	9f79fcde-3b40-41df-b239-e02ec874ee43	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:56:14	2caec8da-618d-4e95-86fc-d505a069bf26	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:56:17	c364a4fd-7d70-43e7-bac7-d8472ecefa49	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:58:17	8203e702-c2b8-4c0a-adbf-5f0204881faa	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	11:58:19	435bd4e1-89fb-4882-a637-6a914f9b76ab	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:58:36	07714a52-5b6c-4806-ab1b-1aee977de096	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	11:58:40	002eac1c-e6f9-4e1f-9abf-e5d62b10f275	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	12:05:30	a296a900-61b1-41bd-a104-b7b3219d6647	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:06:12	97d77a81-01d3-4d36-a50b-1a50430a9adb	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:06:30	ecf2f689-9883-486a-afd0-6d938328a5d3	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:06:32	a828c6d0-e5ce-442e-b847-e3981bad72fc	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	12:06:37	8a30d047-3db6-4bf8-aae8-6a71d6f64ef7	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:07:07	e867c582-4868-493a-8ed6-946916b22ea7	DELETE	http://localhost:3000	/savedClimbs/63387907cb832885ffe27f28
+
+20-10-2022	12:07:16	8c71531d-b09d-4ab1-9214-a69edb833701	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:12:48	6ae8a022-4205-4061-bca3-7742d190f07a	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:13:22	97909cce-1429-4216-bad0-3c735e6a2869	DELETE	http://localhost:3000	/savedClimbs/63387927cb832885ffe27f2a
+
+20-10-2022	12:14:50	9b4624e9-89b5-41c0-b3dc-22fa5e8629f8	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:14:53	53bc17a9-a6b4-41c3-a42b-1c8e3db4e36c	DELETE	http://localhost:3000	/savedClimbs/63387962cb832885ffe27f2e
+
+20-10-2022	12:14:53	fc02dea9-53ee-4e01-a648-69627cd6b560	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:14:56	a915c202-a367-4248-9b50-455a5208b2aa	DELETE	http://localhost:3000	/savedClimbs/6338797bcb832885ffe27f30
+
+20-10-2022	12:14:56	0c76811c-9371-41e7-a298-f6c7d25db2a1	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:14:58	4c480ca9-46ba-4594-a5d5-b8b217ff4933	GET	http://localhost:3000	/
+
+20-10-2022	12:15:00	e93dcedb-8e42-4f13-a046-420a70e3e0b7	POST	http://localhost:3000	/savedClimbs/add
+
+20-10-2022	12:15:02	e8f9690e-5966-476c-ad4e-2e940985b93c	POST	http://localhost:3000	/savedClimbs/add
+
+20-10-2022	12:15:06	82a88e20-93e6-43b0-82d7-2df0f662070b	POST	http://localhost:3000	/savedClimbs/add
+
+20-10-2022	12:15:07	887a0d20-10fd-4c26-bca8-aea4f5446764	POST	http://localhost:3000	/savedClimbs/add
+
+20-10-2022	12:15:09	eb89be47-84c0-48c5-9007-090e893a28c6	POST	http://localhost:3000	/savedClimbs/add
+
+20-10-2022	12:15:14	ab852f93-0edc-4d07-bb4e-600aa789a6a0	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:15:17	9e924285-9944-4432-ac86-2b569e4d9405	DELETE	http://localhost:3000	/savedClimbs/63387927cb832885ffe27f2a
+
+20-10-2022	12:15:17	8fa667d4-2407-494c-b2a5-f752892b21e3	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:15:21	a5e04be1-efc6-4fdc-9697-f28e87bf615f	DELETE	http://localhost:3000	/savedClimbs/633878e3cb832885ffe27f26
+
+20-10-2022	12:15:21	3f186a57-17c5-43c2-9b59-37b6d5ffa20a	GET	http://localhost:3000	/savedClimbs
+
+20-10-2022	12:17:10	78a5e75e-88b2-4855-81e8-ce764463f06b	GET	http://localhost:3000	/
+
+20-10-2022	12:17:44	9e233b01-f77b-41c0-823b-b6ad5aa522ec	GET	http://localhost:3000	/
+
