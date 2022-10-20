@@ -51,7 +51,6 @@ exports.getSavedClimbs = async (req, res) => {
   try {
     const objectifiedIDS = [];
     const userItems = await SavedClimbs.find({ userID }, { climbID: 1 });
-    // const savedClimbsIDS = await SavedClimbs.find({}, { climbID: 1 });
     for (let index = 0; index < userItems.length; index++) {
       const objectClimbID = ObjectId(userItems[index].climbID);
       objectifiedIDS.push(objectClimbID);
@@ -60,13 +59,11 @@ exports.getSavedClimbs = async (req, res) => {
       { _id: { $in: objectifiedIDS } },
       {}
     );
-    // res.status(200).json(savedClimbs);
     res.status(200).send({
       success: true,
       savedClimbs,
     });
   } catch (error) {
-    // res.status(500).json({ message: error.message });
     res.status(500).send({
       success: false,
       error,
