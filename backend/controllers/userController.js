@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { hashSync, compareSync } = require("bcrypt");
+const ObjectId = require("mongodb").ObjectId;
 
 const User = require("../models/User");
 
@@ -11,6 +12,7 @@ exports.addNewUser = async (req, res) => {
     password: hashSync(req.body.password, 10),
     admin: req.body.admin,
     savedItems: req.body.savedItems,
+    profile: req.body.profile,
   });
   await user
     .save()
@@ -31,6 +33,7 @@ exports.addNewUser = async (req, res) => {
           admin: user.admin,
           avatar: user.avatar,
           savedItems: user.savedItems,
+          profile: user.profile,
           token: `Bearer ${token}`,
         },
       });
@@ -88,11 +91,46 @@ exports.logInUser = async (req, res) => {
         admin: user.admin,
         avatar: user.avatar,
         savedItems: user.savedItems,
+        profile: user.profile,
         token: `Bearer ${token}`,
       },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+//* Update user info
+exports.updateUserInfo = async (req, res) => {
+  const userID = req.params.id;
+  const userProfileData = req.body.userData;
+  const objectifiedUserID = ObjectId(userID);
+  const newUserData = {
+    ftp: userProfileData.ftp,
+    weight: userProfileData.weight,
+    wattPerKilo: userProfileData.wattPerKilo,
+    bikeWeight: userProfileData.bikeWeight,
+    gender: userProfileData.gender,
+    location: userProfileData.location,
+  };
+  try {
+    const updatedUserProfile = await User.findOneAndUpdate(
+      { _id: objectifiedUserID },
+      {
+        profile: newUserData,
+      },
+      { new: true }
+    );
+    return res.status(200).send({
+      success: true,
+      message: "Profile Updated",
+      updatedUserProfile,
+    });
+  } catch (error) {
+    res.status(401).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
   }
 };
 

@@ -74,7 +74,7 @@ export default function Explore() {
   const { filterReducer, climbsReducer, userReducer } = reducerQueries;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
-  const { success, user } = userReducer.userData
+  const { success, user } = userReducer.userData;
 
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
@@ -103,12 +103,14 @@ export default function Explore() {
 
   return (
     <>
-      {success && <PageHeadingCard
-        text={"Home"}
-        image={
-          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-        }
-      />}
+      {success && (
+        <PageHeadingCard
+          text={"Home"}
+          image={
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          }
+        />
+      )}
       <Box
         className={classes.pageRow}
         sx={{

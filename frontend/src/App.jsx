@@ -10,6 +10,7 @@ import Estimator from "./pages/Estimator";
 import ClimbDetails from "./pages/ClimbDetails";
 import LoginPage from "./components/common/LoginPage";
 import Favourites from "./pages/Favourites";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const pageRoutes = (
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/explore/:slug" element={<ClimbDetails />} />
       <Route exact path="/login" element={<LoginPage />} />
       <Route exact path="/favourites" element={<Favourites/>} />
+      <Route exact path="/profile" element={<UserProfile/>} />
     </Routes>
   );
 

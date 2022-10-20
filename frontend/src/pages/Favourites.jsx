@@ -16,30 +16,13 @@ const useStyles = makeStyles(() => ({
   },
   pageRow: {
     display: "flex",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    gap: "2rem",
-    padding: "3rem",
-    marginTop: "3rem",
-  },
-
-  climbsContainer: {
-    display: "flex",
     flexWrap: "wrap",
+    width: "100%",
     justifyContent: "space-evenly",
     alignItems: "center",
     gap: "2rem",
-    marginBottom: "3rem",
-  },
-  filterColumn: {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: "4rem",
-    padding: "1rem",
-    // border: "1px solid pink",
+    padding: "3rem",
+    marginTop: "3rem",
   },
 }));
 

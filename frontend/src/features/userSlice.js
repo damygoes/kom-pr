@@ -10,6 +10,14 @@ const initialState = {
       id: "",
       username: "",
       token: "",
+      profile: {
+        ftp: 0,
+        weight: 0,
+        wattPerKilo: 0,
+        bikeWeight: 0,
+        gender: "",
+        location: "",
+      },
     },
   },
 };
@@ -20,6 +28,9 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.userData = action.payload;
+    },
+    updateOldUserProfile(state, action) {
+      state.userData.user.profile = action.payload;
     },
     resetUser(state, action) {
       state.userData = {
@@ -37,6 +48,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, getUser, resetUser } = userSlice.actions;
+export const { setUser, updateOldUserProfile, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;
