@@ -2,7 +2,6 @@
 import axios from "axios";
 
 // * CLIMBS
-
 export const fetchClimbs = async () => {
   const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}`);
   return data;
@@ -24,7 +23,6 @@ export const fetchRandomClimb = async (user) => {
 // * ################################
 
 // * SAVED CLIMBS
-
 export const saveOneClimb = async (data) => {
   const { climbID, user } = data;
   const config = {
@@ -62,10 +60,27 @@ export const fetchSavedClimbs = async (user) => {
   return data;
 };
 
+export const deleteOneSavedClimb = async (climbID, user) => {
+  const config = {
+    headers: {
+      Authorization: user.token,
+    },
+  };
+
+  try {
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}savedClimbs/${climbID}`,
+      config
+    );
+    return data;
+  } catch (error) {
+    const errorObject = error.response.data;
+    return errorObject;
+  }
+};
 // * ################################
 
 // * USERS
-
 export const userLogin = async (user) => {
   try {
     const { data } = await axios.post(

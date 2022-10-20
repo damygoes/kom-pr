@@ -70,3 +70,13 @@ exports.getSavedClimbs = async (req, res) => {
     });
   }
 };
+// * Delete a saved climb
+exports.deleteSavedClimb = async (req, res) => {
+  try {
+    const climbId = req.params.id;
+    const deletedClimb = await SavedClimbs.deleteOne({ climbID: climbId });
+    res.json(deletedClimb);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
