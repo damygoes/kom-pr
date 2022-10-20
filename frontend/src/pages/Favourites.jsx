@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import PageHeadingCard from "../components/common/PageHeadingCard";
 import { fetchSavedClimbs } from "../actions/actions";
 import FavouriteClimbCard from "../components/FavouriteClimbCard";
+import SavedIcon from "../assets/favourite.svg";
 
 const useStyles = makeStyles(() => ({
   pageCol: {
@@ -47,15 +48,14 @@ const Favourites = () => {
 
   return (
     <Box className={classes.pageCol}>
-      <PageHeadingCard
-        text={"My Favourites"}
-        image={
-          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-        }
-      />
+      <PageHeadingCard text={"My Favourites"} image={SavedIcon} />
       <Box className={classes.pageRow}>
         {favClimbs.map((climb) => (
-            <FavouriteClimbCard data={climb} key={climb.slug} onDeleteAction={handleFetchFavouriteClimbs}/>
+          <FavouriteClimbCard
+            data={climb}
+            key={climb.slug}
+            onDeleteAction={handleFetchFavouriteClimbs}
+          />
         ))}
       </Box>
     </Box>

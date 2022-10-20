@@ -177,7 +177,7 @@ const SignUpForm = () => {
           sx={{ mt: "2rem" }}
           onClick={handleSignUpForm}
         >
-          Signup
+          Create Account
         </Button>
       </Box>
     </Box>

@@ -9,6 +9,7 @@ import Notification from "../components/common/Notification";
 import ProfileDetail from "../components/common/ProfileDetail";
 import { updateUserProfile } from "../actions/actions";
 import { updateOldUserProfile } from "../features/userSlice";
+import SettingsIcon from "../assets/profile.svg";
 
 const useStyles = makeStyles(() => ({
   pageCol: {
@@ -70,8 +71,8 @@ const UserProfile = () => {
     setShowForm(false);
   };
   const handleCloseNotification = () => {
-    setShowNotification(false)
-  }
+    setShowNotification(false);
+  };
   const resetProfileForm = () => {
     setUserProfile({
       ftp: "",
@@ -120,12 +121,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <PageHeadingCard
-        text={"My Profile"}
-        image={
-          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-        }
-      />
+      <PageHeadingCard text={"My Profile"} image={SettingsIcon} />
       <Box className={classes.pageCol}>
         <Button
           sx={{

@@ -121,10 +121,10 @@ const LoginPage = () => {
             <Button
               variant="outlined"
               size="medium"
-              sx={{ width: "10%", border: "1px solid white", color: "white" }}
+              sx={{ maxWidth: "15%", border: "1px solid white", color: "white" }}
               onClick={toggleSignUpForm}
             >
-              {showSignUp ? "Login" : "Sign up"}
+              {showSignUp ? "Login" : "Create Account"}
             </Button>
             
           </Box>

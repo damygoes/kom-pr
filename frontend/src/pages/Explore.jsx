@@ -13,6 +13,7 @@ import { setClimbs } from "../features/climbsSlice";
 import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
 import FilterDrawer from "../components/FilterDrawer";
 import PageHeadingCard from "../components/common/PageHeadingCard";
+import HomeIcon from "../assets/home.svg";
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -106,9 +107,10 @@ export default function Explore() {
       {success && (
         <PageHeadingCard
           text={"Home"}
-          image={
-            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-          }
+          image={HomeIcon}
+          // image={
+          //   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          // }
         />
       )}
       <Box
