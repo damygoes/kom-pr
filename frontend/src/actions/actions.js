@@ -80,6 +80,41 @@ export const deleteOneSavedClimb = async (climbID, user) => {
 };
 // * ################################
 
+// * GEO-CODING
+export const getClimbCoordinates = async (climbAddress) => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_GEOLOCATOR_URL}${climbAddress}`
+  );
+  return data[0];
+};
+
+// * HOTELS SEARCH
+export const getNearbyHotels = async (climbCoordinates, formData) => {
+  const config = {
+    headers: {
+      "X-RapidAPI-Key": `${process.env.REACT_APP_RAPID_API_KEY}`,
+      "X-RapidAPI-Host": `${process.env.REACT_APP_RAPID_API_HOST}`,
+    },
+    params: {
+      latitude: climbCoordinates.lat,
+      longitude: climbCoordinates.long,
+      checkin_date: formData.checkin_date,
+      checkout_date: formData.checkout_date,
+      currency: formData.currency,
+      sort_order: formData.sort_order,
+      adults_number: formData.adults_number,
+      locale: formData.locale,
+    },
+  };
+  const response = await axios.get(
+    `${process.env.REACT_APP_HOTELS_URL}`,
+    config
+  );
+  console.log(response);
+};
+
+// * ################################
+
 // * USERS
 export const userLogin = async (user) => {
   try {
