@@ -50,7 +50,7 @@ const ClimbDetails = () => {
 
   const selectedClimb = climbsReducer.climbs.filter(
     (climb) => climb.slug === slug
-  );
+  );    
 
   return (
     <Container className={classes.page}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -13,14 +13,21 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { getClimbCoordinates } from "../actions/actions";
+import HotelSearchForm from "./HotelSearchForm";
 
 export default function CardsAccordion({ currentClimb }) {
+  // * VARIABLES
+  // const climbAddress = `${currentClimb.location}, ${currentClimb.country}`
+  const climbAddress = "Waldstrasse 46, 33813 Oerlinghausen, Germany";
+  // * STATES
   const reducerQueries = useSelector((state) => state);
   const { climbsReducer } = reducerQueries;
   const climbs = climbsReducer.climbs;
-
   const [expanded, setExpanded] = useState(false);
+  const [climbCoordinates, setClimbCoordinates] = useState({})
 
+  // * EVENT HANDLERS
   const relatedClimbs = climbs.filter(
     (climb) =>
       climb.country === currentClimb.country && climb.slug !== currentClimb.slug
@@ -29,6 +36,19 @@ export default function CardsAccordion({ currentClimb }) {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  const handleGeoCode = async () => {
+    const response = await getClimbCoordinates(climbAddress);
+    const coordinates = {
+      lat: response.lat,
+      long: response.lon,
+    };
+   setClimbCoordinates(coordinates)
+  };
+
+  useEffect(()=>{
+    handleGeoCode()
+  }, [climbAddress])
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -99,7 +119,7 @@ export default function CardsAccordion({ currentClimb }) {
           id="panel1bh-header"
         >
           <Typography variant="h5" sx={{ width: "33%", flexShrink: 0 }}>
-            Hotels Nearby
+            Nearby Hotels
           </Typography>
         </AccordionSummary>
         <AccordionDetails
@@ -110,7 +130,8 @@ export default function CardsAccordion({ currentClimb }) {
             overflowX: "scroll",
           }}
         >
-          {relatedClimbs.length > 0 ? (
+          <HotelSearchForm climbCoordinates={climbCoordinates} />
+          {/* {relatedClimbs.length > 0 ? (
             relatedClimbs.map((similarClimb) => {
               return (
                 <Link
@@ -141,7 +162,7 @@ export default function CardsAccordion({ currentClimb }) {
             })
           ) : (
             <Typography variant="h5"> No related climbs found </Typography>
-          )}
+          )} */}
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -255,7 +276,7 @@ export default function CardsAccordion({ currentClimb }) {
             <Typography variant="h5"> No related climbs found </Typography>
           )}
         </AccordionDetails>
-      </Accordion> 
+      </Accordion>
     </Box>
   );
 }
