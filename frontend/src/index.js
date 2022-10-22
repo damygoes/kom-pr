@@ -12,7 +12,8 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    {/* PersistGate delays the rendering of UI until the persisted state has been retrrieved and saved to redux */}
+    <PersistGate persistor={persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -24,3 +25,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+//  <PersistGate loading={null} persistor={persistor}>

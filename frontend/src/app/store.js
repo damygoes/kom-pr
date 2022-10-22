@@ -6,16 +6,21 @@ import storage from "redux-persist/lib/storage";
 import filterReducer from "../features/filterSlice";
 import climbsReducer from "../features/climbsSlice";
 import userReducer from "../features/userSlice";
+import hotelsReducer from "../features/hotelsSlice";
 
 const persistConfig = {
   key: "root",
   storage,
+  // if you do not want to persist this part of the state
+  blacklist: ["hotelsReducer"],
 };
 
 const rootReducer = combineReducers({
   userReducer,
   climbsReducer,
   filterReducer,
+  // not persisting this reducer
+  hotelsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -106,11 +106,11 @@ export const getNearbyHotels = async (climbCoordinates, formData) => {
       locale: formData.locale,
     },
   };
-  const response = await axios.get(
+  const { data } = await axios.get(
     `${process.env.REACT_APP_HOTELS_URL}`,
     config
   );
-  console.log(response);
+  return data;
 };
 
 // * ################################

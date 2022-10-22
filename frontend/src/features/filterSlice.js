@@ -25,7 +25,9 @@ const filterSlice = createSlice({
       state.country = action.payload;
     },
     resetFilters(state, action) {
-      return initialState;
+      state.filterQuery = "";
+      state.filterDirection = "";
+      state.country = "";
     },
   },
 });

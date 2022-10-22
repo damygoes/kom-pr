@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import {
   Box,
@@ -9,15 +9,14 @@ import {
   Radio,
   Switch,
   Button,
-  Paper
+  Paper,
 } from "@mui/material";
 import {
   setFilterQuery,
   setFilterDirection,
   setCountry,
-  // resetFilters,
+  resetFilters,
 } from "../features/filterSlice";
-
 
 const filterItems = {
   "avg. Gradient": "avgGradient",
@@ -43,8 +42,13 @@ const countries = [
 ];
 
 export default function Filter() {
+  // * VARIABLES
   const dispatch = useDispatch();
 
+  // * STATES
+  const [selectedCountry, setSelectedCountry] = useState("")
+
+  // * EVENT HANDLERS
   const handleCheckBox = (filterValue) => {
     dispatch(setFilterQuery(filterValue));
   };
@@ -52,13 +56,26 @@ export default function Filter() {
     dispatch(setFilterDirection(switchState));
   };
   const handleSelectCountry = (country) => {
+    setSelectedCountry(country)
     dispatch(setCountry(country));
+  };
+  const handleReset = () => {
+    setSelectedCountry("")
+    dispatch(resetFilters())
   };
 
   return (
-    <Paper sx={{ display: {
-      xs: "flex", sm: "flex"
-    }, flexDirection: "column", width: "100%", p: 2 }}>
+    <Paper
+      sx={{
+        display: {
+          xs: "flex",
+          sm: "flex",
+        },
+        flexDirection: "column",
+        width: "100%",
+        p: 2,
+      }}
+    >
       <FormControl component="fieldset" variant="standard">
         <div
           style={{
@@ -107,7 +124,7 @@ export default function Filter() {
         <FormLabel component="legend" sx={{ mb: 2 }}>
           Countries
         </FormLabel>
-        <div
+        <Box
           style={{
             display: "flex",
             justifyContent: "center",
@@ -120,7 +137,7 @@ export default function Filter() {
             return (
               <Button
                 key={country}
-                variant="contained"
+                variant={`${selectedCountry === country ? "contained" : "outlined"}`}
                 size="small"
                 disableElevation
                 onClick={() => handleSelectCountry(country)}
@@ -129,7 +146,10 @@ export default function Filter() {
               </Button>
             );
           })}
-        </div>
+        </Box>
+      </Box>
+      <Box sx={{ mt: 4, width: "100%" }}>
+        <Button sx={{width:"100%"}} variant="contained" onClick={handleReset}> Reset Filters </Button>
       </Box>
     </Paper>
   );
