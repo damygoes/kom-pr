@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   Button,
@@ -13,8 +13,12 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { fetchRandomClimb } from "../../actions/actions";
+import { showForms } from "../../features/loginFormSlice";
 
 const RandomClimbGenerator = () => {
+  // * DECLARED VARIABLES
+  const dispatch = useDispatch();
+
   // * STATES
   const [open, setOpen] = useState(false);
   const [randomClimb, setRandomClimb] = useState([]);
@@ -31,12 +35,15 @@ const RandomClimbGenerator = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleFormBackdrop = () => {
+    dispatch(showForms(true));
+  }
   const handleToggle = () => {
     if (user.id !== "") {
       handleRandomClimb();
       setOpen(true);
     } else {
-      alert("Please Log In");
+      handleFormBackdrop()   
     }
   };
 

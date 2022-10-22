@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@mui/material";
 import { registerUser } from "../../actions/actions";
 import { setUser } from "../../features/userSlice";
+import { showForms } from "../../features/loginFormSlice";
 import FormInput from "./FormInput";
 import Notification from "./Notification";
 
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    borderRadius: "8px",
+    borderRadius: "5px",
     backgroundColor: "#ccc",
     opacity: "0.7",
   },
@@ -81,6 +82,7 @@ const SignUpForm = () => {
       },
     };
     if (success) {
+      dispatch(showForms(false))
       dispatch(setUser(userData));
       setNotificationData({
         message: "Signup Successful",
@@ -124,8 +126,8 @@ const SignUpForm = () => {
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "flex-end",
-          padding: "2rem",
-          gap: "2rem",
+          padding: "1rem",
+          gap: "1rem",
           width: "100%",
         }}
       >

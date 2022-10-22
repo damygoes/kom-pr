@@ -7,12 +7,13 @@ import filterReducer from "../features/filterSlice";
 import climbsReducer from "../features/climbsSlice";
 import userReducer from "../features/userSlice";
 import hotelsReducer from "../features/hotelsSlice";
+import formReducer from "../features/loginFormSlice";
 
 const persistConfig = {
   key: "root",
   storage,
   // if you do not want to persist this part of the state
-  blacklist: ["hotelsReducer"],
+  blacklist: ["hotelsReducer", "formReducer"],
 };
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   climbsReducer,
   filterReducer,
   // not persisting this reducer
+  formReducer,
   hotelsReducer,
 });
 

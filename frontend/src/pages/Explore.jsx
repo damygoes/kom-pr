@@ -14,6 +14,7 @@ import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
 import FilterDrawer from "../components/FilterDrawer";
 import PageHeadingCard from "../components/common/PageHeadingCard";
 import HomeIcon from "../assets/home.svg";
+import FormBackDrop from "../components/common/FormBackDrop";
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -72,11 +73,13 @@ export default function Explore() {
 
   //* STATES
   const reducerQueries = useSelector((state) => state);
-  const { filterReducer, climbsReducer, userReducer } = reducerQueries;
+  const { filterReducer, climbsReducer, userReducer, formReducer } =
+    reducerQueries;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
   const { success, user } = userReducer.userData;
-
+  const { formStatus } = formReducer;
+  
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);
@@ -103,16 +106,9 @@ export default function Explore() {
   let paginatedClimbs = paginate(sortedClimbs, currentPage, climbsPerPage);
 
   return (
-    <>
-      {success && (
-        <PageHeadingCard
-          text={"Home"}
-          image={HomeIcon}
-          // image={
-          //   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-          // }
-        />
-      )}
+    <Box sx={{ position: "relative" }}>
+      { formStatus && <FormBackDrop/>}
+      {success && <PageHeadingCard text={"Home"} image={HomeIcon} />}
       <Box
         className={classes.pageRow}
         sx={{
@@ -163,6 +159,6 @@ export default function Explore() {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }

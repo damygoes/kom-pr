@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@mui/material";
 import { userLogin } from "../../actions/actions";
 import { setUser } from "../../features/userSlice";
+import { showForms } from "../../features/loginFormSlice";
 import FormInput from "./FormInput";
 import Notification from "./Notification";
 
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    borderRadius: "8px",
+    borderRadius: "5px",
     backgroundColor: "#ccc",
     opacity: "0.7",
   },
@@ -65,6 +66,7 @@ const LoginForm = () => {
 
     const response = await userLogin(userCred);
     if (response.success) {
+      dispatch(showForms(false));
       dispatch(setUser(response));
       setNotificationData({
         message: "Login Successful",
@@ -95,18 +97,18 @@ const LoginForm = () => {
         },
       }}
     >
-      <div
+      <Box
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "flex-end",
-          padding: "2rem",
-          gap: "2rem",
+          padding: "1rem",
+          gap: "1rem",
           width: "100%",
         }}
       >
-        <div
+        <Box
           style={{
             display: "flex",
             flexDirection: "column",
@@ -137,7 +139,7 @@ const LoginForm = () => {
             onChange={handleFormInputChange}
           />
           <Notification showNotification={showNotification} notificationData={notificationData} />
-        </div>
+        </Box>
         <Button
           variant="contained"
           size="large"
@@ -146,7 +148,7 @@ const LoginForm = () => {
         >
           Login
         </Button>
-      </div>
+      </Box>
     </Box>
   );
 };
