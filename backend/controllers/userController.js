@@ -13,6 +13,7 @@ exports.addNewUser = async (req, res) => {
     admin: req.body.admin,
     savedItems: req.body.savedItems,
     profile: req.body.profile,
+    avatar: req.body.avatar,
   });
   await user
     .save()

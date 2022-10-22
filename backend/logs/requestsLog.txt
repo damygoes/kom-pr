@@ -2278,3 +2278,109 @@
 
 21-10-2022	17:50:59	12d162a8-0418-436e-833a-47451c2e1f15	GET	http://localhost:3000	/
 
+21-10-2022	18:50:47	d89666e3-4bfe-42b0-8f9b-0a833afd4040	GET	http://localhost:3000	/
+
+21-10-2022	18:52:08	c577e2bf-e161-4cbc-9522-89c8de949398	POST	http://localhost:3000	/user/login
+
+21-10-2022	18:52:08	f682a546-aa17-4ad3-8a46-95b7bda3f34a	GET	http://localhost:3000	/
+
+21-10-2022	18:52:39	23c5e936-854d-4495-8862-fe9b9bf30734	POST	http://localhost:3000	/user/login
+
+21-10-2022	18:52:41	b42b5c9a-2f47-4065-95e0-9888f61b314b	GET	http://localhost:3000	/
+
+21-10-2022	18:52:55	fa5d17c6-ec28-4847-8e88-68c9c1a005d7	GET	http://localhost:3000	/
+
+21-10-2022	18:53:08	0af473f1-398e-4a16-acc2-be41b95fe6de	GET	http://localhost:3000	/
+
+21-10-2022	18:53:12	aad53a7e-83d9-427d-9f8c-421bdc01224b	GET	http://localhost:3000	/
+
+21-10-2022	18:53:25	39d750c2-1a40-40f6-9537-8f66653f210a	GET	http://localhost:3000	/
+
+21-10-2022	18:53:38	f1a19968-7cfc-458b-ada3-d2f48758bffd	POST	http://localhost:3000	/user/login
+
+21-10-2022	18:53:39	e2d62039-1ef9-41aa-b3ef-30d50dc95adf	GET	http://localhost:3000	/
+
+21-10-2022	18:54:23	c7067299-f849-423a-903b-1a9beb377f41	PATCH	http://localhost:3000	/user/634ff88192f4fc9f0e170fef
+
+21-10-2022	18:54:30	4d5b6f71-07e6-4237-88f5-de4a19e41a98	GET	http://localhost:3000	/savedClimbs
+
+21-10-2022	18:54:38	b7d9ac03-4a5a-4656-b51e-88f080861f6a	DELETE	http://localhost:3000	/savedClimbs/63387907cb832885ffe27f28
+
+21-10-2022	18:54:38	442be5fe-43c5-4a78-933c-2cddd0de56a3	GET	http://localhost:3000	/savedClimbs
+
+21-10-2022	18:55:35	20eb2d1e-885f-4282-b4a8-647204966478	GET	http://localhost:3000	/
+
+21-10-2022	18:55:40	def2b856-7abe-493f-aeda-1ed0aba2a508	GET	http://localhost:3000	/
+
+21-10-2022	19:01:38	ab503ffb-812f-4ecd-a5ca-e149fb75f465	GET	http://localhost:3000	/
+
+21-10-2022	19:01:41	9860d8b8-8d25-4109-951f-85a0604eda54	GET	http://localhost:3000	/
+
+22-10-2022	09:50:19	935de505-108a-4331-a0f6-6a864cb26441	POST	undefined	/user/create
+
+22-10-2022	09:51:20	f6b1fc7a-4b9a-485c-97bf-fc052f799479	POST	undefined	/user/create
+
+22-10-2022	09:52:11	c61209f3-90ac-4316-8165-495c56315aac	GET	http://localhost:3000	/
+
+22-10-2022	09:52:25	ae9a1f9f-3213-493c-b7c7-7220f0b2513e	GET	http://localhost:3000	/
+
+22-10-2022	09:53:02	bb532d26-f4d4-48b0-a668-8ee86c6d640f	POST	http://localhost:3000	/user/login
+
+22-10-2022	09:53:03	6ec7e45f-d79f-4e8c-ab2e-c915459a1319	GET	http://localhost:3000	/
+
+22-10-2022	09:53:15	abbe9cb6-3695-4890-b4cd-be99aefeaca3	GET	http://localhost:3000	/random
+
+22-10-2022	09:53:18	4edca058-b712-4250-b8e8-7add750a5407	GET	http://localhost:3000	/random
+
+22-10-2022	09:53:19	5ab477a6-28e4-4cfa-af6c-87e8a770db0c	GET	http://localhost:3000	/random
+
+22-10-2022	09:53:46	41f2f308-1f6c-432e-ac9c-28a8aefdff51	GET	http://localhost:3000	/
+
+22-10-2022	09:54:25	73555fc6-6090-40df-acf7-d0c81f1ed268	GET	http://localhost:3000	/
+
+22-10-2022	09:54:50	e677c2f5-5aac-46b6-9c02-752a79b90acb	POST	http://localhost:3000	/user/login
+
+22-10-2022	09:54:50	267c7764-66b9-468b-8664-679a12f5331c	GET	http://localhost:3000	/
+
+22-10-2022	09:55:05	93f9077b-0138-4b7b-8249-e1a95cce796e	GET	http://localhost:3000	/
+
+22-10-2022	09:55:18	cc0856ec-8fa3-4e1d-9327-dfad46498444	GET	http://localhost:3000	/savedClimbs
+
+22-10-2022	09:55:33	9d07913d-f53e-418b-bebf-e5f16de4c87f	GET	http://localhost:3000	/savedClimbs
+
+22-10-2022	09:56:26	56cecb39-5911-4f64-b416-4891faf4ac33	GET	http://localhost:3000	/
+
+22-10-2022	11:40:57	fad71467-9da9-441b-89bb-6f877ffe74af	POST	http://localhost:3000	/user/login
+
+22-10-2022	11:40:57	5eda3a42-c1e8-4833-8078-1d1a6908081f	GET	http://localhost:3000	/
+
+22-10-2022	12:03:36	1bc0d2e7-04fc-48e3-8d07-4bafed520b96	POST	http://localhost:3000	/user/login
+
+22-10-2022	12:03:37	7887924d-3c7a-49ba-865c-66b51e86c751	GET	http://localhost:3000	/
+
+22-10-2022	12:03:56	74b8774b-6f00-4d1d-9b2f-6d86a2ab3109	GET	http://localhost:3000	/
+
+22-10-2022	13:02:22	a2b552af-d247-45a9-af5a-7a8f259f57c5	GET	http://localhost:3000	/
+
+22-10-2022	13:02:49	2c832e31-19eb-4ca6-a31c-14158f05f4cc	GET	http://localhost:3000	/
+
+22-10-2022	13:02:57	2098a8ac-79b8-42d3-9569-b8c8cc69362b	GET	http://localhost:3000	/
+
+22-10-2022	13:28:57	a4837221-12d9-44ba-adf2-ba7afd72ea8f	GET	http://localhost:3000	/
+
+22-10-2022	13:29:00	e89b2788-1cc4-45e3-9bc2-861a8834b7a5	GET	http://localhost:3000	/
+
+22-10-2022	13:29:08	505385c9-69c4-4e98-9635-c5418cae0de3	GET	http://localhost:3000	/
+
+22-10-2022	13:29:15	9e1a6abd-9d91-4898-94ab-6f056e6d37fc	GET	http://localhost:3000	/
+
+22-10-2022	13:29:23	1dab88e5-d3e3-4fc3-9f4e-617e038cfd01	GET	http://localhost:3000	/
+
+22-10-2022	14:38:09	3f2abc64-2612-476a-a0ce-2f92e428d9c7	GET	http://localhost:3000	/
+
+22-10-2022	14:38:21	e6ec2a94-5e2c-456f-9722-466e367e9035	GET	http://localhost:3000	/
+
+22-10-2022	14:43:07	86399e42-88bf-4904-bf52-1e84881300c0	GET	http://localhost:3000	/
+
+22-10-2022	14:53:30	1e889362-12c4-48d6-af6f-b60b5712b175	GET	http://localhost:3000	/
+
