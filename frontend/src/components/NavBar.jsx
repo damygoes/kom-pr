@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { resetUser } from "../features/userSlice.js";
+import { showForms } from "../features/loginFormSlice.js";
 import {
   AppBar,
   Box,
@@ -52,7 +53,7 @@ const NavBar = () => {
   const handleCloseUserMenu = async (setting) => {
     if (setting === "Logout") {
       dispatch(resetUser());
-      navigate("/login");
+      navigate("/");
     } else {
       navigate(`/${setting.toLowerCase()}`);
     }
@@ -62,6 +63,10 @@ const NavBar = () => {
   const handleNavigate = () => {
     navigate("/");
   };
+
+  const handleLoginForm = () => {
+    dispatch(showForms(true))
+  }
 
   return (
     <AppBar position="sticky">
@@ -219,11 +224,9 @@ const NavBar = () => {
                 </Menu>
               </>
             ) : (
-              <Link to={`/login`} style={{ textDecoration: "none" }}>
-                <Button sx={{ my: 2, color: "white", display: "block" }}>
-                  Login
-                </Button>
-              </Link>
+              <Button sx={{ my: 2, color: "white", display: "block" }} onClick={handleLoginForm}>
+                Login
+              </Button>
             )}
           </Box>
         </Toolbar>

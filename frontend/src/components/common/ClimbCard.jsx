@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { saveOneClimb } from "../../actions/actions";
 import { styled } from "@mui/material/styles";
 import {
@@ -20,8 +20,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
-// import LikeOrSave from "./LikeOrSave";
 import Notification from "./Notification";
+import { showForms } from "../../features/loginFormSlice";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,6 +37,7 @@ const ExpandMore = styled((props) => {
 export default function ClimbCard({ data }) {
   // * VARIABLES
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // * STATES
   const reducerQueries = useSelector((state) => state);
@@ -69,8 +70,11 @@ export default function ClimbCard({ data }) {
   const handleCloseNotification = () => {
     setShowNotification(false)
   }
+  const handleFormBackdrop = () => {
+    dispatch(showForms(true));
+  }
   const handleNavigateToCardDetails = () => {
-    success ? navigate(`/explore/${slug}`) : alert("Please Log In");
+    success ? navigate(`/explore/${slug}`) : handleFormBackdrop();
   };
   const toggleSave = async (climbID, user) => {
     setSaveClimb(!saveClimb);

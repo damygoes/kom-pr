@@ -42,6 +42,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ClimbDetails = () => {
+  // * DECLARED VARIABLES
   const classes = useStyles();
   const navigate = useNavigate();
   const reducerQueries = useSelector((state) => state);
@@ -50,7 +51,7 @@ const ClimbDetails = () => {
 
   const selectedClimb = climbsReducer.climbs.filter(
     (climb) => climb.slug === slug
-  );    
+  );
 
   return (
     <Container className={classes.page}>
