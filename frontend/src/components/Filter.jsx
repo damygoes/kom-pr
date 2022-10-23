@@ -28,17 +28,11 @@ const filterItems = {
 };
 
 const countries = [
+  "Austria",
   "Belgium",
-  "Colombia",
-  "Cyprus",
-  "England",
-  "France",
-  "Hawaii",
   "Italy",
-  "Scotland",
   "Spain",
-  "UK",
-  "Wales",
+  "England"
 ];
 
 export default function Filter() {

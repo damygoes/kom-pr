@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -11,23 +11,17 @@ import {
   Typography,
 } from "@mui/material";
 import SellIcon from "@mui/icons-material/Sell";
-import BedroomParentIcon from "@mui/icons-material/BedroomParent";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+// import BedroomParentIcon from "@mui/icons-material/BedroomParent";
 
 export default function HotelCard({ data }) {
   // * VARIABLES
-  const navigate = useNavigate();
-  const {
-    name,
-    optimizedThumbUrls,
-    ratePlan,
-    roomsLeft,
-    starRating,
-    address,
-    urls,
-  } = data;
+  // const navigate = useNavigate();
+  const { name, optimizedThumbUrls, ratePlan, starRating, address } =
+    data;
 
   // * EVENT HANDLERS
-  const handleNavigation = () => {};
+  // const handleNavigation = () => {};
 
   return (
     <Card sx={{ width: 300, height: 300 }}>
@@ -48,27 +42,34 @@ export default function HotelCard({ data }) {
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary" fontSize="small">
-            {`${address.streetAddress}, ${address.postalCode} ${address.locality}, ${address.countryName}`}
+            {address.streetAddress && `${address.streetAddress},`}
+            {address.postalCode && `${address.postalCode},`}
+            {`${address.locality}, ${address.countryName}`}
           </Typography>
-          <Stack direction="row" spacing={1} sx={{ mt: 3 }}>
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{ mt: 3 }}
+          >
             <Chip
               icon={<SellIcon />}
               label={ratePlan.price.current}
               variant="outlined"
               size="small"
+              sx={{p:1}}
             />
             <Chip
-              icon={<BedroomParentIcon />}
-              label={`${roomsLeft} available`}
+              icon={<ThumbUpIcon />}
+              label={ <Rating
+                name="rating-read-only"
+                value={starRating}
+                precision={0.5}
+                size="small"
+                sx={{p:1}}
+                readOnly
+              />}
               variant="outlined"
               size="small"
-            />
-            <Rating
-              name="read-only"
-              value={starRating}
-              precision={0.5}
-              size="small"
-              readOnly
             />
           </Stack>
         </CardContent>
@@ -76,5 +77,3 @@ export default function HotelCard({ data }) {
     </Card>
   );
 }
-
-// flex: "1 0 auto"

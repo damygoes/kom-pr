@@ -65,8 +65,8 @@ const NavBar = () => {
   };
 
   const handleLoginForm = () => {
-    dispatch(showForms(true))
-  }
+    dispatch(showForms(true));
+  };
 
   return (
     <AppBar position="sticky">
@@ -224,7 +224,10 @@ const NavBar = () => {
                 </Menu>
               </>
             ) : (
-              <Button sx={{ my: 2, color: "white", display: "block" }} onClick={handleLoginForm}>
+              <Button
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={handleLoginForm}
+              >
                 Login
               </Button>
             )}

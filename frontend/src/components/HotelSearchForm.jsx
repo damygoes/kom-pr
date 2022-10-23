@@ -25,22 +25,9 @@ const currencyOptions = ["AUD", "CAD", "CHF", "EUR", "GBP", "USD"];
 const sortOrder = {
   Bestseller: "BEST_SELLER",
   Price: "PRICE",
-  "Highest Price First": "PRICE_HIGHEST_FIRST",
-  "Distance From Landmark": "DISTANCE_FROM_LANDMARK",
-  "Guest Rating": "GUEST_RATING",
-  "Highest Star Rating": "STAR_RATING_HIGHEST_FIRST",
-  "Lowest Star Rating": "STAR_RATING_LOWEST_FIRST",
 };
 const localeOptions = {
-  BE: "de_BE",
-  CAD: "en_CA",
-  CH: "de_CH",
   DE: "de_DE",
-  FR: "fr_FR",
-  GB: "en_GB",
-  NL: "nl_NL",
-  PL: "pl_PL",
-  RU: "ru_RU",
   US: "en_US",
 };
 
@@ -113,6 +100,7 @@ export default function HotelSearchForm({ climbCoordinates, showHotelCards }) {
     };
     const { searchResults } = await getNearbyHotels(climbCoordinates, formData);
     const results = searchResults.results;
+    console.log(results)
     dispatch(
       setHotels({
         results,

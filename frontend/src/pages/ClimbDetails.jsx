@@ -82,7 +82,7 @@ const ClimbDetails = () => {
                     component="p"
                     color="secondary"
                   >
-                    {`${climb.location},${climb.country}`}
+                    {`${climb.location}, ${climb.country}`}
                   </Typography>
                 </CardContent>
                 <CardActionArea sx={{ p: 2 }}>
