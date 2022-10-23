@@ -6,8 +6,6 @@ const ObjectId = require("mongodb").ObjectId;
 exports.saveOneClimb = async (req, res) => {
   const userID = req.body.userID;
   const climbID = req.body.climbID;
-  console.log(userID);
-  console.log(climbID);
 
   // ? Check if climb already exist
   const climb = await SavedClimbs.findOne(

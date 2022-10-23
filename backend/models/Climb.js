@@ -6,6 +6,10 @@ const ClimbSchema = mongoose.Schema({
   description: { type: String, required: true },
   location: { type: String, required: false },
   country: { type: String, required: true },
+  coordinates: {
+    latitude: { type: String, required: true, default: "" },
+    longitude: { type: String, required: true, default: "" },
+  },
   distance: { type: Number, required: false },
   avgGradient: { type: Number, required: false },
   maxGradient: { type: Number, required: false },

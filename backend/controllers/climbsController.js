@@ -55,6 +55,7 @@ exports.addClimb = async (req, res) => {
     slug: req.body.slug,
     description: req.body.description,
     location: req.body.location,
+    coordinates: req.body.coordinates,
     country: req.body.country,
     distance: req.body.distance,
     avgGradient: req.body.avgGradient,
