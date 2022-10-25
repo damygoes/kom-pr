@@ -1,31 +1,27 @@
-/**
- *
- * Imports
- */
-const { getCacheItem } = require("../config/cache");
-/**
- * Checks for authorization token on request
- * Requests must contain token in header e.g Authorization: Bearer XYZ1234
- * @param {*} req
- * @param {*} res
- * @param {*} next
- */
+const jwt = require("jsonwebtoken");
+
 const authMiddleware = async (req, res, next) => {
-  if (!req.headers.authorization)
-    return res.status(401).json({ message: "Not authenticated !" });
+  const authHeader = req.header["authorization"];
+  const token = authHeader && authHeader.split("")[1];
+  if (token == null) return res.status(401);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.status(403);
+    req.user = user;
+    next();
+  });
 
-  const authHeader = req.headers.authorization.split(" ");
+  // const token = req.headers.authorization.split(" ")[1];
+  // const isCustomAuth = token.length < 500; //if > 500, that is Google Auth
 
-  let authData = {
-    status: false,
-  };
+  // let decodedData;
 
-  authData = getCacheItem(`${authHeader[1]}`); // Get token from cache
-
-  if (authData.status !== true)
-    return res.status(403).json({ message: "Not Authorized !" });
-
-  next();
+  // if (token && isCustomAuth) {
+  //   decodedData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  //   req.userId = decodedData?.id;
+  // } else {
+  //   decodedData = jwt.decode(token);
+  //   req.userId = decodedData?.sub; //sub is an id that google uses to differentiate users
+  // }
 };
 
 module.exports = authMiddleware;

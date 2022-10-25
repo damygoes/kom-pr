@@ -4,3 +4,7 @@
 13-10-2022	12:23:04	09505be1-9550-4ff0-a1d6-53c956f0f45b	Error: Unknown authentication strategy "token"
 13-10-2022	12:23:54	ff57fc03-51fb-4ab7-a48c-7ee6e9cf9718	Error: Unknown authentication strategy "JwtStrategy"
 13-10-2022	12:26:07	68505298-a1b2-4af4-97f2-4f5f379407f3	Error: Unknown authentication strategy "JWT"
+25-10-2022	11:54:55	0d8e84a3-2a3e-4b67-9365-fb45ecac8dd5	PayloadTooLargeError: request entity too large
+25-10-2022	11:56:22	ae8e8de7-0889-44ab-891f-fd1d3831a4c7	PayloadTooLargeError: request entity too large
+25-10-2022	12:01:49	219b41c1-d721-4f1a-8970-ecfbb2d5999c	PayloadTooLargeError: request entity too large
+25-10-2022	12:04:27	8538c74d-8a95-4031-904d-66aa38361620	PayloadTooLargeError: request entity too large

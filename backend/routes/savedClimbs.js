@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const savedClimbsController = require("../controllers/savedClimbsController");
-const passportAuth = require("../middleware/jwtAuth");
+const authMiddleware = require("../middleware/auth");
 
 //* MONGO COLLECTION CONNECT
-router.get("/", passportAuth, savedClimbsController.getSavedClimbs);
-router.post("/add", passportAuth, savedClimbsController.saveOneClimb);
-router.delete("/:id", passportAuth, savedClimbsController.deleteSavedClimb);
+router.get("/", savedClimbsController.getSavedClimbs);
+router.post("/add", savedClimbsController.saveOneClimb);
+router.delete("/:id", authMiddleware, savedClimbsController.deleteSavedClimb);
 
 module.exports = router;
