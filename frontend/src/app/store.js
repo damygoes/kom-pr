@@ -8,6 +8,7 @@ import climbsReducer from "../features/climbsSlice";
 import userReducer from "../features/userSlice";
 import hotelsReducer from "../features/hotelsSlice";
 import formReducer from "../features/loginFormSlice";
+import randomClimbReducer from "../features/randomClimbSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   // not persisting this reducer
   formReducer,
   hotelsReducer,
+  randomClimbReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -21,7 +21,7 @@ import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
 import Notification from "./Notification";
-import { showForms } from "../../features/loginFormSlice";
+import { setFormStatus } from "../../features/loginFormSlice";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,7 +42,7 @@ export default function ClimbCard({ data }) {
   // * STATES
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  const { success, user } = userData;
+  // const { success, user } = userData;
   const {
     name,
     description,
@@ -71,10 +71,10 @@ export default function ClimbCard({ data }) {
     setShowNotification(false)
   }
   const handleFormBackdrop = () => {
-    dispatch(showForms(true));
+    dispatch(setFormStatus(true));
   }
   const handleNavigateToCardDetails = () => {
-    success ? navigate(`/explore/${slug}`) : handleFormBackdrop();
+    userData.id ? navigate(`/explore/${slug}`) : handleFormBackdrop();
   };
   const toggleSave = async (climbID, user) => {
     setSaveClimb(!saveClimb);
@@ -125,12 +125,12 @@ export default function ClimbCard({ data }) {
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
-      {success && (
+      {userData.id && (
         <>
           <CardActions disableSpacing>
             <IconButton
               aria-label="add to favorites"
-              onClick={() => toggleSave(_id, user)}
+              onClick={() => toggleSave(_id, userData.id)}
             >
               <FavoriteIcon />
             </IconButton>

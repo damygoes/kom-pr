@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import { fetchClimbs } from "../actions/actions";
+// import { fetchClimbs } from "../actions/actions";
+import { fetchClimbs } from "../actions/climbs";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@mui/material";
 import AllClimbs from "../utils/AllClimbs";
@@ -10,7 +11,7 @@ import PaginationComponent from "../components/common/PaginationComponent";
 import Filter from "../components/Filter";
 import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
 import { setClimbs } from "../features/climbsSlice";
-import RandomClimbGenerator from "../components/common/RandomClimbGenerator";
+import RandomClimbFinder from "../components/randomClimbFinder/RandomClimbGenerator";
 import FilterDrawer from "../components/FilterDrawer";
 import PageHeadingCard from "../components/common/PageHeadingCard";
 import HomeIcon from "../assets/home.svg";
@@ -62,24 +63,20 @@ export default function Explore() {
   const dispatch = useDispatch();
 
   //* API Calls
-  const fetchAllClimbs = useCallback(async () => {
-    let response = await fetchClimbs();
-    dispatch(setClimbs(response));
-  }, [dispatch]);
-
   useEffect(() => {
-    fetchAllClimbs();
-  }, [fetchAllClimbs]);
+    dispatch(fetchClimbs());
+  }, [dispatch]);
 
   //* STATES
   const reducerQueries = useSelector((state) => state);
   const { filterReducer, climbsReducer, userReducer, formReducer } =
     reducerQueries;
+  const { formStatus } = formReducer;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
-  const { success, user } = userReducer.userData;
-  const { formStatus } = formReducer;
-  
+  // const { success, user } = userReducer.userData;
+  // const { formStatus } = formReducer;
+
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);
@@ -107,8 +104,8 @@ export default function Explore() {
 
   return (
     <Box sx={{ position: "relative" }}>
-      { formStatus && <FormBackDrop/>}
-      {success && <PageHeadingCard text={"Home"} image={HomeIcon} />}
+      {formStatus && <FormBackDrop />}
+      {/* {success && <PageHeadingCard text={"Home"} image={HomeIcon} />} */}
       <Box
         className={classes.pageRow}
         sx={{
@@ -134,7 +131,7 @@ export default function Explore() {
           <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             <Filter />
           </Box>
-          <RandomClimbGenerator />
+          <RandomClimbFinder />
         </Box>
         <Box className={classes.pageCol} sx={{ maxWidth: { xs: "100%" } }}>
           <Box

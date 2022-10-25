@@ -1,25 +1,6 @@
 // All API functions go here
 import axios from "axios";
 
-// * CLIMBS
-export const fetchClimbs = async () => {
-  const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}`);
-  return data;
-};
-
-export const fetchRandomClimb = async (user) => {
-  const config = {
-    headers: {
-      Authorization: user.token,
-    },
-  };
-  const { data } = await axios.get(
-    `${process.env.REACT_APP_BASE_URL}random`,
-    config
-  );
-  return data;
-};
-
 // * ################################
 
 // * SAVED CLIMBS
@@ -106,52 +87,5 @@ export const getNearbyHotels = async (climbCoordinates, formData) => {
 };
 
 // * ################################
-
-// * USERS
-export const userLogin = async (user) => {
-  try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_USER_LOGIN_ROUTE}`,
-      {
-        email: user.email,
-        password: user.password,
-      }
-    );
-    return data;
-  } catch (error) {
-    const errorObject = error.response.data;
-    return errorObject;
-  }
-};
-
-export const registerUser = async (newUser) => {
-  try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_USER_SIGNUP_ROUTE}`,
-      {
-        username: newUser.username,
-        email: newUser.email,
-        password: newUser.password,
-      }
-    );
-    return data;
-  } catch (error) {
-    const errorObject = error.response.data;
-    return errorObject;
-  }
-};
-
-export const updateUserProfile = async (userID, userData) => {
-  try {
-    const { data } = await axios.patch(
-      `${process.env.REACT_APP_BASE_URL}user/${userID}`,
-      { userData }
-    );
-    return data;
-  } catch (error) {
-    const errorObject = error.response.data;
-    return errorObject;
-  }
-};
 
 // * ################################

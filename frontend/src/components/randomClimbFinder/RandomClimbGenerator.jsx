@@ -12,40 +12,31 @@ import {
   CardMedia,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { fetchRandomClimb } from "../../actions/actions";
-import { showForms } from "../../features/loginFormSlice";
+import { fetchRandomClimb } from "../../actions/climbs";
 
-const RandomClimbGenerator = () => {
+const RandomClimbFinder = () => {
   // * DECLARED VARIABLES
   const dispatch = useDispatch();
 
   // * STATES
   const [open, setOpen] = useState(false);
-  const [randomClimb, setRandomClimb] = useState([]);
   const reducerQueries = useSelector((state) => state);
-  const { userData } = reducerQueries.userReducer;
-  const { user } = userData;
-
-
+  const { userReducer, randomClimbReducer } = reducerQueries;
+  const {randomClimb} = randomClimbReducer
+  // const [randomClimb, setRandomClimb] = useState([])
+  
+  
+  
   // * EVENT HANDLERS
-  const handleRandomClimb = async () => {
-    let response = await fetchRandomClimb(user);
-    setRandomClimb(response);
+  const handleRandomClimb = () => {
+    dispatch(fetchRandomClimb())
+    setOpen(true)
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const handleFormBackdrop = () => {
-    dispatch(showForms(true));
-  }
-  const handleToggle = () => {
-    if (user.id !== "") {
-      handleRandomClimb();
-      setOpen(true);
-    } else {
-      handleFormBackdrop()   
-    }
-  };
+
+
 
   return (
     <>
@@ -63,7 +54,7 @@ const RandomClimbGenerator = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={handleToggle}>
+          <Button size="small" onClick={handleRandomClimb}>
             Generate
           </Button>
         </CardActions>
@@ -125,4 +116,4 @@ const RandomClimbGenerator = () => {
   );
 };
 
-export default RandomClimbGenerator;
+export default RandomClimbFinder;

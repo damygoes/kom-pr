@@ -31,6 +31,7 @@ export const appTheme = createTheme({
     h6: {
       fontFamily: "Oswald",
       fontWeight: 200,
+      fontSize: "0.9rem",
     },
     subtitle1: {
       fontFamily: "Oswald",

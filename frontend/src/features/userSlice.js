@@ -28,6 +28,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.userData = action.payload;
+      state.success = true;
     },
     updateOldUserProfile(state, action) {
       state.userData.user.profile = action.payload;
