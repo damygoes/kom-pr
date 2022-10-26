@@ -8,15 +8,14 @@ router.get("/", climbsController.getClimbs);
 router.get("/random", climbsController.getRandomClimb);
 
 // ? Protected Routes
-router.get("/climbs/:name", authMiddleware, climbsController.getClimbByName);
+router.get("/climbs/:name", climbsController.getClimbByName);
 router.get(
   "/countries/:country",
 
-  authMiddleware,
   climbsController.getClimbByCountry
 );
-router.post("/", authMiddleware, climbsController.addClimb);
-router.patch("/climbs/:name", authMiddleware, climbsController.editClimb);
-router.delete("/climbs/:id", authMiddleware, climbsController.deleteClimb);
+router.post("/", climbsController.addClimb);
+router.patch("/climbs/:name", climbsController.editClimb);
+router.delete("/climbs/:id", climbsController.deleteClimb);
 
 module.exports = router;

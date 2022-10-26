@@ -142,10 +142,8 @@ exports.logInUser = async (req, res) => {
 };
 //* Update user info
 exports.updateUserInfo = async (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
   const userID = req.params.id;
-  const userProfileData = req.body.userData;
+  const userProfileData = req.body;
   const objectifiedUserID = ObjectId(userID);
   const newUserData = {
     ftp: userProfileData.ftp,
@@ -155,6 +153,7 @@ exports.updateUserInfo = async (req, res) => {
     gender: userProfileData.gender,
     location: userProfileData.location,
   };
+
   try {
     const updatedUserProfile = await User.findOneAndUpdate(
       { _id: objectifiedUserID },

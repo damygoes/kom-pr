@@ -4,7 +4,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // * Save a climb
 exports.saveOneClimb = async (req, res) => {
-  const userID = req.body.userID;
+  const userID = req.body.user;
   const climbID = req.body.climbID;
 
   // ? Check if climb already exist
@@ -45,7 +45,7 @@ exports.saveOneClimb = async (req, res) => {
 
 // * Get all saved climbs
 exports.getSavedClimbs = async (req, res) => {
-  const userID = req.user._id.toString();
+  const userID = req.params.id.toString();
   try {
     const objectifiedIDS = [];
     const userItems = await SavedClimbs.find({ userID }, { climbID: 1 });
@@ -68,11 +68,17 @@ exports.getSavedClimbs = async (req, res) => {
     });
   }
 };
+
 // * Delete a saved climb
 exports.deleteSavedClimb = async (req, res) => {
+  console.log(req.body);
   try {
-    const climbId = req.params.id;
-    const deletedClimb = await SavedClimbs.deleteOne({ climbID: climbId });
+    const climbId = req.body.climbID;
+    const userId = req.body.userID;
+    const deletedClimb = await SavedClimbs.deleteOne({
+      climbID: climbId,
+      userID: userId,
+    });
     res.json(deletedClimb);
   } catch (error) {
     res.status(500).json({ message: error.message });
