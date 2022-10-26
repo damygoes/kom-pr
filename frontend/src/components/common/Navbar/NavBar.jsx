@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { resetUser } from "../features/userSlice.js";
-import { showForms } from "../features/loginFormSlice.js";
+import { resetUser } from "../../../features/userSlice.js";
+import { showForm } from '../../../actions/formState';
 import {
   AppBar,
   Box,
@@ -17,7 +17,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-// import AdbIcon from "@mui/icons-material/Adb";
+
 
 const pages = {
   estimator: "estimator",
@@ -35,8 +35,7 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  const { success, user } = userData;
-
+ 
   // * EVENT HANDLERS
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -65,7 +64,7 @@ const NavBar = () => {
   };
 
   const handleLoginForm = () => {
-    dispatch(showForms(true));
+    dispatch(showForm());
   };
 
   return (
@@ -123,9 +122,9 @@ const NavBar = () => {
               }}
             >
               {/* Mobile Menu */}
-              {success &&
+              {userData.id &&
                 Object.keys(pages).map((page) => {
-                  if (page === "manage" && user.admin === false) {
+                  if (page === "manage" && userData.admin === false) {
                     return null;
                   }
                   return (
@@ -145,7 +144,6 @@ const NavBar = () => {
                 })}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -167,9 +165,9 @@ const NavBar = () => {
           </Typography>
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {success &&
+            {userData.id &&
               Object.keys(pages).map((page) => {
-                if (page === "manage" && user.admin === false) {
+                if (page === "manage" && userData.admin === false) {
                   return null;
                 }
                 return (
@@ -190,11 +188,11 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {success ? (
+            {userData.id  ? (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar src={user.avatar} alt={user.username} />
+                    <Avatar src={userData.avatar} alt={userData.firstName} />
                   </IconButton>
                 </Tooltip>
                 <Menu

@@ -12,9 +12,9 @@ import {
   CardActionArea,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ClimbChips from "../components/common/ClimbChips";
-import ImagesMasonry from "../components/common/ImagesMasonry";
-import CardsAccordion from "../components/CardsAccordion";
+import ClimbChips from "../components/Climbs/ClimbChips";
+import ImagesMasonry from "../components/common/CardsComp/ImagesMasonry";
+import CardsAccordion from "../components/common/Accordion/CardsAccordion";
 
 const useStyles = makeStyles(() => ({
   page: {

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Backdrop from "@mui/material/Backdrop";
-import LoginPage from "./LoginPage";
-import { showForms } from "../../features/loginFormSlice";
+// import LoginPage from "./LoginPage";
+import { setFormStatus } from "../features/loginFormSlice";
+import Auth from '../Auth/Auth';
 
 export default function FormBackDrop() {
-  const dispatach = useDispatch();
+  const dispatch = useDispatch();
 
   // * STATES
   const reducerQueries = useSelector((state) => state);
@@ -13,7 +14,7 @@ export default function FormBackDrop() {
 
   //   * EVENT HANDLERS
   const handleCloseBackdrop = () => {
-    dispatach(showForms(false));
+    dispatch(setFormStatus(false));
   };
 
   return (
@@ -22,7 +23,8 @@ export default function FormBackDrop() {
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={formStatus}
       >
-        <LoginPage onClose={handleCloseBackdrop} />
+        {/* <LoginPage onClose={handleCloseBackdrop} /> */}
+        <Auth onClose={handleCloseBackdrop} />
       </Backdrop>
     </div>
   );

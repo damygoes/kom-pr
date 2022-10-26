@@ -16,7 +16,7 @@ import {
   setFilterDirection,
   setCountry,
   resetFilters,
-} from "../features/filterSlice";
+} from "../../features/filterSlice";
 
 const filterItems = {
   "avg. Gradient": "avgGradient",

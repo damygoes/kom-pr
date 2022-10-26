@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { saveOneClimb } from "../../actions/actions";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -20,8 +19,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { GiPathDistance, GiMountainRoad } from "react-icons/gi";
 import { FaMaxcdn } from "react-icons/fa";
 import { TbTypography } from "react-icons/tb";
-import Notification from "./Notification";
-import { showForms } from "../../features/loginFormSlice";
+import Notification from "../common/Toasts/Notification";
+import { setFormStatus } from "../../features/loginFormSlice";
+import { likeClimb } from "../../actions/climbs";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,7 +42,7 @@ export default function ClimbCard({ data }) {
   // * STATES
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  const { success, user } = userData;
+  // const { success, user } = userData;
   const {
     name,
     description,
@@ -68,30 +68,30 @@ export default function ClimbCard({ data }) {
     setExpanded(!expanded);
   };
   const handleCloseNotification = () => {
-    setShowNotification(false)
-  }
-  const handleFormBackdrop = () => {
-    dispatch(showForms(true));
-  }
-  const handleNavigateToCardDetails = () => {
-    success ? navigate(`/explore/${slug}`) : handleFormBackdrop();
+    setShowNotification(false);
   };
-  const toggleSave = async (climbID, user) => {
+  const handleFormBackdrop = () => {
+    dispatch(setFormStatus(true));
+  };
+  const handleNavigateToCardDetails = () => {
+    userData.id ? navigate(`/explore/${slug}`) : handleFormBackdrop();
+  };
+  const toggleSave = async (user, climbID) => {
     setSaveClimb(!saveClimb);
     const data = {
       user,
       climbID,
     };
-    const response = await saveOneClimb(data);
-    if (response.success) {
+    const result = await dispatch(likeClimb(data));
+    if (result.success) {
       setNotificationData({
-        message: response.message,
+        message: result.message,
         status: "success",
       });
       setShowNotification(true);
     } else {
       setNotificationData({
-        message: response.message,
+        message: result.message,
         status: "info",
       });
       setShowNotification(true);
@@ -125,12 +125,12 @@ export default function ClimbCard({ data }) {
           <Button startIcon={<GiMountainRoad />}> {`${elevation}m`} </Button>
         </ButtonGroup>
       </CardContent>
-      {success && (
+      {userData.id && (
         <>
           <CardActions disableSpacing>
             <IconButton
               aria-label="add to favorites"
-              onClick={() => toggleSave(_id, user)}
+              onClick={() => toggleSave(userData.id, _id)}
             >
               <FavoriteIcon />
             </IconButton>

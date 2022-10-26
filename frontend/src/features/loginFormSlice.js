@@ -8,12 +8,12 @@ const loginFormSlice = createSlice({
   name: "formReducer",
   initialState,
   reducers: {
-    showForms(state, action) {
+    setFormStatus(state, action) {
       state.formStatus = action.payload;
     },
   },
 });
 
-export const { showForms } = loginFormSlice.actions;
+export const { setFormStatus } = loginFormSlice.actions;
 
 export default loginFormSlice.reducer;

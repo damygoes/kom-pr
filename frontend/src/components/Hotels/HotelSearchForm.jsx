@@ -15,8 +15,8 @@ import {
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { getNearbyHotels } from "../actions/actions";
-import { setHotels } from "../features/hotelsSlice";
+import { getNearbyHotels } from "../../actions/hotels";
+import { setHotels } from "../../features/hotelsSlice";
 
 
 // * VARIABLES
@@ -100,7 +100,6 @@ export default function HotelSearchForm({ climbCoordinates, showHotelCards }) {
     };
     const { searchResults } = await getNearbyHotels(climbCoordinates, formData);
     const results = searchResults.results;
-    console.log(results)
     dispatch(
       setHotels({
         results,

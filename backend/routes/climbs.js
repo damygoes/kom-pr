@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const climbsController = require("../controllers/climbsController");
-const passportAuth = require("../middleware/jwtAuth");
+const authMiddleware = require("../middleware/auth");
 
 //* MONGO COLLECTION CONNECT
 router.get("/", climbsController.getClimbs);
+router.get("/random", climbsController.getRandomClimb);
 
 // ? Protected Routes
-router.get("/climbs/:name", passportAuth, climbsController.getClimbByName);
-router.get("/random", passportAuth, climbsController.getRandomClimb);
+router.get("/climbs/:name", climbsController.getClimbByName);
 router.get(
   "/countries/:country",
-  passportAuth,
+
   climbsController.getClimbByCountry
 );
 router.post("/", climbsController.addClimb);
-router.patch("/climbs/:name", passportAuth, climbsController.editClimb);
-router.delete("/climbs/:id", passportAuth, climbsController.deleteClimb);
+router.patch("/climbs/:name", climbsController.editClimb);
+router.delete("/climbs/:id", climbsController.deleteClimb);
 
 module.exports = router;

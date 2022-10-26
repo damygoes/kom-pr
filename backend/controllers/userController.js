@@ -7,45 +7,82 @@ const User = require("../models/User");
 //* Create a new user
 exports.addNewUser = async (req, res) => {
   const user = new User({
-    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
-    password: hashSync(req.body.password, 10),
+    password: hashSync(req.body.password, 12),
+    // confirmPassword: req.body.confirmPassword,
     admin: req.body.admin,
     savedItems: req.body.savedItems,
     profile: req.body.profile,
     avatar: req.body.avatar,
   });
-  await user
-    .save()
-    .then((user) => {
+  try {
+    const existingUser = await User.findOne(
+      {
+        email: user.email,
+      },
+      {}
+    );
+    //? If user already exists
+    if (existingUser) {
+      return res.status(400).send({
+        success: false,
+        message: "User already exist",
+      });
+    }
+    //? If user does not exist but passwords don't match
+    // if (user.password !== user.confirmPassword) {
+    //   return res.status(400).send({
+    //     success: false,
+    //     message: "Passwords don't match",
+    //   });
+    // }
+
+    /**
+     * {
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        admin,
+        savedItems,
+        avatar,
+        profile,
+      }
+     */
+
+    // const hashedPassword = await hashSync(req.body.password, 12);
+    await user.save().then((user) => {
       const payload = {
         email: user.email,
         id: user._id,
       };
-      const token = jwt.sign(payload, "Random String", { expiresIn: "1d" });
+      const token = jwt.sign(payload, "Random String", { expiresIn: "1h" });
       // ! "Random String" must be the same as "opts.secretOrKey" in the "passport.js" file located in the config folder
       return res.status(200).send({
         success: true,
         message: "Account created successfully",
         user: {
           id: user._id,
-          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
           email: user.email,
           admin: user.admin,
           avatar: user.avatar,
           savedItems: user.savedItems,
           profile: user.profile,
-          token: `Bearer ${token}`,
+          token: token,
         },
       });
-    })
-    .catch((error) => {
-      res.send({
-        success: false,
-        message: "Something went wrong",
-        error: error,
-      });
     });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+      error: error,
+    });
+  }
 };
 
 //* Login a user
@@ -54,22 +91,22 @@ exports.logInUser = async (req, res) => {
     const userEmail = req.body.email;
     const userPassword = req.body.password;
 
-    const user = await User.findOne(
+    const existingUser = await User.findOne(
       {
         email: userEmail,
       },
       {}
     );
     //? If no userfound
-    if (!user) {
-      return res.status(401).send({
+    if (!existingUser) {
+      return res.status(404).send({
         success: false,
-        message: "User not found",
+        message: "User doesn't exist",
       });
     }
     //? If user found, then compare passwords
     //? if passwords doesn't match
-    if (!compareSync(userPassword, user.password)) {
+    if (!compareSync(userPassword, existingUser.password)) {
       return res.status(401).send({
         success: false,
         message: "Password Incorrect",
@@ -77,23 +114,26 @@ exports.logInUser = async (req, res) => {
     }
     //* if passwords match, send a JWT
     const payload = {
-      email: user.email,
-      id: user._id,
+      email: existingUser.email,
+      id: existingUser._id,
     };
-    const token = jwt.sign(payload, "Random String", { expiresIn: "1d" });
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "1h",
+    });
     // ! "Random String" must be the same as "opts.secretOrKey" in the "passport.js" file located in the config folder
     return res.status(200).send({
       success: true,
       message: "Login Successful",
       user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        admin: user.admin,
-        avatar: user.avatar,
-        savedItems: user.savedItems,
-        profile: user.profile,
-        token: `Bearer ${token}`,
+        id: existingUser._id,
+        firstName: existingUser.firstName,
+        lastName: existingUser.lastName,
+        email: existingUser.email,
+        admin: existingUser.admin,
+        avatar: existingUser.avatar,
+        savedItems: existingUser.savedItems,
+        profile: existingUser.profile,
+        token: token,
       },
     });
   } catch (error) {
@@ -103,7 +143,7 @@ exports.logInUser = async (req, res) => {
 //* Update user info
 exports.updateUserInfo = async (req, res) => {
   const userID = req.params.id;
-  const userProfileData = req.body.userData;
+  const userProfileData = req.body;
   const objectifiedUserID = ObjectId(userID);
   const newUserData = {
     ftp: userProfileData.ftp,
@@ -113,6 +153,7 @@ exports.updateUserInfo = async (req, res) => {
     gender: userProfileData.gender,
     location: userProfileData.location,
   };
+
   try {
     const updatedUserProfile = await User.findOneAndUpdate(
       { _id: objectifiedUserID },

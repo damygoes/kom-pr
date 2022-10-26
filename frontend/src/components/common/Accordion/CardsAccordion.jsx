@@ -14,8 +14,8 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import HotelSearchForm from "./HotelSearchForm";
-import HotelCard from "./HotelCard";
+import HotelCard from '../../Hotels/HotelCard';
+import HotelSearchForm from '../../Hotels/HotelSearchForm';
 
 export default function CardsAccordion({ currentClimb }) {
   // * VARIABLES

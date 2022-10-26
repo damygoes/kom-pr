@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -11,18 +11,19 @@ import {
   Typography,
 } from "@mui/material";
 import { MdOutlineDelete } from "react-icons/md";
-import { deleteOneSavedClimb } from '../actions/actions';
+import { deleteLikedClimb } from "../../actions/climbs";
 
-export default function FavouriteClimbCard({ data, onDeleteAction }) {
+
+export default function FavouriteClimbCard({ data, onDeleteAction, handleNotificationCard }) {
   // * VARIABLES
   const navigate = useNavigate();
   const { name, country, images, location, slug, _id } = data;
+  const dispatch = useDispatch()
   
 
     //   * STATES
     const reducerQueries = useSelector((state) => state);
     const { userData } = reducerQueries.userReducer;
-    const { user } = userData;
  
 
   // * EVENT HANDLERS
@@ -30,15 +31,20 @@ export default function FavouriteClimbCard({ data, onDeleteAction }) {
     navigate(`/explore/${cardSlug}`);
   };
   const handleDeleteFavClimb = async (climbID) => {
-    const response = await deleteOneSavedClimb(climbID, user)
+    const data = {
+      climbID: climbID,
+      userID: userData.id
+    }
+    const response = await dispatch(deleteLikedClimb(data))
     if (response.acknowledged && response.deletedCount === 1) {
+      handleNotificationCard(true)
       onDeleteAction()
     }
     
   };
 
   return (
-    <Card sx={{ display: "flex", maxWidth: 400, height: 150, cursor: "pointer" }}>
+    <Card sx={{ display: "flex", maxWidth: 400, height: 200, cursor: "pointer" }}>
       <Box sx={{ display: "flex", flexDirection: "column", width: 500 }}>
         <CardContent sx={{ flex: "1 0 auto" }} onClick={()=>handleNavigation(slug)}>
           <Typography component="div" variant="h5">
@@ -63,7 +69,6 @@ export default function FavouriteClimbCard({ data, onDeleteAction }) {
       </Box>
       <CardMedia
         component="img"
-        sx={{}}
         image={images[0]}
         alt={name}
         onClick={() => handleNavigation(slug)}
