@@ -3,21 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: {
     success: false,
-    user: {
-      admin: false,
-      avatar: "",
-      email: "",
-      id: "",
-      username: "",
-      token: "",
-      profile: {
-        ftp: 0,
-        weight: 0,
-        wattPerKilo: 0,
-        bikeWeight: 0,
-        gender: "",
-        location: "",
-      },
+    admin: false,
+    avatar: "",
+    email: "",
+    id: "",
+    firstName: "",
+    lastName: "",
+    token: "",
+    profile: {
+      ftp: 0,
+      weight: 0,
+      wattPerKilo: 0,
+      bikeWeight: 0,
+      gender: "",
+      location: "",
     },
   },
 };
@@ -30,25 +29,29 @@ const userSlice = createSlice({
       state.userData = action.payload;
       state.success = true;
     },
-    updateOldUserProfile(state, action) {
-      state.userData.user.profile = action.payload;
-    },
     resetUser(state, action) {
       state.userData = {
         success: false,
-        user: {
-          admin: false,
-          avatar: "",
-          email: "",
-          id: "",
-          username: "",
-          token: "",
+        admin: false,
+        avatar: "",
+        email: "",
+        id: "",
+        firstName: "",
+        lastName: "",
+        token: "",
+        profile: {
+          ftp: 0,
+          weight: 0,
+          wattPerKilo: 0,
+          bikeWeight: 0,
+          gender: "",
+          location: "",
         },
       };
     },
   },
 });
 
-export const { setUser, updateOldUserProfile, resetUser } = userSlice.actions;
+export const { setUser, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;

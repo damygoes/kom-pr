@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Backdrop from "@mui/material/Backdrop";
 // import LoginPage from "./LoginPage";
-import { setFormStatus } from "../../features/loginFormSlice";
-import Auth from "../../Auth/Auth";
+import { setFormStatus } from "../features/loginFormSlice";
+import Auth from '../Auth/Auth';
 
 export default function FormBackDrop() {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { appTheme } from "./themes/theme";
 import NavBar from "./components/common/Navbar/NavBar";
-import Layout from "./components/common/Layout";
+import Layout from "./components/common/Layout/Layout"
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import Estimator from "./pages/Estimator";

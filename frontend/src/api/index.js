@@ -50,6 +50,8 @@ export const updateUserInfo = (userID, formData) =>
 // * Climbs
 export const fetchAllClimbs = () => API.get(baseURL);
 export const getRandomClimb = () => API.get(fetchRandomClimbRoute);
-export const likeClimb = () => API.post(likeClimbRoute);
-export const fetchLikedClimbs = () => API.get(fetchLikedClimbsRoute);
-export const deleteLikedClimb = () => API.delete(deleteLikedClimbRoute);
+export const likeClimb = (data) => API.post(likeClimbRoute, data);
+export const fetchLikedClimbs = (userId) =>
+  API.get(`${fetchLikedClimbsRoute}${userId}`, userId);
+export const deleteLikedClimb = (data) =>
+  API.delete(`${deleteLikedClimbRoute}${data.climbID}`, { data });

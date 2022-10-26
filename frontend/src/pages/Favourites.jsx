@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Box } from "@mui/material";
-import PageHeadingCard from "../components/common/PageHeadingCard";
-import { fetchSavedClimbs } from "../actions/actions";
-import FavouriteClimbCard from "../components/FavouriteClimbCard";
+import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
+import FavouriteClimbCard from "../components/SavedClimbs/FavouriteClimbCard";
 import SavedIcon from "../assets/favourite.svg";
+import { fetchLikedClimbs } from "../actions/climbs";
+import Notification from "../components/common/Toasts/Notification";
+
 
 const useStyles = makeStyles(() => ({
   pageCol: {
@@ -30,16 +32,37 @@ const useStyles = makeStyles(() => ({
 const Favourites = () => {
   //* DECLARED VARIABLES
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   //   * STATES
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  const { user } = userData;
+  const userId = userData.id;
   const [favClimbs, setFavClimbs] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationData, setNotificationData] = useState({
+    message: "",
+    status: "",
+  });
+
+  const handleNotificationCard = (actionStatus) => {
+    setShowNotification(true);
+    if (actionStatus) {
+      setNotificationData({ message: "Climb Deleted", status: "success" });
+    } else {
+      setNotificationData({
+        message: "Oops!, Something went wrong",
+        status: "error",
+      });
+    }
+  };
 
   const handleFetchFavouriteClimbs = async () => {
-    const { savedClimbs } = await fetchSavedClimbs(user);
-    setFavClimbs(savedClimbs);
+    const response = await dispatch(fetchLikedClimbs(userId));
+    setFavClimbs(response);
+  };
+  const handleCloseNotification = () => {
+    setShowNotification(false);
   };
 
   useEffect(() => {
@@ -55,9 +78,15 @@ const Favourites = () => {
             data={climb}
             key={climb.slug}
             onDeleteAction={handleFetchFavouriteClimbs}
+            handleNotificationCard={handleNotificationCard}
           />
         ))}
       </Box>
+      <Notification
+        notificationData={notificationData}
+        showNotification={showNotification}
+        closeNotification={handleCloseNotification}
+      />
     </Box>
   );
 };

@@ -17,7 +17,6 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-// import AdbIcon from "@mui/icons-material/Adb";
 
 
 const pages = {
@@ -36,10 +35,7 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
-  console.log(reducerQueries)
-  console.log(userData)
-  // const { success, user } = userData;
-
+ 
   // * EVENT HANDLERS
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -126,9 +122,9 @@ const NavBar = () => {
               }}
             >
               {/* Mobile Menu */}
-              {/* {success &&
+              {userData.id &&
                 Object.keys(pages).map((page) => {
-                  if (page === "manage" && user.admin === false) {
+                  if (page === "manage" && userData.admin === false) {
                     return null;
                   }
                   return (
@@ -145,10 +141,9 @@ const NavBar = () => {
                       </Button>
                     </Link>
                   );
-                })} */}
+                })}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap

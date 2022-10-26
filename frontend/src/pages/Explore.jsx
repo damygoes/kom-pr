@@ -1,21 +1,19 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-// import { fetchClimbs } from "../actions/actions";
 import { fetchClimbs } from "../actions/climbs";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@mui/material";
 import AllClimbs from "../utils/AllClimbs";
 import { paginate } from "../utils/paginate";
-import PaginationComponent from "../components/common/PaginationComponent";
-import Filter from "../components/Filter";
-import ClimbsPerPageSelect from "../components/ClimbsPerPageSelect";
-import { setClimbs } from "../features/climbsSlice";
+import PaginationComponent from "../components/common/Pagination/PaginationComponent";
+import Filter from "../components/Filter/Filter";
+import ClimbsPerPageSelect from "../components/CardNoSelect/ClimbsPerPageSelect";
 import RandomClimbFinder from "../components/randomClimbFinder/RandomClimbGenerator";
-import FilterDrawer from "../components/FilterDrawer";
-import PageHeadingCard from "../components/common/PageHeadingCard";
+import FilterDrawer from "../components/Filter/FilterDrawer";
+import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
 import HomeIcon from "../assets/home.svg";
-import FormBackDrop from "../components/common/FormBackDrop";
+import FormBackDrop from "../Form/FormBackDrop";
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -27,7 +25,6 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginTop: "3rem",
     marginBottom: "4rem",
-    // border: "1px solid green",
   },
   pageCol: {
     display: "flex",
@@ -35,7 +32,6 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     justifyContent: "space-between",
     gap: "2rem",
-    // border: "1px solid blue",
   },
   climbsContainer: {
     display: "flex",
@@ -52,7 +48,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-between",
     gap: "4rem",
     padding: "1rem",
-    // border: "1px solid pink",
   },
 }));
 // ##############
@@ -74,7 +69,7 @@ export default function Explore() {
   const { formStatus } = formReducer;
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
-  // const { success, user } = userReducer.userData;
+  const { userData } = userReducer;
   // const { formStatus } = formReducer;
 
   //* EVENT HANDLERS
@@ -105,7 +100,7 @@ export default function Explore() {
   return (
     <Box sx={{ position: "relative" }}>
       {formStatus && <FormBackDrop />}
-      {/* {success && <PageHeadingCard text={"Home"} image={HomeIcon} />} */}
+      {userData.id && <PageHeadingCard text={"Home"} image={HomeIcon} />}
       <Box
         className={classes.pageRow}
         sx={{

@@ -6,7 +6,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function Notification({ showNotification, notificationData, closeNotification }) {
+export default function Notification({notificationData, showNotification, closeNotification }) {
+
   const { message, status } = notificationData;
 
   return (

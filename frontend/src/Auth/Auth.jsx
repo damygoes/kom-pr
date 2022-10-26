@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import FileBase from "react-file-base64";
+// import { useNavigate } from "react-router";
 import {
   Avatar,
   Button,
@@ -10,14 +9,14 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import { GoogleLogin } from "react-google-login";
-import GoogleIcon from "@mui/icons-material/Google";
+// import { GoogleLogin } from "react-google-login";
+// import GoogleIcon from "@mui/icons-material/Google";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
 import Input from "./Input";
 import useStyles from "./styles";
 import { registerUser, userLogin } from "../actions/auth";
-import { setUser } from "../features/userSlice";
-import { showForm } from "../actions/formState";
+// import { setUser } from "../features/userSlice";
+// import { showForm } from "../actions/formState";
 
 const initialState = {
   firstName: "",
@@ -31,11 +30,11 @@ const initialState = {
 const Auth = ({ onClose }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  // const [errorText, setErrorText] = useState("");
   const [formData, setFormData] = useState(initialState);
 
   const handleShowPassword = () => {
@@ -52,17 +51,18 @@ const Auth = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // onClose();
+   
 
     if (isSignUp) {
       dispatch(registerUser(formData));
     } else {
       dispatch(userLogin(formData));
     }
+     onClose();
   };
 
-  const googleSuccess = () => {};
-  const googleFailure = () => {};
+  // const googleSuccess = () => {};
+  // const googleFailure = () => {};
 
   //   console.log(formData);
 
@@ -123,7 +123,7 @@ const Auth = ({ onClose }) => {
               </>
             )}
           </Grid>
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId="client id"
             render={(renderProps) => (
               <Button
@@ -141,7 +141,7 @@ const Auth = ({ onClose }) => {
             onSuccess={googleSuccess}
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth

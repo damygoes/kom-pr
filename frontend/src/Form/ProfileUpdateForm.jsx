@@ -1,57 +1,35 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import React from "react";
 import {
   Avatar,
   Button,
   Paper,
   Grid,
   Typography,
+  FormLabel,
   Container,
-  InputLabel,
-  MenuItem,
+  RadioGroup,
+  Radio,
   FormControl,
-  Select,
+  FormControlLabel,
 } from "@mui/material";
 import Input from "../Auth/Input";
 import useStyles from "../Auth/styles";
-import { updateUserProfile } from "../actions/auth";
 
-const initialState = {
-  ftp: "",
-  weight: "",
-  wattPerKilo: "",
-  bikeWeight: "",
-  gender: "",
-  location: "",
-};
-
-const ProfileUpdateForm = ({ userID, handleToggleForm }) => {
+const ProfileUpdateForm = ({
+  handleSubmit,
+  handleChange,
+  userAvatar
+}) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [formData, setFormData] = useState(initialState);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("submitted")
-    dispatch(updateUserProfile(userID, formData))
-    handleToggleForm()
-
-  };
-  // onClose();
-
-  console.log(formData)
 
   return (
-    <Container component="main" maxWidth="xs" sx={{position: "absolute", right: 0}}>
+    <Container
+      component="main"
+      maxWidth="lg"
+      sx={{ position: "absolute", right: 0, bottom: 0 }}
+    >
       <Paper className={classes.paper} elevation={3}>
-        <Avatar className={classes.avatar}>{/* <LockPersonIcon /> */}</Avatar>
+        <Avatar className={classes.avatar} src={userAvatar} alt="User"/> 
         <Typography variant="h5">Update Profile</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -85,25 +63,37 @@ const ProfileUpdateForm = ({ userID, handleToggleForm }) => {
               half
             />
             <Input
+              half
               name="location"
               label="Location"
               type="text"
               handleChange={handleChange}
             />
-            <FormControl fullWidth>
-              <InputLabel id="gender">Gender</InputLabel>
-              <Select
+            <FormControl>
+              <FormLabel id="gender">Gender</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="gender"
+                // defaultValue="female"
                 name="gender"
-                labelId="gender"
-                id="gender"
-                value={formData.gender}
-                label="Gender"
                 onChange={handleChange}
               >
-                <MenuItem value="male">Male</MenuItem>
-                <MenuItem value="female">Female</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </Select>
+                <FormControlLabel
+                  value="Female"
+                  control={<Radio />}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="Male"
+                  control={<Radio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="Other"
+                  control={<Radio />}
+                  label="Other"
+                />
+              </RadioGroup>
             </FormControl>
           </Grid>
 

@@ -1,49 +1,102 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import PageHeadingCard from "../components/common/PageHeadingCard";
+import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
 import Settings from "../assets/profile.svg";
-import {
-  Avatar,
-  Box,
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import ProfileUpdateForm from "../Form/ProfileUpdateForm";
 import UserInfoTags from "../components/userProfile/UserInfoTags";
-
-const initialState = {
-  ftp: "",
-  weight: "",
-  wattPerKilo: "",
-  bikeWeight: "",
-  gender: "",
-  location: "",
-};
+import Notification from "../components/common/Toasts/Notification";
+import { updateUserProfile } from "../actions/auth";
+import { setUser } from "../features/userSlice";
 
 const UserProfile = () => {
+  // * STATES
   const reducerQueries = useSelector((state) => state);
   const { userData } = reducerQueries.userReducer;
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
+  // * DECLARED VARIABLES
+  const initialState = {
+    ftp: userData.profile.ftp,
+    weight: userData.profile.weight,
+    wattPerKilo: userData.profile.wattPerKilo,
+    bikeWeight: userData.profile.bikeWeight,
+    gender: userData.profile.gender,
+    location: userData.profile.location,
+  };
 
   // * STATES
-  const [errorText, setErrorText] = useState("");
   const [toggleForm, setToggleForm] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [formData, setFormData] = useState(initialState);
+  const [notificationData, setNotificationData] = useState({
+    message: "",
+    status: "",
+  });
 
+  // * DECLARED VARIABLES
   const profileFields = {
-    Ftp: userData.profile.ftp,
-    Weight: userData.profile.weight,
-    "Watt per kilo": userData.profile.wattPerKilo,
-    "Bike Weight": userData.profile.bikeWeight,
-    Gender: userData.profile.gender,
-    Location: userData.profile.location,
+    Ftp: formData.ftp,
+    Weight: formData.weight,
+    "Watt per kilo": formData.wattPerKilo,
+    "Bike Weight": formData.bikeWeight,
+    Gender: formData.gender,
+    Location: formData.location,
+  };
+
+  // * EVENT HANDLERS
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const resetForm = () => {
+    return initialState;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await dispatch(updateUserProfile(userData.id, formData));
+    let newUserData = {
+      admin: userData.admin,
+      avatar: userData.avatar,
+      email: userData.email,
+      id: userData.id,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      token: userData.token,
+      profile: {
+        ftp: result.profile.ftp,
+        weight: result.profile.weight,
+        wattPerKilo: result.profile.wattPerKilo,
+        bikeWeight: result.profile.bikeWeight,
+        gender: result.profile.gender,
+        location: result.profile.location,
+      },
+    };
+    await dispatch(setUser(newUserData));
+    console.log(result);
+    if (result.success) {
+      setNotificationData({
+        message: result.message,
+        status: "success",
+      });
+      setShowNotification(true);
+    } else {
+      setNotificationData({
+        message: result.message,
+        status: "info",
+      });
+      setShowNotification(true);
+    }
+    resetForm();
+    handleToggleForm();
   };
 
   const handleToggleForm = () => {
     setToggleForm(!toggleForm);
+  };
+  const handleCloseNotification = () => {
+    setShowNotification(false);
   };
 
   return (
@@ -56,8 +109,8 @@ const UserProfile = () => {
           justifyContent: "center",
           alignItems: "flex-start",
           mt: 8,
-          p: 2,
-          gap: 4,
+          p: 6,
+          gap: 3,
           position: "relative",
         }}
         elevation={3}
@@ -67,7 +120,6 @@ const UserProfile = () => {
           sx={{ alignSelf: "flex-end" }}
           onClick={handleToggleForm}
         >
-          {" "}
           Edit Profile
         </Button>
         <UserInfoTags
@@ -97,10 +149,19 @@ const UserProfile = () => {
         {toggleForm && (
           <ProfileUpdateForm
             userID={userData.id}
+            userAvatar={userData.avatar}
             handleToggleForm={handleToggleForm}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            formData={formData}
           />
         )}
       </Paper>
+      <Notification
+        notificationData={notificationData}
+        showNotification={showNotification}
+        closeNotification={handleCloseNotification}
+      />
     </div>
   );
 };

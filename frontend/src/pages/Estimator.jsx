@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@mui/material";
-import PageHeadingCard from "../components/common/PageHeadingCard";
+import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
 import EstimateIcon from "../assets/estimate.svg";
 
 const useStyles = makeStyles(() => ({
