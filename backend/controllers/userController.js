@@ -14,8 +14,13 @@ exports.addNewUser = async (req, res) => {
     // confirmPassword: req.body.confirmPassword,
     admin: req.body.admin,
     savedItems: req.body.savedItems,
-    profile: req.body.profile,
     avatar: req.body.avatar,
+    ftp: req.body.ftp,
+    weight: req.body.weight,
+    wattPerKilo: req.body.wattPerKilo,
+    bikeWeight: req.body.bikeWeight,
+    gender: req.body.gender,
+    location: req.body.location,
   });
   try {
     const existingUser = await User.findOne(
@@ -71,7 +76,12 @@ exports.addNewUser = async (req, res) => {
           admin: user.admin,
           avatar: user.avatar,
           savedItems: user.savedItems,
-          profile: user.profile,
+          ftp: user.ftp,
+          weight: user.weight,
+          wattPerKilo: user.wattPerKilo,
+          bikeWeight: user.bikeWeight,
+          gender: user.gender,
+          location: user.location,
           token: token,
         },
       });
@@ -157,9 +167,7 @@ exports.updateUserInfo = async (req, res) => {
   try {
     const updatedUserProfile = await User.findOneAndUpdate(
       { _id: objectifiedUserID },
-      {
-        profile: newUserData,
-      },
+      newUserData,
       { new: true }
     );
     return res.status(200).send({

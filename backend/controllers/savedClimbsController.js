@@ -71,7 +71,6 @@ exports.getSavedClimbs = async (req, res) => {
 
 // * Delete a saved climb
 exports.deleteSavedClimb = async (req, res) => {
-  console.log(req.body);
   try {
     const climbId = req.body.climbID;
     const userId = req.body.userID;
