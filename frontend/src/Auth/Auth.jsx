@@ -6,12 +6,16 @@ import {
   Button,
   Paper,
   Grid,
+  MenuItem,
+  Select,
+  Stack,
   Typography,
   Container,
 } from "@mui/material";
 // import { GoogleLogin } from "react-google-login";
 // import GoogleIcon from "@mui/icons-material/Google";
 import LockPersonIcon from "@mui/icons-material/LockPerson";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Input from "./Input";
 import useStyles from "./styles";
 import { registerUser, userLogin } from "../actions/auth";
@@ -23,8 +27,20 @@ const initialState = {
   lastName: "",
   email: "",
   password: "",
-  //   confirmPassword: "",
   avatar: "",
+};
+
+const AvatarGroup = {
+  "Rider One": "cyclist-1.png",
+  "Rider Two": "cyclist-2.png",
+  "Rider Three": "cyclist-3.png",
+  "Rider Four": "cyclist-4.png",
+  "Rider Five": "cyclist-5.png",
+  "Rider Six": "cyclist-6.png",
+  "Rider Seven": "cyclist-7.png",
+  "Rider Eight": "cyclist-8.png",
+  "Rider Nine": "cyclist-9.png",
+  "Rider Ten": "cyclist-10.png",
 };
 
 const Auth = ({ onClose }) => {
@@ -51,20 +67,19 @@ const Auth = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
 
     if (isSignUp) {
       dispatch(registerUser(formData));
     } else {
       dispatch(userLogin(formData));
     }
-     onClose();
+    onClose();
   };
 
   // const googleSuccess = () => {};
   // const googleFailure = () => {};
 
-  //   console.log(formData);
+  console.log(formData);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -111,15 +126,29 @@ const Auth = ({ onClose }) => {
             />
             {isSignUp && (
               <>
-                {/* <Input
-                  name="confirmPassword"
-                  label="Repeat Password"
-                  handleChange={handleChange}
-                  type="password"
-                /> */}
-                {/* <div className={classes.fileInput}>
-                    <FileBase type="file" multiple={false} onDone={(base64) => setFormData({...formData, avatar: base64}) } />
-                </div> */}
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <Typography variant="h6" component="p">
+                    <PhotoCamera />
+                    Avatar
+                  </Typography>
+                  <Select
+                    name="avatar"
+                    labelId="avatar"
+                    id="avatar"
+                    value={formData.avatar}
+                    label="avatar"
+                    onChange={handleChange}
+                    size="medium"
+                  >
+                    {Object.keys(AvatarGroup).map((rider) => {
+                      return (
+                        <MenuItem key={rider} value={AvatarGroup[rider]}>
+                          {rider}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </Stack>
               </>
             )}
           </Grid>

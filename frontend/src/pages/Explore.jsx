@@ -13,7 +13,7 @@ import RandomClimbFinder from "../components/randomClimbFinder/RandomClimbGenera
 import FilterDrawer from "../components/Filter/FilterDrawer";
 import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
 import HomeIcon from "../assets/home.svg";
-import FormBackDrop from "../Form/FormBackDrop";
+import FormBackDrop from '../components/Form/FormBackDrop';
 
 // ##############
 const useStyles = makeStyles(() => ({
@@ -70,8 +70,7 @@ export default function Explore() {
   const [currentPage, setCurrentPage] = useState(1);
   const [climbsPerPage, setClimbsPerPage] = useState(6);
   const { userData } = userReducer;
-  // const { formStatus } = formReducer;
-
+  
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);

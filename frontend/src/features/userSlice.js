@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  success: false,
   userData: {
-    success: false,
     admin: false,
     avatar: "",
     email: "",
@@ -10,14 +10,12 @@ const initialState = {
     firstName: "",
     lastName: "",
     token: "",
-    profile: {
-      ftp: 0,
-      weight: 0,
-      wattPerKilo: 0,
-      bikeWeight: 0,
-      gender: "",
-      location: "",
-    },
+    ftp: 0,
+    weight: 0,
+    wattPerKilo: 0,
+    bikeWeight: 0,
+    gender: "",
+    location: "",
   },
 };
 
@@ -30,8 +28,8 @@ const userSlice = createSlice({
       state.success = true;
     },
     resetUser(state, action) {
+      state.success = false;
       state.userData = {
-        success: false,
         admin: false,
         avatar: "",
         email: "",
@@ -39,14 +37,12 @@ const userSlice = createSlice({
         firstName: "",
         lastName: "",
         token: "",
-        profile: {
-          ftp: 0,
-          weight: 0,
-          wattPerKilo: 0,
-          bikeWeight: 0,
-          gender: "",
-          location: "",
-        },
+        ftp: 0,
+        weight: 0,
+        wattPerKilo: 0,
+        bikeWeight: 0,
+        gender: "",
+        location: "",
       };
     },
   },

@@ -12,8 +12,8 @@ import {
   FormControl,
   FormControlLabel,
 } from "@mui/material";
-import Input from "../Auth/Input";
-import useStyles from "../Auth/styles";
+import Input from '../../Auth/Input';
+import useStyles from "../../Auth/styles";
 
 const ProfileUpdateForm = ({
   handleSubmit,
