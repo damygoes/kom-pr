@@ -12,21 +12,20 @@ const climbsRoute = require("./routes/climbs");
 const savedClimbsRoute = require("./routes/savedClimbs");
 const userRoute = require("./routes/user");
 const adminRoute = require("./routes/admin");
+const seedingRoute = require("./routes/seeding");
 
 const PORT = process.env.PORT || 5000;
 
 //* MIDDLEWARE
 const cors = require("cors");
 app.use(cors(corsOptions)); //* Cross Origin Resource Sharing
-// const passport = require("passport");
-// require("./config/passport");
 app.use(bodyParser.json());
 app.use(logger);
-// app.use(passport.initialize());
 app.use("/", climbsRoute);
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
 app.use("/savedClimbs", savedClimbsRoute);
+app.use("/seeder/climbs", seedingRoute);
 
 //* CONNECT TO DB
 mongoose
