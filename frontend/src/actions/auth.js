@@ -27,11 +27,11 @@ export const registerUser = (formData) => async (dispatch) => {
 export const updateUserProfile = (userID, formData) => async (dispatch) => {
   try {
     const response = await api.updateUserInfo(userID, formData);
-    let profile = response.data.updatedUserProfile.profile;
+    let newUserInfo = response.data.updatedUserProfile;
     return {
       message: response.data.message,
       success: response.data.success,
-      profile: profile,
+      newUserInfo,
     };
   } catch (error) {
     const errorObject = error.response.data;

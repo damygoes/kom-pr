@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import PageHeadingCard from "../components/common/PageHeader/PageHeadingCard";
 import Settings from "../assets/profile.svg";
 import { Button, Paper } from "@mui/material";
-import ProfileUpdateForm from "../Form/ProfileUpdateForm";
 import UserInfoTags from "../components/userProfile/UserInfoTags";
 import Notification from "../components/common/Toasts/Notification";
 import { updateUserProfile } from "../actions/auth";
 import { setUser } from "../features/userSlice";
+import ProfileUpdateForm from "../components/Form/ProfileUpdateForm";
 
 const UserProfile = () => {
   // * STATES
@@ -17,12 +17,12 @@ const UserProfile = () => {
 
   // * DECLARED VARIABLES
   const initialState = {
-    ftp: userData.profile.ftp,
-    weight: userData.profile.weight,
-    wattPerKilo: userData.profile.wattPerKilo,
-    bikeWeight: userData.profile.bikeWeight,
-    gender: userData.profile.gender,
-    location: userData.profile.location,
+    ftp: userData.ftp,
+    weight: userData.weight,
+    wattPerKilo: userData.wattPerKilo,
+    bikeWeight: userData.bikeWeight,
+    gender: userData.gender,
+    location: userData.location,
   };
 
   // * STATES
@@ -56,7 +56,7 @@ const UserProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await dispatch(updateUserProfile(userData.id, formData));
-    let newUserData = {
+    let newUserProfile = {
       admin: userData.admin,
       avatar: userData.avatar,
       email: userData.email,
@@ -64,17 +64,15 @@ const UserProfile = () => {
       firstName: userData.firstName,
       lastName: userData.lastName,
       token: userData.token,
-      profile: {
-        ftp: result.profile.ftp,
-        weight: result.profile.weight,
-        wattPerKilo: result.profile.wattPerKilo,
-        bikeWeight: result.profile.bikeWeight,
-        gender: result.profile.gender,
-        location: result.profile.location,
-      },
+
+      ftp: result.newUserInfo.ftp,
+      weight: result.newUserInfo.weight,
+      wattPerKilo: result.newUserInfo.wattPerKilo,
+      bikeWeight: result.newUserInfo.bikeWeight,
+      gender: result.newUserInfo.gender,
+      location: result.newUserInfo.location,
     };
-    await dispatch(setUser(newUserData));
-    console.log(result);
+    await dispatch(setUser(newUserProfile));
     if (result.success) {
       setNotificationData({
         message: result.message,

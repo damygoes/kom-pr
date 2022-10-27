@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { resetUser } from "../../../features/userSlice.js";
+import {resetUser} from "../../../features/userSlice"
 import { showForm } from '../../../actions/formState';
 import {
   AppBar,
@@ -53,6 +53,7 @@ const NavBar = () => {
     if (setting === "Logout") {
       dispatch(resetUser());
       navigate("/");
+      window.localStorage.clear()
     } else {
       navigate(`/${setting.toLowerCase()}`);
     }
@@ -191,8 +192,8 @@ const NavBar = () => {
             {userData.id  ? (
               <>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar src={userData.avatar} alt={userData.firstName} />
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0.5, border: "1px solid white" }}>
+                    <Avatar src={`${userData.avatar}`} alt={userData.firstName} />
                   </IconButton>
                 </Tooltip>
                 <Menu

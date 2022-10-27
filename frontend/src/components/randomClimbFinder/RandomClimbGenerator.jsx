@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
@@ -13,30 +13,36 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { fetchRandomClimb } from "../../actions/climbs";
+import { setFormStatus } from "../../features/loginFormSlice";
 
 const RandomClimbFinder = () => {
   // * DECLARED VARIABLES
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // * STATES
   const [open, setOpen] = useState(false);
   const reducerQueries = useSelector((state) => state);
   const { userReducer, randomClimbReducer } = reducerQueries;
-  const {randomClimb} = randomClimbReducer
-  // const [randomClimb, setRandomClimb] = useState([])
-  
-  
-  
+  const { randomClimb } = randomClimbReducer;
+  const { userData } = userReducer;
+
+
   // * EVENT HANDLERS
   const handleRandomClimb = () => {
-    dispatch(fetchRandomClimb())
-    setOpen(true)
+    dispatch(fetchRandomClimb());
+    setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-
-
+  const handleNavigateToCardDetails = (climbSlug) => {
+    userData.id ? navigate(`/explore/${climbSlug}`) : handleFormBackdrop();
+  };
+  const handleFormBackdrop = () => {
+    dispatch(setFormStatus(true));
+    handleClose();
+  };
 
   return (
     <>
@@ -101,10 +107,10 @@ const RandomClimbFinder = () => {
                     Retry
                   </Button>
                   <Link
-                    to={`/explore/${climb.slug}`}
+                    to={userData.id !== "" ? `/explore/${climb.slug}` : ""}
                     style={{ textDecoration: "none" }}
                   >
-                    <Button size="small">Explore</Button>
+                    <Button size="small" onClick={()=>handleNavigateToCardDetails(climb.slug)} >Explore</Button>
                   </Link>
                 </CardActions>
               </Card>

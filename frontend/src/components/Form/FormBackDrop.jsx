@@ -1,9 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Backdrop from "@mui/material/Backdrop";
-// import LoginPage from "./LoginPage";
-import { setFormStatus } from "../features/loginFormSlice";
-import Auth from '../Auth/Auth';
+import {setFormStatus} from "../../features/loginFormSlice"
+import Auth from '../../Auth/Auth';
 
 export default function FormBackDrop() {
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ export default function FormBackDrop() {
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={formStatus}
       >
-        {/* <LoginPage onClose={handleCloseBackdrop} /> */}
         <Auth onClose={handleCloseBackdrop} />
       </Backdrop>
     </div>
