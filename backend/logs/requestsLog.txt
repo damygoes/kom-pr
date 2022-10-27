@@ -4482,3 +4482,43 @@
 
 27-10-2022	13:05:32	e2964a75-e638-4dbd-b809-728345424b08	GET	http://localhost:3000	/
 
+27-10-2022	13:09:25	9eee1a03-5a0a-4bdd-96cc-28a566365248	GET	http://localhost:3000	/
+
+27-10-2022	13:09:30	bd79cf05-bd68-4219-820c-38dd2decd3f8	GET	http://localhost:3000	/random
+
+27-10-2022	13:09:32	0847bdb0-df51-441d-a5d3-d82d567b146d	GET	http://localhost:3000	/random
+
+27-10-2022	13:09:33	dfbf1163-480a-42f4-95da-58714c60da63	GET	http://localhost:3000	/random
+
+27-10-2022	13:09:34	361b4ff1-cae1-4b30-95a6-39893293d9b9	GET	http://localhost:3000	/random
+
+27-10-2022	13:09:49	6b88d0b6-d2f5-476d-bf18-d7bf29d9abc1	POST	http://localhost:3000	/user/login
+
+27-10-2022	13:09:58	12cc1cf9-377d-4230-97ce-d11673cee6bd	GET	http://localhost:3000	/savedClimbs/635a5f8679d2062b1f61adfa
+
+27-10-2022	13:10:01	f7073695-de77-4c29-aa16-574e3e627a85	GET	http://localhost:3000	/
+
+27-10-2022	13:10:13	3772c4ad-2a0b-4cd0-8a59-4327840b0108	POST	http://localhost:3000	/user/login
+
+27-10-2022	13:10:21	b129b840-08f1-4619-89e5-3d88d85b9161	GET	http://localhost:3000	/savedClimbs/635a63c4fafcb9dc426713bc
+
+27-10-2022	13:10:24	882e5eb2-e02c-46f3-847a-636e8f9dc0c3	GET	http://localhost:3000	/
+
+27-10-2022	14:30:10	6012ac50-cc1c-4586-aa5b-d31a695225e9	GET	http://localhost:3000	/
+
+27-10-2022	14:30:41	167a08bd-6559-44b8-b379-6785617cc3ba	POST	http://localhost:3000	/user/login
+
+27-10-2022	14:31:00	89d63da5-1ecb-4a2b-8d1f-01aff9e92431	GET	http://localhost:3000	/savedClimbs/635a5f8679d2062b1f61adfa
+
+27-10-2022	14:31:03	4eb2c929-2f70-46f6-89a2-a69d78cecd68	GET	http://localhost:3000	/
+
+27-10-2022	14:31:20	b925e034-ad99-4dfb-963b-402e6593e058	POST	http://localhost:3000	/savedClimbs/add
+
+27-10-2022	14:31:26	b753bacd-7bc9-4673-8f80-e84e65fad3b1	GET	http://localhost:3000	/savedClimbs/635a5f8679d2062b1f61adfa
+
+27-10-2022	14:31:48	00853854-3482-401f-8121-4444b915d301	GET	http://localhost:3000	/
+
+27-10-2022	14:37:45	96a2887e-5cec-468c-a4f1-42e0a3161776	GET	http://localhost:3000	/
+
+27-10-2022	14:48:06	d88eef6d-741e-4be2-bef1-98609d4607f2	GET	http://localhost:3000	/
+

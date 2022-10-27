@@ -10,7 +10,8 @@ exports.saveOneClimb = async (req, res) => {
   // ? Check if climb already exist
   const climb = await SavedClimbs.findOne(
     {
-      climbID,
+      climbID: climbID,
+      userID: userID,
     },
     {}
   );
