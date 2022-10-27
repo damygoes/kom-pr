@@ -71,6 +71,8 @@ export default function Explore() {
   const [climbsPerPage, setClimbsPerPage] = useState(6);
   const { userData } = userReducer;
   
+
+
   //* EVENT HANDLERS
   const handlePageChange = (e, page) => {
     setCurrentPage(page);

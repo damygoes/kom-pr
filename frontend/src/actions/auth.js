@@ -4,8 +4,9 @@ import { setUser } from "../features/userSlice";
 // * USERS
 export const userLogin = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.loginUser(formData);
-    dispatch(setUser(data.user));
+    const response = await api.loginUser(formData);
+    const user = response.data.user;
+    dispatch(setUser(user));
     // axios.defaults.headers.common["Authorization"] = data.user.token;
   } catch (error) {
     const errorObject = error.response.data;
@@ -15,8 +16,9 @@ export const userLogin = (formData) => async (dispatch) => {
 
 export const registerUser = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.createNewUser(formData);
-    dispatch(setUser(data.user));
+    const response = await api.createNewUser(formData);
+    const userProfile = response.data.user;
+    dispatch(setUser(userProfile));
     // axios.defaults.headers.common["Authorization"] = data.user.token;
   } catch (error) {
     const errorObject = error.response.data;

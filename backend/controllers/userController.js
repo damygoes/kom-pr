@@ -6,65 +6,43 @@ const User = require("../models/User");
 
 //* Create a new user
 exports.addNewUser = async (req, res) => {
-  const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: hashSync(req.body.password, 12),
-    // confirmPassword: req.body.confirmPassword,
-    admin: req.body.admin,
-    savedItems: req.body.savedItems,
-    avatar: req.body.avatar,
-    ftp: req.body.ftp,
-    weight: req.body.weight,
-    wattPerKilo: req.body.wattPerKilo,
-    bikeWeight: req.body.bikeWeight,
-    gender: req.body.gender,
-    location: req.body.location,
-  });
   try {
     const existingUser = await User.findOne(
       {
-        email: user.email,
+        email: req.body.email,
       },
       {}
     );
     //? If user already exists
-    if (existingUser) {
+    if (existingUser !== null) {
       return res.status(400).send({
         success: false,
         message: "User already exist",
       });
     }
-    //? If user does not exist but passwords don't match
-    // if (user.password !== user.confirmPassword) {
-    //   return res.status(400).send({
-    //     success: false,
-    //     message: "Passwords don't match",
-    //   });
-    // }
 
-    /**
-     * {
-        firstName,
-        lastName,
-        email,
-        password: hashedPassword,
-        admin,
-        savedItems,
-        avatar,
-        profile,
-      }
-     */
-
-    // const hashedPassword = await hashSync(req.body.password, 12);
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: hashSync(req.body.password, 12),
+      admin: req.body.admin,
+      savedItems: req.body.savedItems,
+      avatar: req.body.avatar,
+      ftp: req.body.ftp,
+      weight: req.body.weight,
+      wattPerKilo: req.body.wattPerKilo,
+      bikeWeight: req.body.bikeWeight,
+      gender: req.body.gender,
+      location: req.body.location,
+    });
     await user.save().then((user) => {
       const payload = {
         email: user.email,
         id: user._id,
       };
       const token = jwt.sign(payload, "Random String", { expiresIn: "1h" });
-      // ! "Random String" must be the same as "opts.secretOrKey" in the "passport.js" file located in the config folder
+      // ! "Random String" must be the same as in the "auth.js" file located in the middleware folder
       return res.status(200).send({
         success: true,
         message: "Account created successfully",
@@ -108,7 +86,7 @@ exports.logInUser = async (req, res) => {
       {}
     );
     //? If no userfound
-    if (!existingUser) {
+    if (existingUser === null) {
       return res.status(404).send({
         success: false,
         message: "User doesn't exist",
@@ -142,7 +120,12 @@ exports.logInUser = async (req, res) => {
         admin: existingUser.admin,
         avatar: existingUser.avatar,
         savedItems: existingUser.savedItems,
-        profile: existingUser.profile,
+        ftp: existingUser.ftp,
+        weight: existingUser.weight,
+        wattPerKilo: existingUser.wattPerKilo,
+        bikeWeight: existingUser.bikeWeight,
+        gender: existingUser.gender,
+        location: existingUser.location,
         token: token,
       },
     });

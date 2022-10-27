@@ -12,17 +12,18 @@ import ProfileUpdateForm from "../components/Form/ProfileUpdateForm";
 const UserProfile = () => {
   // * STATES
   const reducerQueries = useSelector((state) => state);
-  const { userData } = reducerQueries.userReducer;
+  const userData = reducerQueries.userReducer;
+  const user = userData.userData;
   const dispatch = useDispatch();
 
   // * DECLARED VARIABLES
   const initialState = {
-    ftp: userData.ftp,
-    weight: userData.weight,
-    wattPerKilo: userData.wattPerKilo,
-    bikeWeight: userData.bikeWeight,
-    gender: userData.gender,
-    location: userData.location,
+    ftp: user.ftp,
+    weight: user.weight,
+    wattPerKilo: user.wattPerKilo,
+    bikeWeight: user.bikeWeight,
+    gender: user.gender,
+    location: user.location,
   };
 
   // * STATES
@@ -36,12 +37,12 @@ const UserProfile = () => {
 
   // * DECLARED VARIABLES
   const profileFields = {
-    Ftp: formData.ftp,
-    Weight: formData.weight,
-    "Watt per kilo": formData.wattPerKilo,
-    "Bike Weight": formData.bikeWeight,
-    Gender: formData.gender,
-    Location: formData.location,
+    Ftp: user.ftp,
+    Weight: user.weight,
+    "Watt per kilo": user.wattPerKilo,
+    "Bike Weight": user.bikeWeight,
+    Gender: user.gender,
+    Location: user.location,
   };
 
   // * EVENT HANDLERS
@@ -55,25 +56,24 @@ const UserProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await dispatch(updateUserProfile(userData.id, formData));
-    let newUserProfile = {
-      admin: userData.admin,
-      avatar: userData.avatar,
-      email: userData.email,
-      id: userData.id,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      token: userData.token,
-
-      ftp: result.newUserInfo.ftp,
-      weight: result.newUserInfo.weight,
-      wattPerKilo: result.newUserInfo.wattPerKilo,
-      bikeWeight: result.newUserInfo.bikeWeight,
-      gender: result.newUserInfo.gender,
-      location: result.newUserInfo.location,
-    };
-    await dispatch(setUser(newUserProfile));
+    const result = await dispatch(updateUserProfile(user.id, formData));    
     if (result.success) {
+      let newUserProfile = {
+        id: user.id,
+        token: user.token,
+        admin: user.admin,
+        avatar: user.avatar,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        ftp: result.newUserInfo.ftp,
+        weight: result.newUserInfo.weight,
+        wattPerKilo: result.newUserInfo.wattPerKilo,
+        bikeWeight: result.newUserInfo.bikeWeight,
+        gender: result.newUserInfo.gender,
+        location: result.newUserInfo.location,
+      };
+      await dispatch(setUser(newUserProfile));
       setNotificationData({
         message: result.message,
         status: "success",
@@ -122,9 +122,9 @@ const UserProfile = () => {
         </Button>
         <UserInfoTags
           title="Name:"
-          value={`${userData.firstName} ${userData.lastName}`}
+          value={`${user.firstName} ${user.lastName}`}
         />
-        <UserInfoTags title="Email:" value={`${userData.email}`} />
+        <UserInfoTags title="Email:" value={`${user.email}`} />
         {Object.keys(profileFields).map((field) => {
           let unit;
           if (field === "Ftp") {
