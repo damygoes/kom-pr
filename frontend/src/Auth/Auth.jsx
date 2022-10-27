@@ -32,15 +32,15 @@ const initialState = {
 
 const AvatarGroup = {
   "Rider One": "cyclist-1.png",
-  "Rider Two": "cyclist-2.png",
-  "Rider Three": "cyclist-3.png",
-  "Rider Four": "cyclist-4.png",
-  "Rider Five": "cyclist-5.png",
-  "Rider Six": "cyclist-6.png",
-  "Rider Seven": "cyclist-7.png",
-  "Rider Eight": "cyclist-8.png",
-  "Rider Nine": "cyclist-9.png",
-  "Rider Ten": "cyclist-10.png",
+  "Rider Two": "cyclist-4.png",
+  "Rider Three": "cyclist-10.png",
+  "Male One": "cyclist-2.png",
+  "Male Two": "cyclist-6.png",
+  "Male Three": "cyclist-9.png",
+  "Male Four": "cyclist-3.png",
+  "Female One": "cyclist-5.png",
+  "Female Two": "cyclist-7.png",
+  "Female Three": "cyclist-8.png",
 };
 
 const Auth = ({ onClose }) => {
@@ -76,10 +76,10 @@ const Auth = ({ onClose }) => {
     onClose();
   };
 
+
   // const googleSuccess = () => {};
   // const googleFailure = () => {};
 
-  console.log(formData);
 
   return (
     <Container component="main" maxWidth="xs">
