@@ -44,14 +44,14 @@ export default function FavouriteClimbCard({ data, onDeleteAction, handleNotific
   };
 
   return (
-    <Card sx={{ display: "flex", maxWidth: 400, height: 200, cursor: "pointer" }}>
+    <Card sx={{ display: "flex", maxWidth: 400, height: 250, cursor: "pointer" }}>
       <Box sx={{ display: "flex", flexDirection: "column", width: 500 }}>
         <CardContent sx={{ flex: "1 0 auto" }} onClick={()=>handleNavigation(slug)}>
           <Typography component="div" variant="h5">
             {name}
           </Typography>
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="text.secondary"
             component="div"
           >
@@ -71,6 +71,7 @@ export default function FavouriteClimbCard({ data, onDeleteAction, handleNotific
         component="img"
         image={images[0]}
         alt={name}
+        sx={{maxWidth: 200}}
         onClick={() => handleNavigation(slug)}
       />
     </Card>
