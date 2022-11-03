@@ -67,7 +67,7 @@ const Favourites = () => {
 
   useEffect(() => {
     handleFetchFavouriteClimbs();
-  }, []);
+  });
 
   return (
     <Box className={classes.pageCol}>
