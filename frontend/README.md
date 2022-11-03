@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# KOM-PR
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Built by a cylist for cyclists
 
-## Available Scripts
+[KOM-PR][kompr] is an app built to showcase various cycling climbs in different parts of the world (including those used in world tours) as well as help cyclists optimize PRs on various Strava segments.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Explore and visit climbs (both local and world-famous) in different parts of the world.
+- Optimize your PR on chosen segments through proper and adequate planning.
+- Dynamic search using Elastic Search
+- Image upload and optimization using Amazon S3
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> As the saying goes:
+> "He who fails to prepare, prepares to fail
+> Therefore, Preparation is KEY
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[KOM-PR][kompr] provides you with adequate information about a chosen climb of interest, suggest highly-rated hotels and holiday homes close to the climb. Cyclists can chose the time and day they wish to explore a climb or Strava segement and prepare actually to actualise a Personal Record. [KOM-PR][kompr] makes use of the cylist's information (such as weight, bike weight, FTP and Watt per Kilo) and weather conditons at the time chosen by the cyclist to calculate possible Personal Record estimates.
 
-### `npm test`
+## Tech
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[KOM-PR][kompr] uses a number of tools to provide you the best experience possible:
 
-### `npm run build`
+- The backend is built on:
+  - [Node.js] - evented I/O for the backend
+  - [Express] - fast node.js network app framework
+  - [MongoDB] - developer-friendly NoSQL database
+  - [Mongoose] - elegant [mongodb][mongodb] object modeling for [node.js][node.js]
+  - [JSONWebToken] - JsonWebToken implementation for [node.js][node.js]
+  - [Morgan] - HTTP request logger middleware for [node.js][node.js]
+- The frontend is built on:
+  - [Reactjs] - a JavaScript library for building user interfaces
+  - [Material UI] - a comprehensive library of components that features the implementation of Google's Material Design system
+  - [Axios] - Promise-based HTTP client for the browser and [node.js][node.js]
+  - [Redux] - a Predictable State Container for JS apps
+  - [Redux Toolkit] - the official, opinionated, batteries-included toolset for efficient Redux development
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The [KOM-PR][kompr] backend API is a [REST API][rest api] that requires [Node.js](https://nodejs.org/) v16+ to run.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+API URL: https://kompr-api.onrender.com
+```
 
-### `npm run eject`
+| HTTP | ROUTE               | DESCRIPTION                                                     |
+| ---- | ------------------- | --------------------------------------------------------------- |
+| GET  | /                   | returns an array of all climbs                                  |
+| GET  | /random             | returns a random climb                                          |
+| GET  | /climbs/:name       | returns a single document that matches the specified climb name |
+| GET  | /countries/:country | returns an array of all climbs located in the specified country |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Development
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Want to contribute? Great! Feel free to contact me on:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [Github][github]
+- [LinkedIn][linkedin]
+- 📬 Email: *badadamilola@gmail.com*
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+MIT
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Free Software, Hell Yeah!**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
+[kompr]: https://kom-pr.vercel.app
+[github]: https://github.com/damygoes
+[linkedin]: https://www.linkedin.com/in/damilolabada
+[node.js]: http://nodejs.org
+[express]: http://expressjs.com
+[mongodb]: https://www.mongodb.com
+[mongoose]: https://mongoosejs.com
+[jsonwebtoken]: https://github.com/auth0/node-jsonwebtoken#readme
+[morgan]: https://github.com/expressjs/morgan#readme
+[reactjs]: https://reactjs.org
+[material ui]: https://mui.com
+[axios]: https://github.com/axios/axios
+[redux]: https://redux.js.org
+[redux toolkit]: https://redux-toolkit.js.org
+[rest api]: https://www.ibm.com/cloud/learn/rest-apis
