@@ -18,7 +18,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
 const pages = {
   estimator: "estimator",
   manage: "admin-board",
@@ -75,7 +74,7 @@ const NavBar = () => {
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
 
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             sx={{
@@ -90,7 +89,7 @@ const NavBar = () => {
             }}
             onClick={handleNavigate}
           >
-            LOGO
+            KOM-PR
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -146,7 +145,7 @@ const NavBar = () => {
             </Menu>
           </Box>
           <Typography
-            variant="h5"
+            variant="h4"
             noWrap
             component="a"
             sx={{
@@ -162,7 +161,7 @@ const NavBar = () => {
             }}
             onClick={handleNavigate}
           >
-            LOGO
+            KOM-PR
           </Typography>
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
